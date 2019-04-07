@@ -3,9 +3,9 @@
 ##---------------------------------------------------
 
 # Turbine Load Cases (~152 MB)
-_Inputs/LoadCases/Turb/
+_Inputs/
 
-# Baseline Results for comparison
+# Baseline Results for comparison (~112MB)
 _BaselineResults/
 
 # Output files from key runs
