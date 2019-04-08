@@ -4,33 +4,57 @@
 % Modeled from `Main.c` and `fRunFAST.m`
 
 %% Initialization
+% ref: Main.m
+
 restoredefaultpath;
 clear all;close all;clc;
 addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 
-%% User Parameters (can be modified by the contestants)
-SimulinkModelFile       = 'PAR_NREL5MW_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+%% User Parameters
+% ref: Main.m
+
+SimulinkModelFile       = 'NREL5MW_Example_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
-OutputFolder            = '_Outputs/' ; % Folder where the current simulation outputs will be placed
+RootOutputFolder            = '_Outputs/' ; % Folder where the current simulation outputs will be placed
 BaselineFolder          = '_BaselineResults/'; % Folder where "reference simulations are located"
-folders    = {
-  BaselineFolder     ,'Baseline Results'; % Folder where "reference simulations are located"
-  OutputFolder       ,'Model Results'   ; % Folder where the current simulation outputs will be placed
-}; % nx2 cell of Folders and Labels. Folder is where the .outb files are, with slash at the end
 
 % Input file specification name
 runSpec = 'DLC120_ws13_ye000_s1_r1';
 
 %% Script Parameters
-global Parameter ; % Structure containing all the parameters passed to the Simulink model
-Parameter = struct(); % Structure containing all the parameters passed to the Simulink model
+% ref: Main.m
+
 Challenge              = 'Offshore'                 ; % 'Offshore' or 'Onshore', important for cost function
 FASTInputFolder        = '_Inputs/LoadCases/'       ; % directory of the FAST input files are (e.g. .fst files)
+case_file              = '_Inputs/_inputs/Cases.csv'; % File defining the cases that are run
 
-%% Setting controller parameters
+%% Script Preprocessing
+% All sections after this should be able to be encapsulated in a parfor
 
-runName = [datestr(now,'YYYYmmDD-HHMMSS_') runSpec];
+% Load case and metrics init
+baseCases = fReadCases(case_file); % DLC Cases
+pMetrics = fMetricVars(baseCases, Challenge); % Parameters for the metrics computation
+
+% Compute folder stats and spectra - or load them from a file
+PreProFile= [BaselineFolder 'PrePro_' Challenge '.mat'];
+if ~exist(PreProFile,'file')
+    statsBase = fComputeOutStats(folder, pMetrics, Cases, PreProFile);
+else
+    statsBase = load(PreProFile);
+end
+
+% Evaluate metrics and cost function
+metricsBase = fEvaluateMetrics(statsBase, pMetrics);
+
+%% Set simulation parameters
+% ref: fRunFAST.m
+
+% Prepend simulation name with timestamp
+tStamp = [datestr(now,'YYYYmmDD-HHMMSS') '_' dec2hex(randi(2^16),4)]; % Add a random 4 char in case two parallel processes start at the same time
+runName = [tStamp '_' runSpec];
+OutputFolder = [RootOutputFolder runName '/'];
+mkdir(OutputFolder);
 
 % Copy FAST case input files
 % This way the output file automatically has the time-stamped name
@@ -48,29 +72,41 @@ fstFName  = [FASTInputFolder runName '.fst'];
     fprintf('-----------------------------------------------------------------------------\n');
 Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter); 
 
-% Create non-global parameter to use when parallelized
-Parameter0 = Parameter;
-clear Parameter
-
 %% Run simulation
+% ref: fRunFAST.m
 try
     sim(SimulinkModelFile);
     
     % Move output files to output directory
     movefile([FASTInputFolder runName '.SFunc.outb'], ...
-        [OutputFolder runName '.SFunc.outb']);
+        [OutputFolder runSpec '.SFunc.outb']);
     movefile([FASTInputFolder runName '.SFunc.sum'], ...
-        [OutputFolder runName '.SFunc.sum']);
+        [OutputFolder runSpec '.SFunc.sum']);
     movefile([FASTInputFolder runName '.SFunc.MAP.sum'], ...
-        [OutputFolder runName '.SFunc.MAP.sum']);
+        [OutputFolder runSpec '.SFunc.MAP.sum']);
     
 catch exception
     % rethrow(exception); % FOR NOW RETHROW!!!
     disp(exception.message)
     ErrorList{end+1}=sprintf('Simulation %s failed: %s', Parameter.FASTfile, exception.message);
     FAST_SFunc(0,0,0,0);% reset sFunction
+    
+    % Delete duplicated input files
+    if exist([OutputFolder runSpec '.SFunc.outb'],'file')
+        delete([OutputFolder runSpec '.SFunc.outb'])
+    end
+    if exist([OutputFolder runSpec '.SFunc.sum'],'file')
+        delete([OutputFolder runSpec '.SFunc.sum'])
+    end
+    if exist([OutputFolder runSpec '.SFunc.MAP.sum'],'file')
+        delete([OutputFolder runSpec '.SFunc.MAP.sum'])
+    end
+    delete([FASTInputFolder runName '.fst'])
+    delete([FASTInputFolder runName '_ED.dat'])
+    delete([FASTInputFolder runName '_HD.dat'])
+    delete([FASTInputFolder runName '_IW.dat'])
+    delete([FASTInputFolder runName '_SD.dat'])
 end
-clear mex
 
 % Delete duplicated input files
 delete([FASTInputFolder runName '.fst'])
@@ -79,8 +115,9 @@ delete([FASTInputFolder runName '_HD.dat'])
 delete([FASTInputFolder runName '_IW.dat'])
 delete([FASTInputFolder runName '_SD.dat'])
 
-%% Load Output
-outCtrlFName = [OutputFolder runName '.SFunc.outb'];
+%% Load Output from control and baseline
+% ref: fRunFAST.m
+outCtrlFName = [OutputFolder runSpec '.SFunc.outb'];
 outCtrl = struct();
 [outCtrl.Channels, outCtrl.ChanName, outCtrl.ChanUnit, ...
     outCtrl.FileID, outCtrl.DescStr] = fReadFASTbinary(outCtrlFName);
@@ -88,10 +125,23 @@ outCtrl = struct();
 [Channels, ChanName, ChanUnit, ...
     FileID, DescStr] = fReadFASTbinary(outCtrlFName);
 
-% Load reference if present
-outBaseFName = [BaselineFolder runSpec '.SFunc.outb'];
-if exist(outBaseFName,'file')
-    outBase = struct();
-    [outBase.Channels, outBase.ChanName, outBase.ChanUnit, ...
-        outBase.FileID, outBase.DescStr] = fReadFASTbinary(outBaseFName);    
-end
+%% Compute file stats
+% ref: fCostFunctionFolders.m
+
+% Load case and metrics init
+Cases = fRegExpCases(runSpec); % Structure of case properties
+pMetrics = fMetricVars(Cases, Challenge); % Parameters for the metrics computation
+
+% Compute folder stats and spectra - or load them from a file
+statsCtrl = fComputeOutStats(OutputFolder, pMetrics, Cases);
+
+% Evaluate metrics and cost function
+metricsCtrl = fEvaluateMetrics(statsCtrl, pMetrics);
+
+statsRunBase = getBaseStats(statsBase,runSpec);
+metricsRunBase = fEvaluateMetrics(statsRunBase, pMetrics);
+
+% Compare to baseline
+[CF, CF_Comp, CF_Vars, CF_Freq] = fCostFunction(metricsCtrl.Values, ...
+    metricsRunBase.Values, pMetrics);
+
