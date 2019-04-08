@@ -5,7 +5,7 @@
 # Turbine Load Cases (~152 MB)
 _Inputs/
 
-# Baseline Results for comparison
+# Baseline Results for comparison (~112MB)
 _BaselineResults/
 
 # Output files from key runs
@@ -41,6 +41,7 @@ codegen/
 
 # Simulink autosave extension
 *.autosave
+*.slxc
 
 # Octave session info
 octave-workspace

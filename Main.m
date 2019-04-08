@@ -24,12 +24,12 @@ FASTInputFolder        = '_Inputs/LoadCases/'       ; % directory of the FAST in
 case_file              = '_Inputs/_inputs/Cases.csv'; % File defining the cases that are run
 
 %% Running simulations and copying outputs to chosen folder
-global Parameter    ; % Structure containing all the parameters passed to the Simulink model
-Parameter = struct(); %           Set as global so that Simulink can access it in a function call
-fRunFAST(FASTInputFolder, SimulinkModelFile, hSetControllerParameter, OutputFolder); % function located in _Functions\
+fRunFAST(FASTInputFolder, SimulinkModelFile, hSetControllerParameter, ...
+    OutputFolder); % function located in _Functions\
 
 %% Evaluation of cost function 
-[CF, CF_Comp, CF_Vars, CF_Freq, pMetrics] = fCostFunctionFolders(folders, case_file, Challenge);
+[CF, CF_Comp, CF_Vars, CF_Freq, pMetrics] = fCostFunctionFolders(...
+    folders, case_file, Challenge);
 for iFolder = 1:size(folders,1)
     fprintf('Cost function: %6.4f  (%s)\n',CF(iFolder),folders{iFolder,2});
 end

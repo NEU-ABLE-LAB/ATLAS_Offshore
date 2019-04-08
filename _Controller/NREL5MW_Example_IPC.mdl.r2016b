@@ -1,31 +1,31 @@
 Model {
-  Name			  "NREL5MW_Example_IPC"
-  Version		  9.2
+  Name			  "NREL5MW_Example_CPC_IPC_R2016b"
+  Version		  8.8
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.935"
+    ComputedModelVersion    "1.933"
     NumModelReferences	    0
-    NumTestPointedSignals   6
+    NumTestPointedSignals   5
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "NREL5MW_Example_IPC/NREL Baseline Generator Torque Control"
+      FullBlockPath	      "NREL5MW_Example_CPC_IPC_R2016b/NREL Baseline Generator Torque Control"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "OutData"
-      FullBlockPath	      "NREL5MW_Example_IPC/OpenFAST Turbine Model1"
+      FullBlockPath	      "NREL5MW_Example_CPC_IPC_R2016b/OpenFAST Turbine Model1"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "y"
-      FullBlockPath	      "NREL5MW_Example_IPC/OpenFAST Turbine Model1"
+      FullBlockPath	      "NREL5MW_Example_CPC_IPC_R2016b/OpenFAST Turbine Model1"
       PortIndex		      2
       LogSignal		      1
       MaxPoints		      5000
@@ -33,25 +33,16 @@ Model {
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)"
+      FullBlockPath	      "NREL5MW_Example_CPC_IPC_R2016b/Participant's New Blade Pitch Control (CPC + IPC)"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block"
+      FullBlockPath	      "NREL5MW_Example_CPC_IPC_R2016b/Participant's New Blade Pitch Control (CPC + IPC)/Controller"
+      " block"
       LogSignal		      1
-      MaxPoints		      5000
-      Decimation	      2
-    }
-    TestPointedSignal {
-      SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL"
-      " 5MW Baseline Pitch Controller"
-      LogSignal		      1
-      UseCustomName	      1
-      LogName		      "theta"
       MaxPoints		      5000
       Decimation	      2
     }
@@ -60,27 +51,10 @@ Model {
     NumResetEvents	    0
     HasInitializeEvent	    0
     HasTerminateEvent	    0
-    PreCompExecutionDomainType "Unset"
     IsExportFunctionModel   0
-    NumParameterArguments   0
-    NumExternalFileReferences 1
-    ExternalFileReference {
-      Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL 5MW Bas"
-      "eline Pitch Controller/PI Anti-Windup with rate feedforward/Saturation Dynamic1"
-      SID		      "7458"
-      Type		      "LIBRARY_BLOCK"
-    }
-    OrderedModelArguments   1
   }
   DiagnosticSuppressor	  "on"
-  WebScopes_FoundationPlugin "on"
-  NotesPlugin		  "on"
   LogicAnalyzerPlugin	  "on"
-  LogicAnalyzerSignalOrdering "f9b1821b-b34a-412e-b9ea-78b6118bd3b7,9d355044-5392-46e8-a614-7be2f2f20c78,fa812559-848f"
-  "-48ba-8e21-c2483380f692,9ca492c6-dca6-45ff-b3ed-11916bbb01be,9b73315b-62b8-4545-adad-6327a2482142,b67fbcc3-c7cd-496d"
-  "-8ebf-577245d41c1a"
-  SLCCPlugin		  "on"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -100,7 +74,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [955.0, 0.0, 971.0, 1046.0]
+      Location		      [431.0, 0.0, 1096.0, 860.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -119,22 +93,22 @@ Model {
       }
       Array {
 	Type			"Simulink.EditorInfo"
-	Dimension		4
+	Dimension		3
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1846.0, 1767.0]
-	  ZoomFactor		  [1.7499999999999996]
-	  Offset		  [33.39285714285711, 193.64285714285705]
+	  Extents		  [1042.0, 677.0]
+	  ZoomFactor		  [1.7499999999999998]
+	  Offset		  [33.3928571428571, 193.64285714285711]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7200"
-	  Extents		  [5892.0, 3684.0]
+	  Extents		  [1473.0, 921.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [-14.0, 0.0]
 	}
@@ -142,25 +116,16 @@ Model {
 	  $ObjectID		  7
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "7354"
-	  Extents		  [1846.0, 1767.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [-135.5514864595599, -201.22503229534641]
-	}
-	Object {
-	  $ObjectID		  8
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "7446"
-	  Extents		  [1846.0, 1767.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [88.5, -328.0]
+	  LoadSaveID		  "7201"
+	  Extents		  [1042.0, 677.0]
+	  ZoomFactor		  [1.5]
+	  Offset		  [-254.49869791666663, -213.66666666666669]
 	}
 	PropName		"EditorsInfo"
       }
       Object {
 	$PropName		"DockComponentsInfo"
-	$ObjectID		9
+	$ObjectID		8
 	$ClassName		"Simulink.DockComponentInfo"
 	Type			"GLUE2:PropertyInspector"
 	ID			"Property Inspector"
@@ -169,38 +134,35 @@ Model {
 	UserData		""
 	Floating		[0]
 	DockPosition		"Right"
-	Width			[320]
-	Height			[240]
+	Width			[640]
+	Height			[480]
       }
       WindowState	      "AAAA/wAAAAD9AAAAAgAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
-      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAAD0AP///wAAAAEAAAAAAAAAAPwCA"
+      "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAAbgD///8AAAd8AAAHUQAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAQ4AAAC4QAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
-      "////wEAAADb/////wAAAAAAAAAA/////wEAAAGG/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAJh/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAVt/////wAAAAAAAAAA/"
+      "////wEAAAB5/////wAAAAAAAAAA/////wEAAADa/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFT/////wAAAAAAAAAA/"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAL9/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
-  HideAutomaticNames	  on
   Created		  "Fri Jan 18 10:49:48 2008"
   Creator		  "Phoenix_Shao"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "thisi"
+  LastModifiedBy	  "awright"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Apr 07 17:07:55 2019"
-  RTWModifiedTimeStamp	  476557669
-  ModelVersionFormat	  "1.%<AutoIncrement:935>"
+  LastModifiedDate	  "Wed Dec 12 10:21:34 2018"
+  RTWModifiedTimeStamp	  466510894
+  ModelVersionFormat	  "1.%<AutoIncrement:933>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
-  ShowAllPropagatedSignalLabels	off
-  PortDataTypeDisplayFormat "AliasTypeOnly"
   ShowEditTimeErrors	  on
   ShowEditTimeWarnings	  on
   ShowEditTimeAdvisorChecks off
@@ -214,7 +176,6 @@ Model {
   ShowViewerIcons	  on
   SortedOrder		  off
   VariantCondition	  off
-  ShowSubsystemDomainSpec off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
   ShowVisualizeInsertedRTB on
@@ -222,22 +183,17 @@ Model {
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
-  BlockVariantConditionDataTip off
   ToolBar		  on
   StatusBar		  on
   BrowserShowLibraryLinks on
   FunctionConnectors	  off
   BrowserLookUnderMasks	  off
-  MultiThreadCoSim	  on
   SimulationMode	  "normal"
-  VisualizeLoggedSignalsWhenLoggingToFile off
   PauseTimes		  "5"
   NumberOfSteps		  1
   SnapshotBufferSize	  10
   SnapshotInterval	  10
   NumberOfLastSnapshots	  0
-  EnablePacing		  off
-  PacingRate		  1
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -247,13 +203,13 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    10
+    $ObjectID		    9
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "NREL5MW_Example_IPC"
+    model_		    "NREL5MW_Example_CPC_IPC_R2016b"
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "NREL5MW_Example_IPC"
+      Cell		      "NREL5MW_Example_CPC_IPC_R2016b"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -265,11 +221,11 @@ Model {
   }
   Object {
     $PropName		    "InstrumentedSignals"
-    $ObjectID		    11
+    $ObjectID		    10
     $ClassName		    "Simulink.HMI.InstrumentedSignals"
     Array {
       Type		      "Struct"
-      Dimension		      6
+      Dimension		      5
       MATStruct {
 	UUID			"fa812559-848f-48ba-8e21-c2483380f692"
 	BlockPath_		"NREL Baseline Generator Torque Control"
@@ -282,7 +238,6 @@ Model {
 	Decimation_		[1.0]
 	MaxPoints_		[0.0]
 	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
 	DomainType_		""
 	Array {
 	  Type			  "Struct"
@@ -291,7 +246,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"b67fbcc3-c7cd-496d-8ebf-577245d41c1a"
@@ -305,7 +259,6 @@ Model {
 	Decimation_		[1.0]
 	MaxPoints_		[0.0]
 	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
 	DomainType_		""
 	Array {
 	  Type			  "Struct"
@@ -314,7 +267,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"9d355044-5392-46e8-a614-7be2f2f20c78"
@@ -328,7 +280,6 @@ Model {
 	Decimation_		[1.0]
 	MaxPoints_		[0.0]
 	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
 	DomainType_		""
 	Array {
 	  Type			  "Struct"
@@ -337,7 +288,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"9ca492c6-dca6-45ff-b3ed-11916bbb01be"
@@ -351,7 +301,6 @@ Model {
 	Decimation_		[1.0]
 	MaxPoints_		[0.0]
 	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
 	DomainType_		""
 	Array {
 	  Type			  "Struct"
@@ -360,7 +309,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"f9b1821b-b34a-412e-b9ea-78b6118bd3b7"
@@ -374,7 +322,6 @@ Model {
 	Decimation_		[1.0]
 	MaxPoints_		[0.0]
 	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
 	DomainType_		""
 	Array {
 	  Type			  "Struct"
@@ -383,30 +330,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
-      }
-      MATStruct {
-	UUID			"9b73315b-62b8-4545-adad-6327a2482142"
-	BlockPath_		"Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL 5MW Baseline Pitch Controller"
-	SID_			"7436"
-	SubPath_		""
-	OutputPortIndex_	[1.0]
-	LogicalPortIndex_	[0.0]
-	SignalName_		""
-	SubSysPath_		""
-	Decimation_		[1.0]
-	MaxPoints_		[0.0]
-	TargetBufferedStreaming_ [0.0]
-	IsFrameBased_		[0.0]
-	DomainType_		""
-	Array {
-	  Type			  "Struct"
-	  Dimension		  1
-	  MATStruct {
-	  }
-	  PropName		  "DomainParams_"
-	}
-	VisualType_		""
       }
       PropName		      "Persistence"
     }
@@ -434,27 +357,25 @@ Model {
   ExtModeAutoUpdateStatusClock on
   ShowModelReferenceBlockVersion off
   ShowModelReferenceBlockIO off
-  OrderedModelArguments	  on
   Array {
     Type		    "Handle"
     Dimension		    2
     Simulink.ConfigSet {
-      $ObjectID		      12
-      Version		      "1.18.1"
+      $ObjectID		      11
+      Version		      "1.16.5"
       DisabledProps	      []
       Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  13
-	  Version		  "1.18.1"
+	  $ObjectID		  12
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
 	  StopTime		  "Parameter.Time.TMax"
 	  AbsTol		  "auto"
-	  AutoScaleAbsTol	  on
 	  FixedStep		  "Parameter.Time.dt"
 	  InitialStep		  "auto"
 	  MaxOrder		  5
@@ -468,6 +389,7 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode4"
 	  SolverName		  "ode4"
@@ -484,12 +406,10 @@ Model {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
-	  MinimalZcImpactIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  14
-	  Version		  "1.18.1"
+	  $ObjectID		  13
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -524,13 +444,12 @@ Model {
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
 	  LoggingToFile		  off
-	  DatasetSignalFormat	  "timeseries"
 	  LoggingFileName	  "out.mat"
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  15
-	  Version		  "1.18.1"
+	  $ObjectID		  14
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -585,19 +504,10 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "off"
 	  AccelVerboseBuild	  off
-	  OptimizeBlockOrder	  "off"
-	  OptimizeDataStoreBuffers on
-	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
-	  OptimizationLevel	  "level2"
-	  OptimizationPriority	  "Balanced"
-	  OptimizationCustomize	  on
-	  UseRowMajorAlgorithm	  off
-	  LabelGuidedReuse	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  16
-	  Version		  "1.18.1"
+	  $ObjectID		  15
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -609,7 +519,6 @@ Model {
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
 	  SignalInfNanChecking	  "none"
-	  StringTruncationChecking "error"
 	  SignalRangeChecking	  "none"
 	  ReadBeforeWriteMsg	  "UseLocalSettings"
 	  WriteAfterWriteMsg	  "UseLocalSettings"
@@ -637,7 +546,6 @@ Model {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -679,9 +587,6 @@ Model {
 	  StateNameClashWarn	  "warning"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
-	  LibraryContextMissingDiagnostic "warning"
-	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -689,7 +594,6 @@ Model {
 	  SymbolicDimMinMaxWarning "warning"
 	  LossOfSymbolicDimsSimulationWarning "warning"
 	  LossOfSymbolicDimsCodeGenerationWarning "error"
-	  SymbolicDimsDataTypeCodeGenerationDiagnostic "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -708,15 +612,10 @@ Model {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
-	  UnitDatabase		  ""
-	  UnderSpecifiedDimensionMsg "none"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  17
-	  Version		  "1.18.1"
+	  $ObjectID		  16
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -763,8 +662,8 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  18
-	  Version		  "1.18.1"
+	  $ObjectID		  17
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -782,8 +681,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  19
-	  Version		  "1.18.1"
+	  $ObjectID		  18
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -802,21 +701,16 @@ Model {
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
-	  SimAnalyzeCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
 	  CompileTimeRecursionLimit 50
 	  EnableRuntimeRecursion  on
-	  MATLABDynamicMemAlloc	  on
-	  MATLABDynamicMemAllocThreshold 65536
-	  CustomCodeFunctionArrayLayout	[]
-	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  20
-	  Version		  "1.18.1"
+	  $ObjectID		  19
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -865,9 +759,7 @@ Model {
 	  CustomSource		  ""
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
-	  CustomBLASCallback	  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -880,7 +772,7 @@ Model {
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation "off"
+	  CodeProfilingInstrumentation off
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -902,8 +794,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      21
-	      Version		      "1.18.1"
+	      $ObjectID		      20
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -953,7 +845,6 @@ Model {
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -964,8 +855,6 @@ Model {
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
 	      CustomSymbolStrUtil     "$N$C"
-	      CustomSymbolStrEmxType  "emxArray_$M$N"
-	      CustomSymbolStrEmxFcn   "emx$M$N"
 	      CustomUserTokenString   ""
 	      CustomCommentsFcn	      ""
 	      DefineNamingRule	      "None"
@@ -977,8 +866,6 @@ Model {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      BlockCommentType	      "BlockPathComment"
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -990,8 +877,8 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      22
-	      Version		      "1.18.1"
+	      $ObjectID		      21
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
 		Dimension		18
@@ -1023,9 +910,8 @@ Model {
 	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
-	      MultiwordTypeDef	      "System defined"
+	      ERTMultiwordTypeDef     "System defined"
 	      MultiwordLength	      2048
-	      DynamicStringBufferSize 256
 	      GenerateFullHeader      on
 	      InferredTypesCompatibility off
 	      ExistingSharedCode      ""
@@ -1039,7 +925,6 @@ Model {
 	      GeneratePreprocessorConditionals "Disable all"
 	      CombineOutputUpdateFcns off
 	      CombineSignalStateStructs	off
-	      GroupInternalDataByFunction off
 	      SuppressErrorStatus     off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
@@ -1048,9 +933,9 @@ Model {
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
-	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
+	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      RemoveDisableFunc	      off
@@ -1058,7 +943,6 @@ Model {
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
-	      PreserveStateflowLocalDataDimensions off
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
@@ -1069,15 +953,6 @@ Model {
 	      UseToolchainInfoCompliant	off
 	      GenerateSharedConstants on
 	      CoderGroups	      []
-	      AccessMethods	      []
-	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
-	      UnsupportedSFcnMsg      "error"
-	      ERTHeaderFileRootName   "$R$E"
-	      ERTSourceFileRootName   "$R$E"
-	      ERTDataFileRootName     "$R_data"
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -1098,8 +973,8 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  23
-	  Version		  "1.18.1"
+	  $ObjectID		  22
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -1135,7 +1010,6 @@ Model {
 	  CovUseTimeInterval	  off
 	  CovStartTime		  0
 	  CovStopTime		  0
-	  CovMcdcMode		  "Masking"
 	}
 	PropName		"Components"
       }
@@ -1145,22 +1019,21 @@ Model {
       ConfigPrmDlgPosition    [ 200, 85, 1080, 715 ]
     }
     Simulink.ConfigSet {
-      $ObjectID		      24
-      Version		      "1.18.1"
+      $ObjectID		      23
+      Version		      "1.16.5"
       DisabledProps	      []
       Description	      ""
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  25
-	  Version		  "1.18.1"
+	  $ObjectID		  24
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
 	  StopTime		  "Parameter.Time.TMax"
 	  AbsTol		  "auto"
-	  AutoScaleAbsTol	  on
 	  FixedStep		  "Parameter.Time.dt"
 	  InitialStep		  "auto"
 	  MaxOrder		  5
@@ -1174,6 +1047,7 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  EnableMultiTasking	  on
+	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode4"
 	  SolverName		  "ode4"
@@ -1190,12 +1064,10 @@ Model {
 	  SampleTimeConstraint	  "Unconstrained"
 	  InsertRTBMode		  "Whenever possible"
 	  SampleTimeProperty	  []
-	  DecoupledContinuousIntegration off
-	  MinimalZcImpactIntegration off
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  26
-	  Version		  "1.18.1"
+	  $ObjectID		  25
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -1230,13 +1102,12 @@ Model {
 	  ReturnWorkspaceOutputsName "out"
 	  Refine		  "1"
 	  LoggingToFile		  off
-	  DatasetSignalFormat	  "timeseries"
 	  LoggingFileName	  "out.mat"
 	  LoggingIntervals	  "[-inf, inf]"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  27
-	  Version		  "1.18.1"
+	  $ObjectID		  26
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -1291,19 +1162,10 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "off"
 	  AccelVerboseBuild	  off
-	  OptimizeBlockOrder	  "off"
-	  OptimizeDataStoreBuffers on
-	  BusAssignmentInplaceUpdate on
-	  DifferentSizesBufferReuse off
-	  OptimizationLevel	  "level2"
-	  OptimizationPriority	  "Balanced"
-	  OptimizationCustomize	  on
-	  UseRowMajorAlgorithm	  off
-	  LabelGuidedReuse	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  28
-	  Version		  "1.18.1"
+	  $ObjectID		  27
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -1315,7 +1177,6 @@ Model {
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
 	  SignalInfNanChecking	  "none"
-	  StringTruncationChecking "error"
 	  SignalRangeChecking	  "none"
 	  ReadBeforeWriteMsg	  "UseLocalSettings"
 	  WriteAfterWriteMsg	  "UseLocalSettings"
@@ -1343,7 +1204,6 @@ Model {
 	  MultiTaskRateTransMsg	  "error"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
-	  ExportedTasksRateTransMsg "none"
 	  SigSpecEnsureSampleTimeMsg "warning"
 	  CheckMatrixSingularityMsg "none"
 	  IntegerOverflowMsg	  "warning"
@@ -1385,9 +1245,6 @@ Model {
 	  StateNameClashWarn	  "warning"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
-	  ChecksumConsistencyForSSReuse	"none"
-	  LibraryContextMissingDiagnostic "warning"
-	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -1395,7 +1252,6 @@ Model {
 	  SymbolicDimMinMaxWarning "warning"
 	  LossOfSymbolicDimsSimulationWarning "warning"
 	  LossOfSymbolicDimsCodeGenerationWarning "error"
-	  SymbolicDimsDataTypeCodeGenerationDiagnostic "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -1414,15 +1270,10 @@ Model {
 	  AllowedUnitSystems	  "all"
 	  UnitsInconsistencyMsg	  "warning"
 	  AllowAutomaticUnitConversions	on
-	  RCSCRenamedMsg	  "warning"
-	  RCSCObservableMsg	  "warning"
-	  ForceCombineOutputUpdateInSim	off
-	  UnitDatabase		  ""
-	  UnderSpecifiedDimensionMsg "none"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  29
-	  Version		  "1.18.1"
+	  $ObjectID		  28
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -1469,8 +1320,8 @@ Model {
 	  UseSimulinkCoderFeatures on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  30
-	  Version		  "1.18.1"
+	  $ObjectID		  29
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -1488,8 +1339,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  31
-	  Version		  "1.18.1"
+	  $ObjectID		  30
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -1508,21 +1359,16 @@ Model {
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  off
-	  SimAnalyzeCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
 	  CompileTimeRecursionLimit 50
 	  EnableRuntimeRecursion  on
-	  MATLABDynamicMemAlloc	  on
-	  MATLABDynamicMemAllocThreshold 65536
-	  CustomCodeFunctionArrayLayout	[]
-	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  32
-	  Version		  "1.18.1"
+	  $ObjectID		  31
+	  Version		  "1.16.5"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -1571,9 +1417,7 @@ Model {
 	  CustomSource		  ""
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
-	  CustomBLASCallback	  ""
 	  CustomLAPACKCallback	  ""
-	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
 	  CustomTerminator	  ""
 	  Toolchain		  "Automatically locate an installed toolchain"
@@ -1586,7 +1430,7 @@ Model {
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation "off"
+	  CodeProfilingInstrumentation off
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -1608,8 +1452,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      33
-	      Version		      "1.18.1"
+	      $ObjectID		      32
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -1659,7 +1503,6 @@ Model {
 	      SFDataObjDesc	      off
 	      MATLABFcnDesc	      off
 	      MangleLength	      1
-	      SharedChecksumLength    8
 	      CustomSymbolStrGlobalVar "$R$N$M"
 	      CustomSymbolStrType     "$N$R$M_T"
 	      CustomSymbolStrField    "$N$M"
@@ -1670,8 +1513,6 @@ Model {
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
 	      CustomSymbolStrUtil     "$N$C"
-	      CustomSymbolStrEmxType  "emxArray_$M$N"
-	      CustomSymbolStrEmxFcn   "emx$M$N"
 	      CustomUserTokenString   ""
 	      CustomCommentsFcn	      ""
 	      DefineNamingRule	      "None"
@@ -1683,8 +1524,6 @@ Model {
 	      InsertBlockDesc	      off
 	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
-	      BlockCommentType	      "BlockPathComment"
-	      StateflowObjectComments on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InternalIdentifierFile  ""
@@ -1696,8 +1535,8 @@ Model {
 	    }
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      34
-	      Version		      "1.18.1"
+	      $ObjectID		      33
+	      Version		      "1.16.5"
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -1730,9 +1569,8 @@ Model {
 	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
-	      MultiwordTypeDef	      "System defined"
+	      ERTMultiwordTypeDef     "System defined"
 	      MultiwordLength	      2048
-	      DynamicStringBufferSize 256
 	      GenerateFullHeader      on
 	      InferredTypesCompatibility off
 	      ExistingSharedCode      ""
@@ -1746,7 +1584,6 @@ Model {
 	      GeneratePreprocessorConditionals "Disable all"
 	      CombineOutputUpdateFcns off
 	      CombineSignalStateStructs	off
-	      GroupInternalDataByFunction off
 	      SuppressErrorStatus     off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
@@ -1755,9 +1592,9 @@ Model {
 	      MatFileLogging	      off
 	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
-	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
+	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      RemoveDisableFunc	      off
@@ -1765,7 +1602,6 @@ Model {
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
-	      PreserveStateflowLocalDataDimensions off
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.TargetSpecificTriggerConfigurationBase"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
@@ -1776,15 +1612,6 @@ Model {
 	      UseToolchainInfoCompliant	off
 	      GenerateSharedConstants on
 	      CoderGroups	      []
-	      AccessMethods	      []
-	      LookupTableObjectStructAxisOrder "1,2,3,4,..."
-	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
-	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
-	      ArrayLayout	      "Column-major"
-	      UnsupportedSFcnMsg      "error"
-	      ERTHeaderFileRootName   "$R$E"
-	      ERTSourceFileRootName   "$R$E"
-	      ERTDataFileRootName     "$R_data"
 	      SystemTargetFile	      "accel.tlc"
 	      DialogCategory	      0
 	    }
@@ -1792,8 +1619,8 @@ Model {
 	  }
 	}
 	SlCovCC.ConfigComp {
-	  $ObjectID		  35
-	  Version		  "1.18.1"
+	  $ObjectID		  34
+	  Version		  "1.16.5"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -1829,7 +1656,6 @@ Model {
 	  CovUseTimeInterval	  off
 	  CovStartTime		  0
 	  CovStopTime		  0
-	  CovMcdcMode		  "Masking"
 	}
 	PropName		"Components"
       }
@@ -1842,11 +1668,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    24
+    $ObjectID		    23
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    36
+    $ObjectID		    35
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1865,7 +1691,6 @@ Model {
     FontWeight		    "normal"
     FontAngle		    "normal"
     ShowName		    on
-    HideAutomaticName	    on
     BlockRotation	    0
     BlockMirror		    off
   }
@@ -1879,12 +1704,7 @@ Model {
     FontSize		    10
     FontWeight		    "normal"
     FontAngle		    "normal"
-    MarkupType		    "model"
     UseDisplayTextAsClickCallback off
-    AnnotationType	    "note_annotation"
-    FixedHeight		    off
-    FixedWidth		    off
-    Interpreter		    "off"
   }
   LineDefaults {
     FontName		    "Helvetica"
@@ -1896,7 +1716,7 @@ Model {
     SelfModifiable	    "off"
     IconFrame		    "on"
     IconOpaque		    "opaque"
-    RunInitForIconRedraw    "analyze"
+    RunInitForIconRedraw    "off"
     IconRotate		    "none"
     PortRotate		    "default"
     IconUnits		    "autoscale"
@@ -1920,6 +1740,8 @@ Model {
     }
     Block {
       BlockType		      BusSelector
+      OutputSignals	      "signal1,signal2,signal3"
+      OutputAsBus	      "off"
     }
     Block {
       BlockType		      Constant
@@ -2003,7 +1825,7 @@ Model {
     }
     Block {
       BlockType		      Memory
-      InitialCondition	      "0"
+      X0		      "0"
       InheritSampleTime	      off
       LinearizeMemory	      off
       LinearizeAsDelay	      off
@@ -2056,8 +1878,6 @@ Model {
       InitialOutput	      "[]"
       MustResolveToSignalObject	off
       OutputWhenUnConnected   off
-      OutputWhenUnconnectedValue "0"
-      VectorParamsAs1DForOutWhenUnconnected off
     }
     Block {
       BlockType		      Product
@@ -2096,7 +1916,6 @@ Model {
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
-      MultiThreadCoSim	      "auto"
     }
     Block {
       BlockType		      Saturate
@@ -2153,18 +1972,12 @@ Model {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
-      VariantControlMode      "Expression"
       Variant		      off
       GeneratePreprocessorConditionals off
-      AllowZeroVariantControls off
       PropagateVariantConditions off
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      IsObserver	      off
-      Latency		      "0"
-      AutoFrameSizeCalculation off
-      IsWebBlockPanel	      off
     }
     Block {
       BlockType		      Sum
@@ -2211,12 +2024,9 @@ Model {
     }
   }
   System {
-    Name		    "NREL5MW_Example_IPC"
-    Location		    [955, 0, 1926, 1046]
-    Open		    on
-    PortBlocksUseCompactNotation off
-    SetExecutionDomain	    off
-    ExecutionDomainType	    "Deduce"
+    Name		    "NREL5MW_Example_CPC_IPC_R2016b"
+    Location		    [431, 0, 1527, 860]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -2229,7 +2039,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "175"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "7466"
+    SIDHighWatermark	    "7417"
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator1"
@@ -2254,14 +2064,12 @@ Model {
       Port {
 	PortNumber		1
 	PropagatedSignals	"M_g_c"
+	DataLogging		on
       }
       System {
 	Name			"NREL Baseline Generator Torque Control"
-	Location		[955, 0, 1926, 1046]
+	Location		[1931, 175, 3505, 802]
 	Open			off
-	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2296,7 +2104,6 @@ Model {
 	  ZOrder		  6
 	  ShowName		  off
 	  OutputSignals		  "Omega_g"
-	  OutputAsBus		  off
 	  Port {
 	    PortNumber		    1
 	    Name		    "<Omega_g>"
@@ -2311,7 +2118,6 @@ Model {
 	  ZOrder		  7
 	  ShowName		  off
 	  OutputSignals		  "theta"
-	  OutputAsBus		  off
 	  Port {
 	    PortNumber		    1
 	    Name		    "<theta>"
@@ -2332,9 +2138,6 @@ Model {
 	    Name		    "FilterGenSpeed.Omega_g"
 	    Location		    [1931, 175, 3505, 802]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2388,9 +2191,6 @@ Model {
 		Name			"LowPassOrder1"
 		Location		[739, 227, 1495, 669]
 		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2646,11 +2446,8 @@ Model {
 	  }
 	  System {
 	    Name		    "NREL 5MW BaselineTorque Controller"
-	    Location		    [955, 0, 1926, 1046]
+	    Location		    [242, 0, 1531, 820]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2699,9 +2496,6 @@ Model {
 		Name			"Baseline Torque Controller"
 		Location		[227, 345, 838, 789]
 		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2713,7 +2507,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"4436"
+		SIDHighWatermark	"4433"
 		SIDPrevWatermark	"4402"
 		Block {
 		  BlockType		  Inport
@@ -2843,20 +2637,20 @@ Model {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "7092::4435"
+		  SID			  "7092::4432"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  68
+		  ZOrder		  65
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "7092::4434"
-		  Tag			  "Stateflow S-Function NREL5MW_Example_IPC 1"
+		  SID			  "7092::4431"
+		  Tag			  "Stateflow S-Function NREL5MW_Example_CPC_IPC_R2016b 1"
 		  Ports			  [14, 2]
 		  Position		  [180, 90, 230, 390]
-		  ZOrder		  67
+		  ZOrder		  64
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[14 2]"
 		  SFunctionDeploymentMode off
@@ -2870,9 +2664,9 @@ Model {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "7092::4436"
+		  SID			  "7092::4433"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  69
+		  ZOrder		  66
 		}
 		Block {
 		  BlockType		  Outport
@@ -2883,98 +2677,98 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  35
+		  ZOrder		  18
 		  SrcBlock		  "Omega_g"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  36
+		  ZOrder		  19
 		  SrcBlock		  "SwitchR3"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  37
+		  ZOrder		  20
 		  SrcBlock		  "Omega_g_1To1_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  38
+		  ZOrder		  21
 		  SrcBlock		  "Omega_g_1_5To2"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  39
+		  ZOrder		  22
 		  SrcBlock		  "Omega_g_2To2_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  5
 		}
 		Line {
-		  ZOrder		  40
+		  ZOrder		  23
 		  SrcBlock		  "Omega_g_2_5To3"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  6
 		}
 		Line {
-		  ZOrder		  41
+		  ZOrder		  24
 		  SrcBlock		  "a_1_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  7
 		}
 		Line {
-		  ZOrder		  42
+		  ZOrder		  25
 		  SrcBlock		  "b_1_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  8
 		}
 		Line {
-		  ZOrder		  43
+		  ZOrder		  26
 		  SrcBlock		  "k"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  9
 		}
 		Line {
-		  ZOrder		  44
+		  ZOrder		  27
 		  SrcBlock		  "a_2_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  10
 		}
 		Line {
-		  ZOrder		  45
+		  ZOrder		  28
 		  SrcBlock		  "b_2_5"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  11
 		}
 		Line {
-		  ZOrder		  46
+		  ZOrder		  29
 		  SrcBlock		  "M_g_rated"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  12
 		}
 		Line {
-		  ZOrder		  47
+		  ZOrder		  30
 		  SrcBlock		  "P_a_rated"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  13
 		}
 		Line {
-		  ZOrder		  48
+		  ZOrder		  31
 		  SrcBlock		  "Mode"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2982,7 +2776,7 @@ Model {
 		}
 		Line {
 		  Name			  "M_g"
-		  ZOrder		  49
+		  ZOrder		  32
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2990,14 +2784,14 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  50
+		  ZOrder		  33
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  51
+		  ZOrder		  34
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -3412,18 +3206,17 @@ Model {
       Port {
 	PortNumber		1
 	Name			"OutData"
+	DataLogging		on
       }
       Port {
 	PortNumber		2
 	Name			"y"
+	DataLogging		on
       }
       System {
 	Name			"OpenFAST Turbine Model1"
-	Location		[955, 0, 1926, 1046]
-	Open			on
-	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
+	Location		[204, 8, 1731, 1112]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3471,7 +3264,6 @@ Model {
 	  ZOrder		  253
 	  ShowName		  off
 	  OutputSignals		  "M_g_c"
-	  OutputAsBus		  off
 	  Port {
 	    PortNumber		    1
 	    Name		    "<M_g_c>"
@@ -3486,7 +3278,6 @@ Model {
 	  ZOrder		  -4
 	  ShowName		  off
 	  OutputSignals		  "Omega_g"
-	  OutputAsBus		  off
 	  Port {
 	    PortNumber		    1
 	    Name		    "<Omega_g>"
@@ -3551,9 +3342,6 @@ Model {
 	    Name		    "Generator Torque (limits) \nand Power"
 	    Location		    [1926, 9, 2636, 568]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3605,7 +3393,7 @@ Model {
 	      ZOrder		      5
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.M_g"
+	      X0		      "Parameter.IC.M_g"
 	    }
 	    Block {
 	      BlockType		      Memory
@@ -3615,7 +3403,7 @@ Model {
 	      ZOrder		      6
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.Omega/Parameter.Turbine.i"
+	      X0		      "Parameter.IC.Omega/Parameter.Turbine.i"
 	    }
 	    Block {
 	      BlockType		      Product
@@ -3859,7 +3647,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    37
+	    $ObjectID		    36
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('deg2rad')"
 	  }
@@ -3871,9 +3659,6 @@ Model {
 	    Name		    "Subsystem4"
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3938,7 +3723,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    38
+	    $ObjectID		    37
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('rpm2rad/s')"
 	  }
@@ -3950,9 +3735,6 @@ Model {
 	    Name		    "Subsystem8"
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4017,7 +3799,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    39
+	    $ObjectID		    38
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "disp('rpm2rad/s')"
 	  }
@@ -4029,9 +3811,6 @@ Model {
 	    Name		    "Subsystem9"
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4132,9 +3911,6 @@ Model {
 	    Name		    "bld1 Pitch Actuator"
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4204,7 +3980,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      X0		      "Parameter.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -4251,7 +4027,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		40
+		$ObjectID		39
 		$ClassName		"Simulink.Mask"
 		Display			"disp(['omega = ',num2str(omega),'\\n'...\n    ,'xi = ',num2str(xi)])\nport_label('output',1,'y')\nport_la"
 		"bel('output',2,'x1')\nport_label('input',2,'y0')\nport_label('input',1,'u')"
@@ -4259,42 +4035,42 @@ Model {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    41
+		    $ObjectID		    40
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
 		    Value		    "Parameter.PitchActuator.omega"
 		  }
 		  Object {
-		    $ObjectID		    42
+		    $ObjectID		    41
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
 		    Value		    "Parameter.PitchActuator.xi"
 		  }
 		  Object {
-		    $ObjectID		    43
+		    $ObjectID		    42
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
 		    Value		    "Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    44
+		    $ObjectID		    43
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
 		    Value		    "-Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    45
+		    $ObjectID		    44
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
 		    Value		    "Parameter.PitchActuator.theta_max"
 		  }
 		  Object {
-		    $ObjectID		    46
+		    $ObjectID		    45
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
@@ -4307,9 +4083,6 @@ Model {
 		Name			"PT2"
 		Location		[0, 0, 1612, 886]
 		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4759,9 +4532,6 @@ Model {
 	    Name		    "bld2 Pitch Actuator"
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4831,7 +4601,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      X0		      "Parameter.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -4878,7 +4648,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		47
+		$ObjectID		46
 		$ClassName		"Simulink.Mask"
 		Display			"disp(['omega = ',num2str(omega),'\\n'...\n    ,'xi = ',num2str(xi)])\nport_label('output',1,'y')\nport_la"
 		"bel('output',2,'x1')\nport_label('input',2,'y0')\nport_label('input',1,'u')"
@@ -4886,42 +4656,42 @@ Model {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    48
+		    $ObjectID		    47
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
 		    Value		    "Parameter.PitchActuator.omega"
 		  }
 		  Object {
-		    $ObjectID		    49
+		    $ObjectID		    48
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
 		    Value		    "Parameter.PitchActuator.xi"
 		  }
 		  Object {
-		    $ObjectID		    50
+		    $ObjectID		    49
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
 		    Value		    "Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    51
+		    $ObjectID		    50
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
 		    Value		    "-Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    52
+		    $ObjectID		    51
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
 		    Value		    "Parameter.PitchActuator.theta_max"
 		  }
 		  Object {
-		    $ObjectID		    53
+		    $ObjectID		    52
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
@@ -4934,9 +4704,6 @@ Model {
 		Name			"PT2"
 		Location		[0, 0, 1612, 886]
 		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -5386,9 +5153,6 @@ Model {
 	    Name		    "bld3 Pitch Actuator"
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -5458,7 +5222,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      X0		      "Parameter.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -5505,7 +5269,7 @@ Model {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		54
+		$ObjectID		53
 		$ClassName		"Simulink.Mask"
 		Display			"disp(['omega = ',num2str(omega),'\\n'...\n    ,'xi = ',num2str(xi)])\nport_label('output',1,'y')\nport_la"
 		"bel('output',2,'x1')\nport_label('input',2,'y0')\nport_label('input',1,'u')"
@@ -5513,42 +5277,42 @@ Model {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  6
 		  Object {
-		    $ObjectID		    55
+		    $ObjectID		    54
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
 		    Value		    "Parameter.PitchActuator.omega"
 		  }
 		  Object {
-		    $ObjectID		    56
+		    $ObjectID		    55
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
 		    Value		    "Parameter.PitchActuator.xi"
 		  }
 		  Object {
-		    $ObjectID		    57
+		    $ObjectID		    56
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
 		    Value		    "Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    58
+		    $ObjectID		    57
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
 		    Value		    "-Parameter.PitchActuator.theta_dot_max"
 		  }
 		  Object {
-		    $ObjectID		    59
+		    $ObjectID		    58
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
 		    Value		    "Parameter.PitchActuator.theta_max"
 		  }
 		  Object {
-		    $ObjectID		    60
+		    $ObjectID		    59
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
@@ -5561,9 +5325,6 @@ Model {
 		Name			"PT2"
 		Location		[0, 0, 1612, 886]
 		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -6511,14 +6272,12 @@ Model {
       Port {
 	PortNumber		1
 	Name			"theta_c"
+	DataLogging		on
       }
       System {
 	Name			"Participant's New Blade Pitch Control (CPC + IPC)"
-	Location		[955, 0, 1926, 1046]
+	Location		[431, 0, 1527, 860]
 	Open			off
-	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -6529,7 +6288,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"150"
 	Block {
 	  BlockType		  Inport
 	  Name			  "y"
@@ -6556,14 +6315,12 @@ Model {
 	  Port {
 	    PortNumber		    1
 	    Name		    "theta_c"
+	    DataLogging		    on
 	  }
 	  System {
 	    Name		    "Controller block"
-	    Location		    [955, 0, 1926, 1046]
-	    Open		    on
-	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    Location		    [431, 0, 1527, 860]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -6574,7 +6331,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "y"
@@ -6589,1020 +6346,18 @@ Model {
 	      }
 	    }
 	    Block {
-	      BlockType		      BusSelector
-	      Name		      "Bus\nSelector"
-	      SID		      "7418"
-	      Ports		      [1, 1]
-	      Position		      [-5, 51, 0, 89]
-	      ZOrder		      406
-	      ShowName		      off
-	      OutputSignals	      "Omega_g"
-	      OutputAsBus	      off
-	      Port {
-		PortNumber		1
-		Name			"<Omega_g>"
-	      }
-	    }
-	    Block {
-	      BlockType		      BusSelector
-	      Name		      "Bus\nSelector1"
-	      SID		      "7419"
-	      Ports		      [1, 1]
-	      Position		      [-5, 106, 0, 144]
-	      ZOrder		      407
-	      ShowName		      off
-	      OutputSignals	      "theta"
-	      OutputAsBus	      off
-	      Port {
-		PortNumber		1
-		Name			"<theta>"
-	      }
-	    }
-	    Block {
 	      BlockType		      Constant
-	      Name		      "Constant1"
-	      SID		      "7420"
-	      Position		      [165, 145, 195, 175]
-	      ZOrder		      409
-	      ShowName		      off
-	      Value		      "0"
-	    }
-	    Block {
-	      BlockType		      SubSystem
-	      Name		      "FilterGenSpeed.Omega_g"
-	      SID		      "7421"
-	      Ports		      [1, 1]
-	      Position		      [80, 30, 195, 80]
-	      ZOrder		      410
-	      BackgroundColor	      "gray"
-	      FontName		      "Arial"
-	      FontSize		      12
-	      RequestExecContextInheritance off
-	      System {
-		Name			"FilterGenSpeed.Omega_g"
-		Location		[2160, 337, 3312, 919]
-		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
-		ModelBrowserVisibility	off
-		ModelBrowserWidth	200
-		ScreenColor		"white"
-		PaperOrientation	"landscape"
-		PaperPositionMode	"auto"
-		PaperType		"usletter"
-		PaperUnits		"inches"
-		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
-		TiledPageScale		1
-		ShowPageBoundaries	off
-		ZoomFactor		"100"
-		Block {
-		  BlockType		  Inport
-		  Name			  "u"
-		  SID			  "7422"
-		  Position		  [80, 233, 110, 247]
-		  ZOrder		  -1
-		  BackgroundColor	  "darkGreen"
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant1"
-		  SID			  "7423"
-		  Position		  [80, 287, 280, 313]
-		  ZOrder		  249
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  Value			  "Parameter.Filter.FilterGenSpeed.T63"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant3"
-		  SID			  "7424"
-		  Position		  [80, 317, 335, 343]
-		  ZOrder		  246
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  Value			  "Parameter.Filter.FilterGenSpeed.Omega_g.Enable"
-		}
-		Block {
-		  BlockType		  SubSystem
-		  Name			  "LowPassOrder1"
-		  SID			  "7425"
-		  Ports			  [4, 1]
-		  Position		  [405, 224, 475, 346]
-		  ZOrder		  316
-		  BackgroundColor	  "gray"
-		  RequestExecContextInheritance	off
-		  System {
-		    Name		    "LowPassOrder1"
-		    Location		    [1926, 9, 3237, 955]
-		    Open		    off
-		    PortBlocksUseCompactNotation off
-		    SetExecutionDomain	    off
-		    ExecutionDomainType	    "Deduce"
-		    ModelBrowserVisibility  off
-		    ModelBrowserWidth	    200
-		    ScreenColor		    "white"
-		    PaperOrientation	    "landscape"
-		    PaperPositionMode	    "auto"
-		    PaperType		    "usletter"
-		    PaperUnits		    "inches"
-		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-		    TiledPageScale	    1
-		    ShowPageBoundaries	    off
-		    ZoomFactor		    "100"
-		    Block {
-		    BlockType		    Inport
-		    Name		    "u0"
-		    SID			    "7426"
-		    Position		    [255, 448, 285, 462]
-		    ZOrder		    248
-		    BackgroundColor	    "darkGreen"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "u"
-		    SID			    "7427"
-		    Position		    [55, 388, 85, 402]
-		    ZOrder		    -1
-		    BackgroundColor	    "darkGreen"
-		    Port		    "2"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "T"
-		    SID			    "7428"
-		    Position		    [255, 328, 285, 342]
-		    ZOrder		    247
-		    BackgroundColor	    "darkGreen"
-		    Port		    "3"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "Enable"
-		    SID			    "7429"
-		    Position		    [425, 473, 455, 487]
-		    ZOrder		    251
-		    BackgroundColor	    "darkGreen"
-		    Port		    "4"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Sum
-		    Name		    "Add3"
-		    SID			    "7430"
-		    Ports		    [2, 1]
-		    Position		    [165, 371, 195, 404]
-		    ZOrder		    146
-		    ShowName		    off
-		    Inputs		    "-+"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Integrator
-		    Name		    "Integrator"
-		    SID			    "7431"
-		    Ports		    [2, 1]
-		    Position		    [425, 377, 455, 408]
-		    ZOrder		    252
-		    ShowName		    off
-		    InitialConditionSource  "external"
-		    }
-		    Block {
-		    BlockType		    Product
-		    Name		    "Product"
-		    SID			    "7432"
-		    Ports		    [2, 1]
-		    Position		    [320, 367, 350, 398]
-		    ZOrder		    147
-		    ShowName		    off
-		    Inputs		    "/*"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Switch
-		    Name		    "Switch"
-		    SID			    "7433"
-		    Position		    [585, 440, 645, 520]
-		    ZOrder		    250
-		    ShowName		    off
-		    Criteria		    "u2 > Threshold"
-		    Threshold		    "0.5"
-		    InputSameDT		    off
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Outport
-		    Name		    "y"
-		    SID			    "7434"
-		    Position		    [680, 473, 710, 487]
-		    ZOrder		    -2
-		    BackgroundColor	    "yellow"
-		    IconDisplay		    "Port number"
-		    }
-		    Line {
-		    ZOrder		    1
-		    SrcBlock		    "u0"
-		    SrcPort		    1
-		    Points		    [97, 0; 0, -55]
-		    DstBlock		    "Integrator"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    2
-		    SrcBlock		    "Switch"
-		    SrcPort		    1
-		    DstBlock		    "y"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    3
-		    SrcBlock		    "Enable"
-		    SrcPort		    1
-		    DstBlock		    "Switch"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    4
-		    SrcBlock		    "u"
-		    SrcPort		    1
-		    Points		    [42, 0]
-		    Branch {
-		    ZOrder		    5
-		    DstBlock		    "Add3"
-		    DstPort		    2
-		    }
-		    Branch {
-		    ZOrder		    6
-		    Points		    [0, 110]
-		    DstBlock		    "Switch"
-		    DstPort		    3
-		    }
-		    }
-		    Line {
-		    ZOrder		    7
-		    SrcBlock		    "T"
-		    SrcPort		    1
-		    Points		    [12, 0; 0, 40]
-		    DstBlock		    "Product"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    8
-		    SrcBlock		    "Integrator"
-		    SrcPort		    1
-		    Points		    [30, 0]
-		    Branch {
-		    ZOrder		    9
-		    Points		    [0, -97; -340, 0]
-		    DstBlock		    "Add3"
-		    DstPort		    1
-		    }
-		    Branch {
-		    ZOrder		    10
-		    Points		    [0, 60]
-		    DstBlock		    "Switch"
-		    DstPort		    1
-		    }
-		    }
-		    Line {
-		    ZOrder		    11
-		    SrcBlock		    "Product"
-		    SrcPort		    1
-		    DstBlock		    "Integrator"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    12
-		    SrcBlock		    "Add3"
-		    SrcPort		    1
-		    DstBlock		    "Product"
-		    DstPort		    2
-		    }
-		  }
-		}
-		Block {
-		  BlockType		  Outport
-		  Name			  "y"
-		  SID			  "7435"
-		  Position		  [535, 278, 565, 292]
-		  ZOrder		  -14
-		  BackgroundColor	  "yellow"
-		  IconDisplay		  "Port number"
-		}
-		Line {
-		  ZOrder		  1
-		  SrcBlock		  "LowPassOrder1"
-		  SrcPort		  1
-		  DstBlock		  "y"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  2
-		  SrcBlock		  "u"
-		  SrcPort		  1
-		  Points		  [229, 0]
-		  Branch {
-		    ZOrder		    3
-		    Points		    [0, 30]
-		    DstBlock		    "LowPassOrder1"
-		    DstPort		    2
-		  }
-		  Branch {
-		    ZOrder		    4
-		    DstBlock		    "LowPassOrder1"
-		    DstPort		    1
-		  }
-		}
-		Line {
-		  ZOrder		  5
-		  SrcBlock		  "Constant3"
-		  SrcPort		  1
-		  DstBlock		  "LowPassOrder1"
-		  DstPort		  4
-		}
-		Line {
-		  ZOrder		  6
-		  SrcBlock		  "Constant1"
-		  SrcPort		  1
-		  DstBlock		  "LowPassOrder1"
-		  DstPort		  3
-		}
-	      }
-	    }
-	    Block {
-	      BlockType		      SubSystem
-	      Name		      "NREL 5MW Baseline Pitch Controller"
-	      SID		      "7436"
-	      Ports		      [3, 1]
-	      Position		      [255, 50, 405, 180]
-	      ZOrder		      408
-	      BackgroundColor	      "green"
-	      FontName		      "Arial"
-	      FontSize		      12
-	      RequestExecContextInheritance off
-	      Port {
-		PortNumber		1
-		Name			"theta_c"
-		DataLoggingNameMode	"Custom"
-		DataLoggingName		"theta"
-	      }
-	      System {
-		Name			"NREL 5MW Baseline Pitch Controller"
-		Location		[955, 0, 1926, 1046]
-		Open			off
-		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
-		ModelBrowserVisibility	off
-		ModelBrowserWidth	200
-		ScreenColor		"white"
-		PaperOrientation	"landscape"
-		PaperPositionMode	"auto"
-		PaperType		"usletter"
-		PaperUnits		"inches"
-		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
-		TiledPageScale		1
-		ShowPageBoundaries	off
-		ZoomFactor		"80"
-		Block {
-		  BlockType		  Inport
-		  Name			  "Omega_g [rad/s]"
-		  SID			  "7437"
-		  Position		  [150, 258, 180, 272]
-		  ZOrder		  -1
-		  BackgroundColor	  "darkGreen"
-		  FontName		  "Arial"
-		  FontSize		  11
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Inport
-		  Name			  "theta [rad]"
-		  SID			  "7438"
-		  Position		  [15, 318, 45, 332]
-		  ZOrder		  -2
-		  BackgroundColor	  "darkGreen"
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Port			  "2"
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Inport
-		  Name			  "theta_dot_FF [rad/s]"
-		  SID			  "7439"
-		  Position		  [480, 358, 510, 372]
-		  ZOrder		  -3
-		  BackgroundColor	  "darkGreen"
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Port			  "3"
-		  IconDisplay		  "Port number"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant"
-		  SID			  "7440"
-		  Position		  [480, 230, 600, 260]
-		  ZOrder		  72
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Value			  "Parameter.CPC.kp"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant1"
-		  SID			  "7441"
-		  Position		  [480, 290, 600, 320]
-		  ZOrder		  73
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Value			  "Parameter.CPC.Ti"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant2"
-		  SID			  "7442"
-		  Position		  [470, 470, 605, 500]
-		  ZOrder		  74
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Value			  "Parameter.CPC.theta_min"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant3"
-		  SID			  "7443"
-		  Position		  [470, 410, 605, 440]
-		  ZOrder		  75
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Value			  "Parameter.CPC.theta_max"
-		}
-		Block {
-		  BlockType		  Constant
-		  Name			  "Constant4"
-		  SID			  "7444"
-		  Position		  [70, 165, 235, 185]
-		  ZOrder		  206
-		  BackgroundColor	  "red"
-		  ShowName		  off
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Value			  "Parameter.CPC.Omega_g_rated"
-		}
-		Block {
-		  BlockType		  Fcn
-		  Name			  "Gain"
-		  SID			  "7445"
-		  Position		  [145, 312, 320, 338]
-		  ZOrder		  -8
-		  BackgroundColor	  "red"
-		  FontName		  "Arial"
-		  FontSize		  11
-		  Expr			  "1/(1+u/Parameter.CPC.theta_K)"
-		}
-		Block {
-		  BlockType		  SubSystem
-		  Name			  "PI Anti-Windup with rate feedforward"
-		  SID			  "7446"
-		  Ports			  [7, 1]
-		  Position		  [635, 86, 815, 524]
-		  ZOrder		  324
-		  BackgroundColor	  "green"
-		  FontName		  "Arial"
-		  FontSize		  12
-		  RequestExecContextInheritance	off
-		  System {
-		    Name		    "PI Anti-Windup with rate feedforward"
-		    Location		    [955, 0, 1926, 1046]
-		    Open		    on
-		    PortBlocksUseCompactNotation off
-		    SetExecutionDomain	    off
-		    ExecutionDomainType	    "Deduce"
-		    ModelBrowserVisibility  off
-		    ModelBrowserWidth	    200
-		    ScreenColor		    "white"
-		    PaperOrientation	    "landscape"
-		    PaperPositionMode	    "auto"
-		    PaperType		    "usletter"
-		    PaperUnits		    "inches"
-		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-		    TiledPageScale	    1
-		    ShowPageBoundaries	    off
-		    ZoomFactor		    "100"
-		    Block {
-		    BlockType		    Inport
-		    Name		    "x_0"
-		    SID			    "7447"
-		    Position		    [390, 123, 420, 137]
-		    ZOrder		    50
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "e"
-		    SID			    "7448"
-		    Position		    [140, 88, 170, 102]
-		    ZOrder		    49
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "2"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "kp"
-		    SID			    "7449"
-		    Position		    [140, 43, 170, 57]
-		    ZOrder		    46
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "3"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "Ti"
-		    SID			    "7450"
-		    Position		    [310, 83, 340, 97]
-		    ZOrder		    48
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "4"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "u_dot_FF"
-		    SID			    "7451"
-		    Position		    [405, 28, 435, 42]
-		    ZOrder		    59
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "5"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "u_max"
-		    SID			    "7452"
-		    Position		    [625, 73, 655, 87]
-		    ZOrder		    65
-		    BackgroundColor	    "darkGreen"
-		    NamePlacement	    "alternate"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "6"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Inport
-		    Name		    "u_min"
-		    SID			    "7453"
-		    Position		    [625, 133, 655, 147]
-		    ZOrder		    66
-		    BackgroundColor	    "darkGreen"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    Port		    "7"
-		    IconDisplay		    "Port number"
-		    }
-		    Block {
-		    BlockType		    Integrator
-		    Name		    "Integrator"
-		    SID			    "7454"
-		    Ports		    [2, 1]
-		    Position		    [475, 62, 525, 153]
-		    ZOrder		    61
-		    ShowName		    off
-		    InitialConditionSource  "external"
-		    }
-		    Block {
-		    BlockType		    Product
-		    Name		    "Multiply1"
-		    SID			    "7455"
-		    Ports		    [2, 1]
-		    Position		    [210, 57, 240, 88]
-		    ZOrder		    43
-		    ShowName		    off
-		    Inputs		    "**"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    RndMeth		    "Floor"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Product
-		    Name		    "Multiply3"
-		    SID			    "7456"
-		    Ports		    [2, 1]
-		    Position		    [365, 67, 395, 98]
-		    ZOrder		    44
-		    ShowName		    off
-		    Inputs		    "*/"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    RndMeth		    "Floor"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Reference
-		    Name		    "Saturation\nDynamic1"
-		    SID			    "7458"
-		    Ports		    [3, 1]
-		    Position		    [695, 65, 775, 155]
-		    ZOrder		    68
-		    ShowName		    off
-		    LibraryVersion	    "1.444"
-		    SourceBlock		    "simulink/Discontinuities/Saturation\nDynamic"
-		    SourceType		    "Saturation Dynamic"
-		    SourceProductName	    "Simulink"
-		    SourceProductBaseCode   "SL"
-		    ContentPreviewEnabled   off
-		    OutMin		    "[]"
-		    OutMax		    "[]"
-		    OutDataTypeStr	    "Inherit: Same as second input"
-		    OutputDataTypeScalingMode "Same as second input"
-		    OutDataType		    "fixdt(1, 16)"
-		    OutScaling		    "2^-10"
-		    LockScale		    off
-		    RndMeth		    "Floor"
-		    DoSatur		    off
-		    }
-		    Block {
-		    BlockType		    Sum
-		    Name		    "Sum"
-		    SID			    "7459"
-		    Ports		    [2, 1]
-		    Position		    [560, 100, 580, 120]
-		    ZOrder		    24
-		    ShowName		    off
-		    IconShape		    "round"
-		    Inputs		    "++|"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Sum
-		    Name		    "Sum1"
-		    SID			    "7460"
-		    Ports		    [2, 1]
-		    Position		    [580, 195, 600, 215]
-		    ZOrder		    26
-		    BlockMirror		    on
-		    NamePlacement	    "alternate"
-		    ShowName		    off
-		    IconShape		    "round"
-		    Inputs		    "-+|"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Sum
-		    Name		    "Sum2"
-		    SID			    "7461"
-		    Ports		    [2, 1]
-		    Position		    [285, 65, 305, 85]
-		    ZOrder		    42
-		    ShowName		    off
-		    IconShape		    "round"
-		    Inputs		    "|++"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Sum
-		    Name		    "Sum3"
-		    SID			    "7462"
-		    Ports		    [2, 1]
-		    Position		    [435, 75, 455, 95]
-		    ZOrder		    58
-		    ShowName		    off
-		    IconShape		    "round"
-		    Inputs		    "++|"
-		    InputSameDT		    off
-		    OutDataTypeStr	    "Inherit: Inherit via internal rule"
-		    SaturateOnIntegerOverflow off
-		    }
-		    Block {
-		    BlockType		    Outport
-		    Name		    "u"
-		    SID			    "7463"
-		    Position		    [930, 103, 960, 117]
-		    ZOrder		    53
-		    BackgroundColor	    "yellow"
-		    FontName		    "Arial"
-		    FontSize		    11
-		    IconDisplay		    "Port number"
-		    }
-		    Line {
-		    ZOrder		    1
-		    SrcBlock		    "Saturation\nDynamic1"
-		    SrcPort		    1
-		    Points		    [25, 0]
-		    Branch {
-		    ZOrder		    27
-		    DstBlock		    "u"
-		    DstPort		    1
-		    }
-		    Branch {
-		    ZOrder		    26
-		    Points		    [0, 95]
-		    DstBlock		    "Sum1"
-		    DstPort		    2
-		    }
-		    }
-		    Line {
-		    ZOrder		    7
-		    SrcBlock		    "Integrator"
-		    SrcPort		    1
-		    DstBlock		    "Sum"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    8
-		    SrcBlock		    "kp"
-		    SrcPort		    1
-		    Points		    [15, 0; 0, 15]
-		    DstBlock		    "Multiply1"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    9
-		    SrcBlock		    "e"
-		    SrcPort		    1
-		    Points		    [20, 0]
-		    DstBlock		    "Multiply1"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    10
-		    SrcBlock		    "Ti"
-		    SrcPort		    1
-		    DstBlock		    "Multiply3"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    11
-		    SrcBlock		    "Multiply1"
-		    SrcPort		    1
-		    Points		    [17, 0]
-		    Branch {
-		    ZOrder		    12
-		    Points		    [0, -62; 308, 0]
-		    DstBlock		    "Sum"
-		    DstPort		    1
-		    }
-		    Branch {
-		    ZOrder		    13
-		    DstBlock		    "Sum2"
-		    DstPort		    1
-		    }
-		    }
-		    Line {
-		    ZOrder		    14
-		    SrcBlock		    "Sum2"
-		    SrcPort		    1
-		    DstBlock		    "Multiply3"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    15
-		    SrcBlock		    "x_0"
-		    SrcPort		    1
-		    DstBlock		    "Integrator"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    16
-		    SrcBlock		    "Multiply3"
-		    SrcPort		    1
-		    DstBlock		    "Sum3"
-		    DstPort		    2
-		    }
-		    Line {
-		    ZOrder		    17
-		    SrcBlock		    "Sum3"
-		    SrcPort		    1
-		    DstBlock		    "Integrator"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    18
-		    SrcBlock		    "u_dot_FF"
-		    SrcPort		    1
-		    Points		    [5, 0]
-		    DstBlock		    "Sum3"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    19
-		    SrcBlock		    "u_min"
-		    SrcPort		    1
-		    DstBlock		    "Saturation\nDynamic1"
-		    DstPort		    3
-		    }
-		    Line {
-		    ZOrder		    20
-		    SrcBlock		    "Sum"
-		    SrcPort		    1
-		    Points		    [5, 0]
-		    Branch {
-		    ZOrder		    21
-		    DstBlock		    "Saturation\nDynamic1"
-		    DstPort		    2
-		    }
-		    Branch {
-		    ZOrder		    22
-		    DstBlock		    "Sum1"
-		    DstPort		    1
-		    }
-		    }
-		    Line {
-		    ZOrder		    23
-		    SrcBlock		    "u_max"
-		    SrcPort		    1
-		    DstBlock		    "Saturation\nDynamic1"
-		    DstPort		    1
-		    }
-		    Line {
-		    ZOrder		    24
-		    SrcBlock		    "Sum1"
-		    SrcPort		    1
-		    Points		    [-280, 0]
-		    DstBlock		    "Sum2"
-		    DstPort		    2
-		    }
-		  }
-		}
-		Block {
-		  BlockType		  Product
-		  Name			  "Product"
-		  SID			  "7464"
-		  Ports			  [2, 1]
-		  Position		  [570, 167, 600, 198]
-		  ZOrder		  -11
-		  ShowName		  off
-		  InputSameDT		  off
-		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-		  SaturateOnIntegerOverflow off
-		}
-		Block {
-		  BlockType		  Sum
-		  Name			  "Sum"
-		  SID			  "7465"
-		  Ports			  [2, 1]
-		  Position		  [310, 165, 330, 185]
-		  ZOrder		  -14
-		  ShowName		  off
-		  IconShape		  "round"
-		  Inputs		  "|-+"
-		  InputSameDT		  off
-		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-		  SaturateOnIntegerOverflow off
-		}
-		Block {
-		  BlockType		  Outport
-		  Name			  "theta_c [rad]"
-		  SID			  "7466"
-		  Position		  [885, 298, 915, 312]
-		  ZOrder		  -16
-		  BackgroundColor	  "yellow"
-		  FontName		  "Arial"
-		  FontSize		  11
-		  IconDisplay		  "Port number"
-		}
-		Line {
-		  ZOrder		  1
-		  SrcBlock		  "Constant4"
-		  SrcPort		  1
-		  DstBlock		  "Sum"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  2
-		  SrcBlock		  "theta [rad]"
-		  SrcPort		  1
-		  Points		  [5, 0]
-		  Branch {
-		    ZOrder		    3
-		    DstBlock		    "Gain"
-		    DstPort		    1
-		  }
-		  Branch {
-		    ZOrder		    4
-		    Points		    [0, -200]
-		    DstBlock		    "PI Anti-Windup with rate feedforward"
-		    DstPort		    1
-		  }
-		}
-		Line {
-		  ZOrder		  5
-		  SrcBlock		  "Omega_g [rad/s]"
-		  SrcPort		  1
-		  Points		  [135, 0]
-		  DstBlock		  "Sum"
-		  DstPort		  2
-		}
-		Line {
-		  ZOrder		  6
-		  SrcBlock		  "Gain"
-		  SrcPort		  1
-		  Points		  [75, 0; 0, -135]
-		  DstBlock		  "Product"
-		  DstPort		  2
-		}
-		Line {
-		  ZOrder		  7
-		  SrcBlock		  "Sum"
-		  SrcPort		  1
-		  DstBlock		  "Product"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  8
-		  SrcBlock		  "Product"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  2
-		}
-		Line {
-		  ZOrder		  9
-		  SrcBlock		  "theta_dot_FF [rad/s]"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  5
-		}
-		Line {
-		  ZOrder		  10
-		  SrcBlock		  "PI Anti-Windup with rate feedforward"
-		  SrcPort		  1
-		  DstBlock		  "theta_c [rad]"
-		  DstPort		  1
-		}
-		Line {
-		  ZOrder		  11
-		  SrcBlock		  "Constant"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  3
-		}
-		Line {
-		  ZOrder		  12
-		  SrcBlock		  "Constant1"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  4
-		}
-		Line {
-		  ZOrder		  13
-		  SrcBlock		  "Constant2"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  7
-		}
-		Line {
-		  ZOrder		  14
-		  SrcBlock		  "Constant3"
-		  SrcPort		  1
-		  DstBlock		  "PI Anti-Windup with rate feedforward"
-		  DstPort		  6
-		}
-	      }
+	      Name		      "Constant"
+	      SID		      "7416"
+	      Position		      [165, 70, 195, 100]
+	      ZOrder		      405
+	      Value		      "10*pi/180"
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "theta_c "
 	      SID		      "7357"
-	      Position		      [470, 108, 500, 122]
+	      Position		      [415, 78, 445, 92]
 	      ZOrder		      -35
 	      BackgroundColor	      "yellow"
 	      FontName		      "Arial"
@@ -7610,67 +6365,10 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      Name		      "theta_c"
-	      ZOrder		      16
-	      Labels		      [0, 0]
-	      SrcBlock		      "NREL 5MW Baseline Pitch Controller"
+	      ZOrder		      6
+	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      DstBlock		      "theta_c "
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "<theta>"
-	      ZOrder		      8
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector1"
-	      SrcPort		      1
-	      Points		      [123, 0; 0, -10]
-	      DstBlock		      "NREL 5MW Baseline Pitch Controller"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "Constant1"
-	      SrcPort		      1
-	      DstBlock		      "NREL 5MW Baseline Pitch Controller"
-	      DstPort		      3
-	    }
-	    Line {
-	      Name		      "y"
-	      ZOrder		      15
-	      Labels		      [1, 1]
-	      SrcBlock		      "y"
-	      SrcPort		      1
-	      Points		      [21, 0]
-	      Branch {
-		ZOrder			11
-		Points			[0, -15]
-		DstBlock		"Bus\nSelector"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			10
-		Points			[0, 40]
-		DstBlock		"Bus\nSelector1"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      Name		      "<Omega_g>"
-	      ZOrder		      13
-	      Labels		      [0, 0]
-	      SrcBlock		      "Bus\nSelector"
-	      SrcPort		      1
-	      Points		      [30, 0; 0, -15]
-	      DstBlock		      "FilterGenSpeed.Omega_g"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      14
-	      SrcBlock		      "FilterGenSpeed.Omega_g"
-	      SrcPort		      1
-	      Points		      [25, 0; 0, 15]
-	      DstBlock		      "NREL 5MW Baseline Pitch Controller"
 	      DstPort		      1
 	    }
 	  }
@@ -7819,10 +6517,10 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "NREL5MW_Example_IPC"
+    name		    "NREL5MW_Example_CPC_IPC_R2016b"
     created		    "03-Aug-2011 15:24:03"
     isLibrary		    0
-    sfVersion		    80000014
+    sfVersion		    80000010
     firstTarget		    22
   }
   chart {

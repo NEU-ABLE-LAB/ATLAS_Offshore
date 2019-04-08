@@ -1,4 +1,5 @@
-function [CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, Metrics, FilesStats] = fCostFunctionFolders(folders, case_file, Challenge);
+function [CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, Metrics, FilesStats] = ...
+    fCostFunctionFolders(folders, case_file, Challenge)
 %
 % INPUTS
 %   - folders:  nx2 cell containing: Folder, Label
@@ -29,7 +30,8 @@ for iDir = 1:nDirs
         fprintf('>>> Computing stats for folder %s ...\n',folder);
         isOctave = exist('OCTAVE_VERSION', 'builtin') ~= 0;
         if isequal(folder, '_BaselineResults/') && ~isOctave % small hack here to save Baseline prepro.mat with Matlab
-            [ FilesStats{iDir} ] = fComputeOutStats(folder, pMetrics, Cases, PreProFile);
+            [ FilesStats{iDir} ] = fComputeOutStats(folder, pMetrics, ...
+                Cases, PreProFile);
         else
             [ FilesStats{iDir} ] = fComputeOutStats(folder, pMetrics, Cases);
         end
