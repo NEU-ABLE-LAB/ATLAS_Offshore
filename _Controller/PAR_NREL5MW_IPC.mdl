@@ -1,31 +1,31 @@
 Model {
-  Name			  "NREL5MW_Example_IPC"
+  Name			  "PAR_NREL5MW_IPC"
   Version		  9.2
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.935"
+    ComputedModelVersion    "1.936"
     NumModelReferences	    0
     NumTestPointedSignals   6
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "NREL5MW_Example_IPC/NREL Baseline Generator Torque Control"
+      FullBlockPath	      "PAR_NREL5MW_IPC/NREL Baseline Generator Torque Control"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "OutData"
-      FullBlockPath	      "NREL5MW_Example_IPC/OpenFAST Turbine Model1"
+      FullBlockPath	      "PAR_NREL5MW_IPC/OpenFAST Turbine Model1"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "y"
-      FullBlockPath	      "NREL5MW_Example_IPC/OpenFAST Turbine Model1"
+      FullBlockPath	      "PAR_NREL5MW_IPC/OpenFAST Turbine Model1"
       PortIndex		      2
       LogSignal		      1
       MaxPoints		      5000
@@ -33,22 +33,22 @@ Model {
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)"
+      FullBlockPath	      "PAR_NREL5MW_IPC/Participant's New Blade Pitch Control (CPC + IPC)"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block"
+      FullBlockPath	      "PAR_NREL5MW_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL"
-      " 5MW Baseline Pitch Controller"
+      FullBlockPath	      "PAR_NREL5MW_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL 5MW"
+      " Baseline Pitch Controller"
       LogSignal		      1
       UseCustomName	      1
       LogName		      "theta"
@@ -66,8 +66,8 @@ Model {
     NumExternalFileReferences 1
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "NREL5MW_Example_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL 5MW Bas"
-      "eline Pitch Controller/PI Anti-Windup with rate feedforward/Saturation Dynamic1"
+      Path		      "PAR_NREL5MW_IPC/Participant's New Blade Pitch Control (CPC + IPC)/Controller block/NREL 5MW Baselin"
+      "e Pitch Controller/PI Anti-Windup with rate feedforward/Saturation Dynamic1"
       SID		      "7458"
       Type		      "LIBRARY_BLOCK"
     }
@@ -77,9 +77,6 @@ Model {
   WebScopes_FoundationPlugin "on"
   NotesPlugin		  "on"
   LogicAnalyzerPlugin	  "on"
-  LogicAnalyzerSignalOrdering "f9b1821b-b34a-412e-b9ea-78b6118bd3b7,9d355044-5392-46e8-a614-7be2f2f20c78,fa812559-848f"
-  "-48ba-8e21-c2483380f692,9ca492c6-dca6-45ff-b3ed-11916bbb01be,9b73315b-62b8-4545-adad-6327a2482142,b67fbcc3-c7cd-496d"
-  "-8ebf-577245d41c1a"
   SLCCPlugin		  "on"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -122,19 +119,19 @@ Model {
 	Dimension		4
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1846.0, 1767.0]
 	  ZoomFactor		  [1.7499999999999996]
-	  Offset		  [33.39285714285711, 193.64285714285705]
+	  Offset		  [33.39285714285711, 193.642857142857]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7200"
-	  Extents		  [5892.0, 3684.0]
+	  Extents		  [11784.0, 5236.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [-14.0, 0.0]
 	}
@@ -143,13 +140,13 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7354"
-	  Extents		  [1846.0, 1767.0]
+	  Extents		  [3692.0, 3534.0]
 	  ZoomFactor		  [1.25]
 	  Offset		  [-135.5514864595599, -201.22503229534641]
 	}
 	Object {
 	  $ObjectID		  8
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7446"
 	  Extents		  [1846.0, 1767.0]
@@ -190,9 +187,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "thisi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Apr 07 17:07:55 2019"
-  RTWModifiedTimeStamp	  476557669
-  ModelVersionFormat	  "1.%<AutoIncrement:935>"
+  LastModifiedDate	  "Sun Apr 07 18:12:22 2019"
+  RTWModifiedTimeStamp	  476561535
+  ModelVersionFormat	  "1.%<AutoIncrement:936>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -249,11 +246,11 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    10
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "NREL5MW_Example_IPC"
+    model_		    "PAR_NREL5MW_IPC"
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "NREL5MW_Example_IPC"
+      Cell		      "PAR_NREL5MW_IPC"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -452,10 +449,10 @@ Model {
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
-	  StopTime		  "Parameter.Time.TMax"
+	  StopTime		  "Parameter0.Time.TMax"
 	  AbsTol		  "auto"
 	  AutoScaleAbsTol	  on
-	  FixedStep		  "Parameter.Time.dt"
+	  FixedStep		  "Parameter0.Time.dt"
 	  InitialStep		  "auto"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
@@ -476,7 +473,7 @@ Model {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
-	  SolverInfoToggleStatus  off
+	  SolverInfoToggleStatus  on
 	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
@@ -1158,10 +1155,10 @@ Model {
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
-	  StopTime		  "Parameter.Time.TMax"
+	  StopTime		  "Parameter0.Time.TMax"
 	  AbsTol		  "auto"
 	  AutoScaleAbsTol	  on
-	  FixedStep		  "Parameter.Time.dt"
+	  FixedStep		  "Parameter0.Time.dt"
 	  InitialStep		  "auto"
 	  MaxOrder		  5
 	  ZcThreshold		  "auto"
@@ -1182,7 +1179,7 @@ Model {
 	  ZeroCrossControl	  "UseLocalSettings"
 	  ZeroCrossAlgorithm	  "Nonadaptive"
 	  AlgebraicLoopSolver	  "TrustRegion"
-	  SolverInfoToggleStatus  off
+	  SolverInfoToggleStatus  on
 	  IsAutoAppliedInSIP	  off
 	  SolverResetMethod	  "Fast"
 	  PositivePriorityOrder	  off
@@ -2211,7 +2208,7 @@ Model {
     }
   }
   System {
-    Name		    "NREL5MW_Example_IPC"
+    Name		    "PAR_NREL5MW_IPC"
     Location		    [955, 0, 1926, 1046]
     Open		    on
     PortBlocksUseCompactNotation off
@@ -2363,7 +2360,7 @@ Model {
 	      ZOrder		      249
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.Filter.FilterGenSpeed.T63"
+	      Value		      "Parameter0.Filter.FilterGenSpeed.T63"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -2373,7 +2370,7 @@ Model {
 	      ZOrder		      246
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.Filter.FilterGenSpeed.Omega_g.Enable"
+	      Value		      "Parameter0.Filter.FilterGenSpeed.Omega_g.Enable"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -2853,7 +2850,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7092::4434"
-		  Tag			  "Stateflow S-Function NREL5MW_Example_IPC 1"
+		  Tag			  "Stateflow S-Function PAR_NREL5MW_IPC 1"
 		  Ports			  [14, 2]
 		  Position		  [180, 90, 230, 390]
 		  ZOrder		  67
@@ -3015,7 +3012,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.Omega_g_1To1_5"
+	      Value		      "Parameter0.VSC.Omega_g_1To1_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3027,7 +3024,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.Mode"
+	      Value		      "Parameter0.VSC.Mode"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3039,7 +3036,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.b_1_5"
+	      Value		      "Parameter0.VSC.b_1_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3051,7 +3048,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.P_a_rated"
+	      Value		      "Parameter0.VSC.P_a_rated"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3063,7 +3060,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.theta_fine"
+	      Value		      "Parameter0.VSC.theta_fine"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3075,7 +3072,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.a_1_5"
+	      Value		      "Parameter0.VSC.a_1_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3087,7 +3084,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.k"
+	      Value		      "Parameter0.VSC.k"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3099,7 +3096,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.M_g_rated"
+	      Value		      "Parameter0.VSC.M_g_rated"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3111,7 +3108,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.Omega_g_2To2_5"
+	      Value		      "Parameter0.VSC.Omega_g_2To2_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3123,7 +3120,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.Omega_g_1_5To2"
+	      Value		      "Parameter0.VSC.Omega_g_1_5To2"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3135,7 +3132,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.a_2_5"
+	      Value		      "Parameter0.VSC.a_2_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3147,7 +3144,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.b_2_5"
+	      Value		      "Parameter0.VSC.b_2_5"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -3159,7 +3156,7 @@ Model {
 	      ShowName		      off
 	      FontName		      "Arial"
 	      FontSize		      12
-	      Value		      "Parameter.VSC.Omega_g_2_5To3"
+	      Value		      "Parameter0.VSC.Omega_g_2_5To3"
 	    }
 	    Block {
 	      BlockType		      RelationalOperator
@@ -3184,8 +3181,8 @@ Model {
 	      InputPortMap	      "u0"
 	      FontName		      "Arial"
 	      FontSize		      12
-	      UpperLimit	      "Parameter.VSC.M_g_max "
-	      LowerLimit	      "Parameter.VSC.M_g_min"
+	      UpperLimit	      "Parameter0.VSC.M_g_max "
+	      LowerLimit	      "Parameter0.VSC.M_g_min"
 	      Port {
 		PortNumber		1
 		Name			"M_g"
@@ -3595,7 +3592,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.Generator.eta_el"
+	      Value		      "Parameter0.Generator.eta_el"
 	    }
 	    Block {
 	      BlockType		      Memory
@@ -3605,7 +3602,7 @@ Model {
 	      ZOrder		      5
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.M_g"
+	      InitialCondition	      "Parameter0.IC.M_g"
 	    }
 	    Block {
 	      BlockType		      Memory
@@ -3615,7 +3612,7 @@ Model {
 	      ZOrder		      6
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.Omega/Parameter.Turbine.i"
+	      InitialCondition	      "Parameter0.IC.Omega/Parameter0.Turbine.i"
 	    }
 	    Block {
 	      BlockType		      Product
@@ -3638,10 +3635,10 @@ Model {
 	      ZOrder		      4
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.Generator.M_g_dot_max "
-	      FallingSlewLimit	      "-Parameter.Generator.M_g_dot_max "
+	      RisingSlewLimit	      "Parameter0.Generator.M_g_dot_max "
+	      FallingSlewLimit	      "-Parameter0.Generator.M_g_dot_max "
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.M_g"
+	      InitialCondition	      "Parameter0.IC.M_g"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3819,7 +3816,7 @@ Model {
 	  FontName		  "Arial"
 	  FontSize		  14
 	  FunctionName		  "FAST_SFunc"
-	  Parameters		  "Parameter.FASTfile, Parameter.Time.TMax, 0"
+	  Parameters		  "Parameter0.FASTfile, Parameter0.Time.TMax, 0"
 	  SFunctionDeploymentMode off
 	  EnableBusSupport	  off
 	  SFcnIsStateOwnerBlock	  off
@@ -4166,7 +4163,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.IC.theta"
+	      Value		      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -4177,7 +4174,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.PitchActuator.Mode"
+	      Value		      "Parameter0.PitchActuator.Mode"
 	    }
 	    Block {
 	      BlockType		      Derivative
@@ -4204,7 +4201,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -4263,42 +4260,42 @@ Model {
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
-		    Value		    "Parameter.PitchActuator.omega"
+		    Value		    "Parameter0.PitchActuator.omega"
 		  }
 		  Object {
 		    $ObjectID		    42
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
-		    Value		    "Parameter.PitchActuator.xi"
+		    Value		    "Parameter0.PitchActuator.xi"
 		  }
 		  Object {
 		    $ObjectID		    43
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
-		    Value		    "Parameter.PitchActuator.theta_dot_max"
+		    Value		    "Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    44
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
-		    Value		    "-Parameter.PitchActuator.theta_dot_max"
+		    Value		    "-Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    45
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
-		    Value		    "Parameter.PitchActuator.theta_max"
+		    Value		    "Parameter0.PitchActuator.theta_max"
 		  }
 		  Object {
 		    $ObjectID		    46
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
-		    Value		    "Parameter.PitchActuator.theta_min"
+		    Value		    "Parameter0.PitchActuator.theta_min"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -4534,10 +4531,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      RateLimiter
@@ -4548,10 +4545,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      TransportDelay
@@ -4563,8 +4560,8 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      DelayTime		      "Parameter.PitchActuator.Delay"
-	      InitialOutput	      "Parameter.IC.theta"
+	      DelayTime		      "Parameter0.PitchActuator.Delay"
+	      InitialOutput	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -4793,7 +4790,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.IC.theta"
+	      Value		      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -4804,7 +4801,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.PitchActuator.Mode"
+	      Value		      "Parameter0.PitchActuator.Mode"
 	    }
 	    Block {
 	      BlockType		      Derivative
@@ -4831,7 +4828,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -4890,42 +4887,42 @@ Model {
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
-		    Value		    "Parameter.PitchActuator.omega"
+		    Value		    "Parameter0.PitchActuator.omega"
 		  }
 		  Object {
 		    $ObjectID		    49
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
-		    Value		    "Parameter.PitchActuator.xi"
+		    Value		    "Parameter0.PitchActuator.xi"
 		  }
 		  Object {
 		    $ObjectID		    50
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
-		    Value		    "Parameter.PitchActuator.theta_dot_max"
+		    Value		    "Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    51
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
-		    Value		    "-Parameter.PitchActuator.theta_dot_max"
+		    Value		    "-Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    52
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
-		    Value		    "Parameter.PitchActuator.theta_max"
+		    Value		    "Parameter0.PitchActuator.theta_max"
 		  }
 		  Object {
 		    $ObjectID		    53
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
-		    Value		    "Parameter.PitchActuator.theta_min"
+		    Value		    "Parameter0.PitchActuator.theta_min"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -5161,10 +5158,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      RateLimiter
@@ -5175,10 +5172,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      TransportDelay
@@ -5190,8 +5187,8 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      DelayTime		      "Parameter.PitchActuator.Delay"
-	      InitialOutput	      "Parameter.IC.theta"
+	      DelayTime		      "Parameter0.PitchActuator.Delay"
+	      InitialOutput	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -5420,7 +5417,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.IC.theta"
+	      Value		      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -5431,7 +5428,7 @@ Model {
 	      ForegroundColor	      "white"
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      Value		      "Parameter.PitchActuator.Mode"
+	      Value		      "Parameter0.PitchActuator.Mode"
 	    }
 	    Block {
 	      BlockType		      Derivative
@@ -5458,7 +5455,7 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      MultiPortSwitch
@@ -5517,42 +5514,42 @@ Model {
 		    Type		    "edit"
 		    Name		    "omega"
 		    Prompt		    "undamped natural frequency [rad/s]"
-		    Value		    "Parameter.PitchActuator.omega"
+		    Value		    "Parameter0.PitchActuator.omega"
 		  }
 		  Object {
 		    $ObjectID		    56
 		    Type		    "edit"
 		    Name		    "xi"
 		    Prompt		    "damping factor [-]"
-		    Value		    "Parameter.PitchActuator.xi"
+		    Value		    "Parameter0.PitchActuator.xi"
 		  }
 		  Object {
 		    $ObjectID		    57
 		    Type		    "edit"
 		    Name		    "x1_max"
 		    Prompt		    "Upper bound x1"
-		    Value		    "Parameter.PitchActuator.theta_dot_max"
+		    Value		    "Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    58
 		    Type		    "edit"
 		    Name		    "x1_min"
 		    Prompt		    "Lower bound x1"
-		    Value		    "-Parameter.PitchActuator.theta_dot_max"
+		    Value		    "-Parameter0.PitchActuator.theta_dot_max"
 		  }
 		  Object {
 		    $ObjectID		    59
 		    Type		    "edit"
 		    Name		    "x2_max"
 		    Prompt		    "Upper bound x2"
-		    Value		    "Parameter.PitchActuator.theta_max"
+		    Value		    "Parameter0.PitchActuator.theta_max"
 		  }
 		  Object {
 		    $ObjectID		    60
 		    Type		    "edit"
 		    Name		    "x2_min"
 		    Prompt		    "Lower bound x2"
-		    Value		    "Parameter.PitchActuator.theta_min"
+		    Value		    "Parameter0.PitchActuator.theta_min"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -5788,10 +5785,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      RateLimiter
@@ -5802,10 +5799,10 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      RisingSlewLimit	      "Parameter.PitchActuator.theta_dot_max"
-	      FallingSlewLimit	      "-Parameter.PitchActuator.theta_dot_max"
+	      RisingSlewLimit	      "Parameter0.PitchActuator.theta_dot_max"
+	      FallingSlewLimit	      "-Parameter0.PitchActuator.theta_dot_max"
 	      SampleTimeMode	      "inherited"
-	      InitialCondition	      "Parameter.IC.theta"
+	      InitialCondition	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      TransportDelay
@@ -5817,8 +5814,8 @@ Model {
 	      BlockRotation	      270
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      DelayTime		      "Parameter.PitchActuator.Delay"
-	      InitialOutput	      "Parameter.IC.theta"
+	      DelayTime		      "Parameter0.PitchActuator.Delay"
+	      InitialOutput	      "Parameter0.IC.theta"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -6673,7 +6670,7 @@ Model {
 		  ZOrder		  249
 		  BackgroundColor	  "red"
 		  ShowName		  off
-		  Value			  "Parameter.Filter.FilterGenSpeed.T63"
+		  Value			  "Parameter0.Filter.FilterGenSpeed.T63"
 		}
 		Block {
 		  BlockType		  Constant
@@ -6683,7 +6680,7 @@ Model {
 		  ZOrder		  246
 		  BackgroundColor	  "red"
 		  ShowName		  off
-		  Value			  "Parameter.Filter.FilterGenSpeed.Omega_g.Enable"
+		  Value			  "Parameter0.Filter.FilterGenSpeed.Omega_g.Enable"
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -7018,7 +7015,7 @@ Model {
 		  ShowName		  off
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Value			  "Parameter.CPC.kp"
+		  Value			  "Parameter0.CPC.kp"
 		}
 		Block {
 		  BlockType		  Constant
@@ -7030,7 +7027,7 @@ Model {
 		  ShowName		  off
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Value			  "Parameter.CPC.Ti"
+		  Value			  "Parameter0.CPC.Ti"
 		}
 		Block {
 		  BlockType		  Constant
@@ -7042,7 +7039,7 @@ Model {
 		  ShowName		  off
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Value			  "Parameter.CPC.theta_min"
+		  Value			  "Parameter0.CPC.theta_min"
 		}
 		Block {
 		  BlockType		  Constant
@@ -7054,7 +7051,7 @@ Model {
 		  ShowName		  off
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Value			  "Parameter.CPC.theta_max"
+		  Value			  "Parameter0.CPC.theta_max"
 		}
 		Block {
 		  BlockType		  Constant
@@ -7066,7 +7063,7 @@ Model {
 		  ShowName		  off
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Value			  "Parameter.CPC.Omega_g_rated"
+		  Value			  "Parameter0.CPC.Omega_g_rated"
 		}
 		Block {
 		  BlockType		  Fcn
@@ -7077,7 +7074,7 @@ Model {
 		  BackgroundColor	  "red"
 		  FontName		  "Arial"
 		  FontSize		  11
-		  Expr			  "1/(1+u/Parameter.CPC.theta_K)"
+		  Expr			  "1/(1+u/Parameter0.CPC.theta_K)"
 		}
 		Block {
 		  BlockType		  SubSystem
@@ -7819,7 +7816,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "NREL5MW_Example_IPC"
+    name		    "PAR_NREL5MW_IPC"
     created		    "03-Aug-2011 15:24:03"
     isLibrary		    0
     sfVersion		    80000014
