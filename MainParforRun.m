@@ -56,17 +56,23 @@ runCases = CasesBase.Names;
 %% Initialize Parallelization
 % ref: https://www.mathworks.com/help/simulink/ug/not-recommended-using-sim-function-within-parfor.html
 
-% 1) Load model and initialize the pool.
+% Load model
 model = SimulinkModelFile;
 load_system(model);
-% parpool;
 
-% 2) Set up the iterations that we want to compute.
+% Initialize the pool.
+poolObj = gcp;
+addAttachedFiles(poolObj, {...
+    'MAP_x64.dll', ...
+    'OpenFAST-Simulink_x64.dll', ...
+    'FAST_SFunc.mexw64'});
+
+% Set up the iterations that we want to compute.
 nCases = length(runCases);
 outSim(nCases) = Simulink.SimulationOutput;
 outDat(nCases) = struct();
 
-%% 4) Loop over the number of iterations and perform the
+%% Loop over the number of iterations and perform the
 % computation for different parameter values.
 for idx = 1:nCases
 % parfor idx=1:nCases 
