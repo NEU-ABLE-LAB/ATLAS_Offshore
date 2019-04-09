@@ -43,8 +43,11 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 
 %% User Parameters
 % ref: Main.m
-
-SimulinkModelFile       = 'NREL5MW_Example_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+if contains(version, '(R2018a)')
+    SimulinkModelFile = 'NREL5MW_Example_IPC_2018a.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+else
+    SimulinkModelFile = 'NREL5MW_Example_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+end
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
 
 % Input file specification name
@@ -65,7 +68,7 @@ outDat(nCases) = struct();
 
 %% 4) Loop over the number of iterations and perform the
 % computation for different parameter values.
-for idx = 1:2
+for idx = 1:nCases
 % parfor idx=1:nCases 
     runCase = runCases{idx};
     
@@ -118,6 +121,10 @@ for idx = 1:2
         
     catch exception
         
+        % rethrow(exception); % FOR NOW RETHROW!!!
+        disp(exception.message)
+        FAST_SFunc(0,0,0,0);% reset sFunction
+        
         % Delete duplicated input files
         if exist([OutputFolder runCase '.SFunc.outb'],'file')
             delete([OutputFolder runCase '.SFunc.outb'])
@@ -130,6 +137,7 @@ for idx = 1:2
         end
         
     end
+    clear mex %#ok<CLMEX>
     
     % Delete duplicated input files
     delete([FASTInputFolder runName '.fst'])
