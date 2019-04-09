@@ -18,6 +18,7 @@ _Outputs/
 
 # Windows default autosave extension
 *.asv
+*.bak
 
 # OSX / *nix default autosave extension
 *.m~
