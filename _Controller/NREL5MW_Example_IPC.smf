@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependencyReport Version="1.1">
+   <FileList ProjectRoot="C:\devel\Wind\ATLAS_Offshore\_Controller">
+      <FileState>
+         <FileName RelativeTo="projectroot">NREL5MW_Example_IPC.mdl</FileName>
+         <Size>209608</Size>
+         <LastModifiedDate>2019-04-08 00:02:05</LastModifiedDate>
+         <Exportable>true</Exportable>
+      </FileState>
+      <FileState>
+         <FileName RelativeTo="none">C:\devel\Wind\ATLAS_Offshore\_Functions\OpenFASTLibrairies\FAST_SFunc.mexw64</FileName>
+         <Size>119808</Size>
+         <LastModifiedDate>2018-10-30 15:21:00</LastModifiedDate>
+         <Exportable>true</Exportable>
+      </FileState>
+   </FileList>
+   <MDLDepSet>
+      <MDLName IsLibrary="false">NREL5MW_Example_IPC</MDLName>
+      <FileName RelativeTo="projectroot">NREL5MW_Example_IPC.mdl</FileName>
+      <AnalysisDate>08-Apr-2019 12:17:43</AnalysisDate>
+      <AnalysisOptions>
+         <AnalyzeMathWorksFiles>false</AnalyzeMathWorksFiles>
+         <AnalyzeUserToolboxFiles>true</AnalyzeUserToolboxFiles>
+         <StoreReferences>true</StoreReferences>
+         <FindLibraryLinks>true</FindLibraryLinks>
+         <FindModelRefs>true</FindModelRefs>
+         <FindSFunctions>true</FindSFunctions>
+         <FindCallbackFiles>true</FindCallbackFiles>
+         <FindCodeGenFiles>false</FindCodeGenFiles>
+         <FindUserDependencies>true</FindUserDependencies>
+         <FindDataFiles>true</FindDataFiles>
+         <FindRequirementsDocs>false</FindRequirementsDocs>
+         <AnalyzeStateflow>true</AnalyzeStateflow>
+         <AnalyzeEML>true</AnalyzeEML>
+         <AnalyzeMFiles>true</AnalyzeMFiles>
+         <FindSimscapeFiles>true</FindSimscapeFiles>
+         <AllowUnsavedChanges>false</AllowUnsavedChanges>
+         <StoreMathWorksReferences>false</StoreMathWorksReferences>
+         <StoreWarnings>true</StoreWarnings>
+         <CloseModels>false</CloseModels>
+         <FindWorkspaceVars>false</FindWorkspaceVars>
+         <OptimizedMode>false</OptimizedMode>
+         <FindEnums>false</FindEnums>
+         <AnalyzeTestHarnesses>false</AnalyzeTestHarnesses>
+      </AnalysisOptions>
+      <ReferencedModels/>
+      <LinkedLibraries/>
+      <Toolboxes>
+         <ToolboxDetails>
+            <DirectoryName>matlab</DirectoryName>
+            <Name>MATLAB</Name>
+            <Version>9.5</Version>
+            <Release>(R2018b)</Release>
+            <Date>24-May-2018</Date>
+         </ToolboxDetails>
+         <ToolboxDetails>
+            <DirectoryName>simulink</DirectoryName>
+            <Name>Simulink</Name>
+            <Version>9.2</Version>
+            <Release>(R2018b)</Release>
+            <Date>24-May-2018</Date>
+         </ToolboxDetails>
+      </Toolboxes>
+      <AllFiles>
+         <FileName RelativeTo="projectroot">NREL5MW_Example_IPC.mdl</FileName>
+         <FileName RelativeTo="none">C:\devel\Wind\ATLAS_Offshore\_Functions\OpenFASTLibrairies\FAST_SFunc.mexw64</FileName>
+      </AllFiles>
+      <AllIncludeDirs/>
+      <AllReferences>
+         <FileReference>
+            <FileName RelativeTo="none">C:\devel\Wind\ATLAS_Offshore\_Functions\OpenFASTLibrairies\FAST_SFunc.mexw64</FileName>
+            <ReferenceType>SFunction</ReferenceType>
+            <ReferenceLocation>NREL5MW_Example_IPC/OpenFAST Turbine Model1/S-Function</ReferenceLocation>
+            <Resolved>true</Resolved>
+            <ToolboxDetails/>
+         </FileReference>
+      </AllReferences>
+   </MDLDepSet>
+</DependencyReport>

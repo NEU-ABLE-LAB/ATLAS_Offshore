@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MdlFileDependencies version="9.2">
+   <DependenciesRootLevel>0</DependenciesRootLevel>
+   <UserDependencies>
+      <UserDependency Excluded="false" UnderProjectRoot="false">C:\devel\Wind\ATLAS_Offshore\_Functions\OpenFASTLibrairies\MAP_x64.dll</UserDependency>
+      <UserDependency Excluded="false" UnderProjectRoot="false">C:\devel\Wind\ATLAS_Offshore\_Functions\OpenFASTLibrairies\OpenFAST-Simulink_x64.dll</UserDependency>
+   </UserDependencies>
+</MdlFileDependencies>

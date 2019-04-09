@@ -63,10 +63,15 @@ nCases = length(runCases);
 outSim(nCases) = Simulink.SimulationOutput;
 outDat(nCases) = struct();
 
-% 3) Need to switch all workers to a separate tempdir in case 
-% any code is generated for instance for StateFlow, or any other 
-% file artifacts are  created by the model.
-spmd
+%% 4) Loop over the number of iterations and perform the
+% computation for different parameter values.
+for idx = 1:2
+% parfor idx=1:nCases 
+    runCase = runCases{idx};
+    
+    % switch all workers to a separate tempdir in case 
+    % any code is generated for instance for StateFlow, or any other 
+    % file artifacts are  created by the model.
     
     % Setup tempdir and cd into it
     currDir = pwd;
@@ -78,13 +83,6 @@ spmd
     % Load the model on the worker
     load_system(model);
     
-end
-
-%% 4) Loop over the number of iterations and perform the
-% computation for different parameter values.
-parfor idx=1:nCases 
-    runCase = runCases{idx};
-
     % Prepend simulation name with timestamp
     tStamp = [datestr(now,'YYYYmmDD-HHMMSS') '_' dec2hex(randi(2^16),4)]; % Add a random 4 char in case two parallel processes start at the same time
     runName = [tStamp '_' runCase];
@@ -188,12 +186,10 @@ parfor idx=1:nCases
     outDat(idx).CF_Vars = CF_Vars;
     outDat(idx).CF_Freq = CF_Freq;
     
-end
-
-%% 5) Switch all of the workers back to their original folder.
-spmd
+    % Switch all of the workers back to their original folder.
     cd(currDir);
     rmdir(tmpDir,'s');
     rmpath(currDir);
     close_system(model, 0);
+    
 end

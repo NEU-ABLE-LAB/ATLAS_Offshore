@@ -1,12 +1,12 @@
 Model {
   Name			  "NREL5MW_Example_IPC"
-  Version		  9.2
+  Version		  9.1
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.937"
+    ComputedModelVersion    "1.936"
     NumModelReferences	    0
     NumTestPointedSignals   6
     TestPointedSignal {
@@ -60,7 +60,6 @@ Model {
     NumResetEvents	    0
     HasInitializeEvent	    0
     HasTerminateEvent	    0
-    PreCompExecutionDomainType "Unset"
     IsExportFunctionModel   0
     NumParameterArguments   0
     NumExternalFileReferences 1
@@ -74,7 +73,6 @@ Model {
     OrderedModelArguments   1
   }
   DiagnosticSuppressor	  "on"
-  WebScopes_FoundationPlugin "on"
   NotesPlugin		  "on"
   LogicAnalyzerPlugin	  "on"
   SLCCPlugin		  "on"
@@ -122,7 +120,7 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [7384.0, 5236.0]
+	  Extents		  [3692.0, 3534.0]
 	  ZoomFactor		  [1.7499999999999996]
 	  Offset		  [33.39285714285711, 193.642857142857]
 	}
@@ -131,7 +129,7 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7200"
-	  Extents		  [13080.0, 5236.0]
+	  Extents		  [11784.0, 5236.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [-14.0, 0.0]
 	}
@@ -140,9 +138,9 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7354"
-	  Extents		  [7384.0, 5236.0]
+	  Extents		  [3692.0, 3534.0]
 	  ZoomFactor		  [1.25]
-	  Offset		  [-135.55148645956, -201.22503229534641]
+	  Offset		  [-135.5514864595599, -201.22503229534641]
 	}
 	Object {
 	  $ObjectID		  8
@@ -187,16 +185,15 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "thisi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 08 12:46:54 2019"
-  RTWModifiedTimeStamp	  476628407
-  ModelVersionFormat	  "1.%<AutoIncrement:937>"
+  LastModifiedDate	  "Mon Apr 08 00:02:04 2019"
+  RTWModifiedTimeStamp	  476582524
+  ModelVersionFormat	  "1.%<AutoIncrement:936>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
-  ShowAllPropagatedSignalLabels	off
   PortDataTypeDisplayFormat "AliasTypeOnly"
   ShowEditTimeErrors	  on
   ShowEditTimeWarnings	  on
@@ -288,7 +285,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"b67fbcc3-c7cd-496d-8ebf-577245d41c1a"
@@ -311,7 +307,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"9d355044-5392-46e8-a614-7be2f2f20c78"
@@ -334,7 +329,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"9ca492c6-dca6-45ff-b3ed-11916bbb01be"
@@ -357,7 +351,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"f9b1821b-b34a-412e-b9ea-78b6118bd3b7"
@@ -380,7 +373,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       MATStruct {
 	UUID			"9b73315b-62b8-4545-adad-6327a2482142"
@@ -403,7 +395,6 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
-	VisualType_		""
       }
       PropName		      "Persistence"
     }
@@ -437,7 +428,7 @@ Model {
     Dimension		    2
     Simulink.ConfigSet {
       $ObjectID		      12
-      Version		      "1.18.1"
+      Version		      "1.18.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -445,7 +436,7 @@ Model {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  13
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -486,7 +477,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  14
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -527,7 +518,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  15
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -594,7 +585,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  16
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -678,7 +669,6 @@ Model {
 	  SimStateOlderReleaseMsg "error"
 	  ChecksumConsistencyForSSReuse	"none"
 	  LibraryContextMissingDiagnostic "warning"
-	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -709,11 +699,10 @@ Model {
 	  RCSCObservableMsg	  "warning"
 	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
-	  UnderSpecifiedDimensionMsg "none"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  17
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -761,7 +750,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  18
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -780,7 +769,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  19
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -799,7 +788,6 @@ Model {
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
-	  SimAnalyzeCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
@@ -807,13 +795,11 @@ Model {
 	  EnableRuntimeRecursion  on
 	  MATLABDynamicMemAlloc	  on
 	  MATLABDynamicMemAllocThreshold 65536
-	  CustomCodeFunctionArrayLayout	[]
-	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  20
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -862,7 +848,6 @@ Model {
 	  CustomSource		  ""
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
-	  CustomBLASCallback	  ""
 	  CustomLAPACKCallback	  ""
 	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
@@ -877,7 +862,7 @@ Model {
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation "off"
+	  CodeProfilingInstrumentation off
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -900,7 +885,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      21
-	      Version		      "1.18.1"
+	      Version		      "1.18.0"
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -988,7 +973,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      22
-	      Version		      "1.18.1"
+	      Version		      "1.18.0"
 	      Array {
 		Type			"Cell"
 		Dimension		18
@@ -1036,7 +1021,6 @@ Model {
 	      GeneratePreprocessorConditionals "Disable all"
 	      CombineOutputUpdateFcns off
 	      CombineSignalStateStructs	off
-	      GroupInternalDataByFunction off
 	      SuppressErrorStatus     off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
@@ -1045,9 +1029,9 @@ Model {
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
-	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
+	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      RemoveDisableFunc	      off
@@ -1055,7 +1039,6 @@ Model {
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
-	      PreserveStateflowLocalDataDimensions off
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
@@ -1071,7 +1054,6 @@ Model {
 	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
 	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
 	      ArrayLayout	      "Column-major"
-	      UnsupportedSFcnMsg      "error"
 	      ERTHeaderFileRootName   "$R$E"
 	      ERTSourceFileRootName   "$R$E"
 	      ERTDataFileRootName     "$R_data"
@@ -1096,7 +1078,7 @@ Model {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  23
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -1143,7 +1125,7 @@ Model {
     }
     Simulink.ConfigSet {
       $ObjectID		      24
-      Version		      "1.18.1"
+      Version		      "1.18.0"
       DisabledProps	      []
       Description	      ""
       Array {
@@ -1151,7 +1133,7 @@ Model {
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  25
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  StartTime		  "0.0"
@@ -1192,7 +1174,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  26
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  Decimation		  "1"
@@ -1233,7 +1215,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  27
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -1300,7 +1282,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  28
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -1384,7 +1366,6 @@ Model {
 	  SimStateOlderReleaseMsg "error"
 	  ChecksumConsistencyForSSReuse	"none"
 	  LibraryContextMissingDiagnostic "warning"
-	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
@@ -1415,11 +1396,10 @@ Model {
 	  RCSCObservableMsg	  "warning"
 	  ForceCombineOutputUpdateInSim	off
 	  UnitDatabase		  ""
-	  UnderSpecifiedDimensionMsg "none"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  29
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  ProdBitPerChar	  8
@@ -1467,7 +1447,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  30
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
@@ -1478,7 +1458,7 @@ Model {
 	  ParallelModelReferenceMATLABWorkerInit "None"
 	  ModelReferenceNumInstancesAllowed "Multi"
 	  PropagateVarSize	  "Infer from blocks in model"
-	  ModelDependencies	  "MAP_x64.dll\nOpenFAST-Simulink_x64.dll\nFAST_SFunc.mexw64"
+	  ModelDependencies	  ""
 	  ModelReferencePassRootInputsByReference on
 	  ModelReferenceMinAlgLoopOccurrences off
 	  PropagateSignalLabelsOutOfModel off
@@ -1486,7 +1466,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  31
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  ""
 	  SimCustomSourceCode	  ""
@@ -1505,7 +1485,6 @@ Model {
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  off
-	  SimAnalyzeCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	  SimGenImportedTypeDefs  off
 	  ModelFunctionsGlobalVisibility "on"
@@ -1513,13 +1492,11 @@ Model {
 	  EnableRuntimeRecursion  on
 	  MATLABDynamicMemAlloc	  on
 	  MATLABDynamicMemAllocThreshold 65536
-	  CustomCodeFunctionArrayLayout	[]
-	  DefaultCustomCodeFunctionArrayLayout "NotSpecified"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  32
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -1568,7 +1545,6 @@ Model {
 	  CustomSource		  ""
 	  CustomLibrary		  ""
 	  CustomDefine		  ""
-	  CustomBLASCallback	  ""
 	  CustomLAPACKCallback	  ""
 	  CustomFFTCallback	  ""
 	  CustomInitializer	  ""
@@ -1583,7 +1559,7 @@ Model {
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation "off"
+	  CodeProfilingInstrumentation off
 	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -1606,7 +1582,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      33
-	      Version		      "1.18.1"
+	      Version		      "1.18.0"
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -1694,7 +1670,7 @@ Model {
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      34
-	      Version		      "1.18.1"
+	      Version		      "1.18.0"
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -1743,7 +1719,6 @@ Model {
 	      GeneratePreprocessorConditionals "Disable all"
 	      CombineOutputUpdateFcns off
 	      CombineSignalStateStructs	off
-	      GroupInternalDataByFunction off
 	      SuppressErrorStatus     off
 	      IncludeFileDelimiter    "Auto"
 	      ERTCustomFileBanners    off
@@ -1752,9 +1727,9 @@ Model {
 	      MatFileLogging	      off
 	      MultiInstanceERTCode    off
 	      CodeInterfacePackaging  "Nonreusable function"
-	      PurelyIntegerCode	      off
 	      SupportNonFinite	      on
 	      SupportComplex	      on
+	      PurelyIntegerCode	      off
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      RemoveDisableFunc	      off
@@ -1762,7 +1737,6 @@ Model {
 	      SupportVariableSizeSignals off
 	      ParenthesesLevel	      "Nominal"
 	      CastingMode	      "Nominal"
-	      PreserveStateflowLocalDataDimensions off
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.TargetSpecificTriggerConfigurationBase"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
@@ -1778,7 +1752,6 @@ Model {
 	      LUTObjectStructOrderExplicitValues "Size,Breakpoints,Table"
 	      LUTObjectStructOrderEvenSpacing "Size,Breakpoints,Table"
 	      ArrayLayout	      "Column-major"
-	      UnsupportedSFcnMsg      "error"
 	      ERTHeaderFileRootName   "$R$E"
 	      ERTSourceFileRootName   "$R$E"
 	      ERTDataFileRootName     "$R_data"
@@ -1790,7 +1763,7 @@ Model {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  35
-	  Version		  "1.18.1"
+	  Version		  "1.18.0"
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Name			  "Simulink Coverage"
@@ -1832,7 +1805,7 @@ Model {
       }
       Name		      "Tmp_ConfigSet_0"
       ExtraOptions	      "-aGenerateTraceInfo=0 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Model Referencing"
+      CurrentDlgPage	      "Data Import//Export"
       ConfigPrmDlgPosition    [ 543, 249, 1377, 889 ]
     }
     PropName		    "ConfigurationSets"
@@ -2150,7 +2123,6 @@ Model {
       Opaque		      off
       MaskHideContents	      off
       SFBlockType	      "NONE"
-      VariantControlMode      "Expression"
       Variant		      off
       GeneratePreprocessorConditionals off
       AllowZeroVariantControls off
@@ -2158,10 +2130,6 @@ Model {
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-      IsObserver	      off
-      Latency		      "0"
-      AutoFrameSizeCalculation off
-      IsWebBlockPanel	      off
     }
     Block {
       BlockType		      Sum
@@ -2210,10 +2178,10 @@ Model {
   System {
     Name		    "NREL5MW_Example_IPC"
     Location		    [955, 0, 1926, 1046]
-    Open		    on
+    Open		    off
     PortBlocksUseCompactNotation off
-    SetExecutionDomain	    off
-    ExecutionDomainType	    "Deduce"
+    SetDomainSpec	    off
+    DomainSpecType	    "Deduce"
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -2257,8 +2225,8 @@ Model {
 	Location		[955, 0, 1926, 1046]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
+	SetDomainSpec		off
+	DomainSpecType		"Deduce"
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2330,8 +2298,8 @@ Model {
 	    Location		    [1931, 175, 3505, 802]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2386,8 +2354,8 @@ Model {
 		Location		[739, 227, 1495, 669]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -2646,8 +2614,8 @@ Model {
 	    Location		    [955, 0, 1926, 1046]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2697,8 +2665,8 @@ Model {
 		Location		[227, 345, 838, 789]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -3417,10 +3385,10 @@ Model {
       System {
 	Name			"OpenFAST Turbine Model1"
 	Location		[955, 0, 1926, 1046]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
+	SetDomainSpec		off
+	DomainSpecType		"Deduce"
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3549,8 +3517,8 @@ Model {
 	    Location		    [1926, 9, 2636, 568]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3869,8 +3837,8 @@ Model {
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3948,8 +3916,8 @@ Model {
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4027,8 +3995,8 @@ Model {
 	    Location		    [360, 0, 1754, 1128]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4130,8 +4098,8 @@ Model {
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4305,8 +4273,8 @@ Model {
 		Location		[0, 0, 1612, 886]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -4757,8 +4725,8 @@ Model {
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4932,8 +4900,8 @@ Model {
 		Location		[0, 0, 1612, 886]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -5384,8 +5352,8 @@ Model {
 	    Location		    [201, 0, 1602, 790]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -5559,8 +5527,8 @@ Model {
 		Location		[0, 0, 1612, 886]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -6514,8 +6482,8 @@ Model {
 	Location		[955, 0, 1926, 1046]
 	Open			off
 	PortBlocksUseCompactNotation off
-	SetExecutionDomain	off
-	ExecutionDomainType	"Deduce"
+	SetDomainSpec		off
+	DomainSpecType		"Deduce"
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -6557,10 +6525,10 @@ Model {
 	  System {
 	    Name		    "Controller block"
 	    Location		    [955, 0, 1926, 1046]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
-	    SetExecutionDomain	    off
-	    ExecutionDomainType	    "Deduce"
+	    SetDomainSpec	    off
+	    DomainSpecType	    "Deduce"
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -6640,8 +6608,8 @@ Model {
 		Location		[2160, 337, 3312, 919]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -6696,8 +6664,8 @@ Model {
 		    Location		    [1926, 9, 3237, 955]
 		    Open		    off
 		    PortBlocksUseCompactNotation off
-		    SetExecutionDomain	    off
-		    ExecutionDomainType	    "Deduce"
+		    SetDomainSpec	    off
+		    DomainSpecType	    "Deduce"
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
@@ -6957,8 +6925,8 @@ Model {
 		Location		[955, 0, 1926, 1046]
 		Open			off
 		PortBlocksUseCompactNotation off
-		SetExecutionDomain	off
-		ExecutionDomainType	"Deduce"
+		SetDomainSpec		off
+		DomainSpecType		"Deduce"
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -7090,10 +7058,10 @@ Model {
 		  System {
 		    Name		    "PI Anti-Windup with rate feedforward"
 		    Location		    [955, 0, 1926, 1046]
-		    Open		    on
+		    Open		    off
 		    PortBlocksUseCompactNotation off
-		    SetExecutionDomain	    off
-		    ExecutionDomainType	    "Deduce"
+		    SetDomainSpec	    off
+		    DomainSpecType	    "Deduce"
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
