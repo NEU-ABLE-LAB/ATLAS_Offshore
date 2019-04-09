@@ -22,27 +22,10 @@ p.AdditionalChannels={
 %% --- Variables, Kind, Channel, Constraint, Component, Frequencies
 p.Vars={
 % Blades
-% 'Bld Root Mn'       , 'FRQ-ULS'   , 'RootMnormc1' , [  ] , 'Rotor'  , {''};
-% 'Bld Root Mx'       , 'FRQ-FLS'   , 'RootMxc1'    , [  ] , 'Rotor'  , {'1P','2P','Blade Edge collective'};
 'Bld Root My'       , 'FRQ-FLS'   , 'RootMyc1'    , [  ] , 'Rotor'  , {'1P','2P','Blade Edge collective'};
 'Bld Root Mz'       , 'FRQ-FLS'   , 'RootMzc1'    , [  ] , 'Hub'    , {'1P','2P','Blade Edge collective'};
-% 'Bld Root Mz max' , 'FRQ-ULS'   , 'RootMzc1'    , [  ] , 'Hub'    , {''}; % <<
-% 'Bld1 Pitch Trvl' , 'MEAN-Trvl' , 'BldPitch1'   , [  ] , 'Hub'    , {''};
-% 'Bld2 Pitch Trvl' , 'MEAN-Trvl' , 'BldPitch2'   , [  ] , 'Hub'    , {''};
-% 'Bld3 Pitch Trvl' , 'MEAN-Trvl' , 'BldPitch3'   , [  ] , 'Hub'    , {''};
-% Drive train
-% 'LSS Mn'          , 'FRQ-ULS'   , 'LSSGagnorma' , [  ] , 'Nacelle', {''};
-% 'LSS My'          , 'FRQ-FLS'   , 'LSSGagMya'   , [  ] , 'Nacelle', {''};
-% 'LSS Mz'          , 'FRQ-FLS'   , 'LSSGagMza'   , [  ] , 'Nacelle', {''};
 'LSS Torque'        , 'FRQ-FLS'   , 'RotTorq'     , [  ] , 'Nacelle', {'3P','Drivetrain torsion'};
-% 'LSS Torque max'  , 'FRQ-ULS'   , 'RotTorq'     , [  ] , 'Nacelle', {''}; % <<
-% 'Rot Speed'       , 'FRQ-FLS'   , 'RotSpeed'    , [  ] , 'Nacelle', {''};
-% Tower
-% 'Twr Bot Mn'        , 'FRQ-ULS'   , 'TwrBsMnormt' , [  ] , 'Tower'  , {''};
-% 'Twr Bot Mx'        , 'FRQ-FLS'   , 'TwrBsMxt'    , [  ] , 'Tower'  , {''};
 'Twr Bot My'        , 'FRQ-FLS'   , 'TwrBsMyt'    , [  ] , 'Tower'  , {'Tower Fore-Aft','3P','Blade Edge regressive','Blade Edge progressive'};
-% 'Twr Bot Mz'      , 'FRQ-FLS'   , 'TwrBsMzt'    , [  ] , 'Tower'  , {''};
-% 'Twr Bot Mz max'  , 'FRQ-ULS'   , 'TwrBsMzt'    , [  ] , 'Tower'  , {''}; % <<
 % AEP
 'AEP'             ,'MEAN-Mean','GenPwr'      ,[  ],'AEP'   ,[] ;
 % Constraints
@@ -58,9 +41,6 @@ if isequal(lower(Challenge), 'offshore')
     OffshoreVars={
         % Platform
         'Platform Pitch'     , 'FRQ-FLS'  , 'PtfmPitch' , [] ,'Platform' , {'Platform Pitch','Tower Fore-Aft'};
-%         'Platform Roll'      , 'FRQ-FLS'  , 'PtfmRoll'  , [] ,'Platform' , {};
-%         'Platform Yaw'       , 'FRQ-FLS'  , 'PtfmYaw'   , [] ,'Platform' , {};
-        % 'Platform Pitch Rate' , 'ULS'      , 'PtfmRVyt'    ;
     };
     p.Vars=[p.Vars; OffshoreVars];
 end
@@ -71,55 +51,30 @@ end
 f_rated=12.1/60; % [Hz]
 if isequal(lower(Challenge), 'offshore')
     p.FreqVars={
-%       'Platform Surge/Sway'     , 0.025     , 1.0; 
       'Platform Pitch'          , 0.036     , 0.375; 
-%       'Platform Yaw'            , 0.105     , 0.710; 
       '1P'                      , f_rated   , 1.000; 
       '2P'                      , 2*f_rated , 1.000; 
-%       'Tower Side-Side'         , 0.495     , 1.000; 
       'Tower Fore-Aft'          , 0.502     , 1.000; 
-%       'Blade Flap regressive'   , 0.569     , 1.000; 
-%       'Blade Flap collective'   , 0.752     , 1.000; 
       '3P'                      , 3*f_rated , 0.848; % 0.6
-%       '4P'                      , 4*f_rated , 0.800; % 0.8
       'Blade Edge regressive'   , 0.891     , 0.709; 
-%       'Blade Flap progressive'  , 0.913     , 0.687; 
-%       '5P'                      , 5*f_rated , 0.600; % 1.0
       'Blade Edge collective'   , 1.100     , 0.500; 
-%       '6P'                      , 6*f_rated , 0.450; % 1.2
       'Blade Edge progressive'  , 1.298     , 0.402; 
       'Drivetrain torsion'      , 1.705     , 0.200; 
     };
 elseif isequal(lower(Challenge), 'onshore')
     p.FreqVars={
       '1P'                     , f_rated   , 1.000;  %0.2
-%       'Tower Side-Side'        , 0.375     , 1.000; 
       'Tower Fore-Aft'         , 0.382     , 1.000; 
       '2P'                     , 2*f_rated , 1.000; % 0.4
-%       'Blade Flap regressive'  , 0.573     , 1.000; 
       '3P'                     , 3*f_rated , 1.000; % 0.6
-%       'Blade Flap collective'  , 0.756     , 0.844; 
-%       '4P'                     , 4*f_rated , 0.800; % 0.8
       'Blade Edge regressive'  , 0.887     , 0.713; 
-%       '5P'                     , 5*f_rated , 0.600; % 1.0
-%       'Blade Flap progressive' , 0.916     , 0.684; 
       'Blade Edge collective'  , 1.100     , 0.500; 
-%       '6P'                     , 6*f_rated , 0.450;  % 1.2
       'Blade Edge progressive' , 1.295     , 0.402; 
       'Drivetrain torsion'     , 1.697     , 0.200; 
       }                                    ; 
 else
     error('Challenge is either offshore or onshore')
 end
-
-% --- Establishing n as function of freq:
-% freqs=cell2mat(p.FreqVars(:,2));
-% p.FreqVars(:,3)= num2cell(freqs/min(freqs));
-% p.FreqVars(:,3)= num2cell(min(freqs)./freqs);
-% p.FreqVars(:,3)= num2cell(1+1*(freqs-min(freqs))/(max(freqs)-min(freqs)));
-%
-
-
 
 %% --- Contribution for each component
 if isequal(lower(Challenge), 'offshore')
