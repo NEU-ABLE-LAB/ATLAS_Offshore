@@ -44,7 +44,12 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 %% User Parameters
 % ref: Main.m
 
-model = 'NREL5MW_Example_IPC' ; % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
+% path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
+if contains(version, '(R2018a)')
+    model = 'NREL5MW_Example_IPC_r2018a' ; 
+else
+    model = 'NREL5MW_Example_IPC' ; 
+end
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
 
 % Input file specification name
