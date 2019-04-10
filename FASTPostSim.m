@@ -3,12 +3,13 @@
 function newOut = FASTPostSim(~,in)
 
 %% Initialization
-runCase = in.getVariable('runCase');
-runName = in.getVariable('runName');
-FASTInputFolder = in.getVariable('FASTInputFolder');
-OutputFolder = in.getVariable('OutputFolder');
-Challenge = in.getVariable('Challenge');
-statsBase = in.getVariable('statsBase');
+% Note: getVariables() only exists in r2018b+
+runCase         = in.Variables(strcmp({in.Variables.Name},'runCase')).Value;
+runName         = in.Variables(strcmp({in.Variables.Name},'runName')).Value;
+FASTInputFolder = in.Variables(strcmp({in.Variables.Name},'FASTInputFolder')).Value;
+OutputFolder    = in.Variables(strcmp({in.Variables.Name},'OutputFolder')).Value;
+Challenge       = in.Variables(strcmp({in.Variables.Name},'Challenge')).Value;
+statsBase       = in.Variables(strcmp({in.Variables.Name},'statsBase')).Value;
 
 PENALTY = 1000; % ref: fCostFunction.m
 

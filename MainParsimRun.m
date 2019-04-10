@@ -33,7 +33,7 @@ pMetricsBC = fMetricVars(CasesBase, Challenge); % Parameters for the metrics com
 % Compute folder stats and spectra - or load them from a file
 PreProFile= [BaselineFolder 'PrePro_' Challenge '.mat'];
 if ~exist(PreProFile,'file')
-    statsBase = fComputeOutStats(folder, pMetricsBC, Cases, PreProFile);
+    statsBase = fComputeOutStats(BaselineFolder, pMetricsBC, CasesBase, PreProFile);
 else
     statsBase = load(PreProFile);
 end
@@ -62,7 +62,7 @@ runCases = CasesBase.Names;
 load_system(model);
 
 % 2) Set up the parallelization of parameters
-numSims = 2; %numel(runCases);
+numSims = numel(runCases);
 
 % 3) Create an array of SimulationInput objects and specify the sweep value for each simulation
 simIn(1:numSims) = Simulink.SimulationInput(model);
