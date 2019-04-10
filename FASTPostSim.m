@@ -1,6 +1,6 @@
 %% FASTPostSim Simulink post simulation file
 % ref: fRunFAST.m
-function out = FASTPostSim(out,in)
+function newOut = FASTPostSim(~,in)
 
 %% Initialization
 runCase = in.getVariable('runCase');
@@ -36,22 +36,23 @@ delete([FASTInputFolder runName '_IW.dat'])
 delete([FASTInputFolder runName '_SD.dat'])
 
 %% Handle failed simulation
-if ~exist([FASTInputFolder runName '.SFunc.outb'],'file') || ...
+if ~exist([FASTInputFolder runName '.SFunc.outb'],'file') && ...
         ~exist([OutputFolder runCase '.SFunc.outb'],'file')
-    
-    out.CF      = PENALTY;
-    out.CF_Comp = PENALTY;
-    out.CF_Vars = PENALTY;
-    out.CF_Freq = PENALTY;
+
+    newOut.Channels = [];
+    newOut.ChanName = [];
+    newOut.ChanUnit = [];
+    newOut.CF = PENALTY;
+    newOut.CF_Comp = PENALTY;
+    newOut.CF_Vars = PENALTY;
+    newOut.CF_Freq = PENALTY;
+
     return
 end
 
 %% Load Output from control
 % ref: fRunFAST.m
 outCtrlFName = [OutputFolder runCase '.SFunc.outb'];
-outCtrl = struct();
-[outCtrl.Channels, outCtrl.ChanName, outCtrl.ChanUnit, ...
-    outCtrl.FileID, outCtrl.DescStr] = fReadFASTbinary(outCtrlFName);
 
 [Channels, ChanName, ChanUnit, ~, ~] = fReadFASTbinary(outCtrlFName);
 
@@ -78,13 +79,14 @@ metricsRunBase = fEvaluateMetrics(statsRunBase, pMetrics);
 
 %% Return calculated outputs
 
-out.Channels = Channels;
-out.ChanName = ChanName;
-out.ChanUnit = ChanUnit;
+newOut.Channels = Channels;
+newOut.ChanName = ChanName;
+newOut.ChanUnit = ChanUnit;
+newOut.CF = CF;
+newOut.CF_Comp = CF_Comp;
+newOut.CF_Vars = CF_Vars;
+newOut.CF_Freq = CF_Freq;
 
-out.CF = CF;
-out.CF_Comp = CF_Comp;
-out.CF_Vars = CF_Vars;
-out.CF_Freq = CF_Freq;
+clear mex
 
 end

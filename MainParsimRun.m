@@ -44,9 +44,8 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 %% User Parameters
 % ref: Main.m
 
-model = 'NREL5MW_Example_IPC' ; % path to the Simulink model (should be in the folder '_Controller')
+model = 'NREL5MW_Example_IPC' ; % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
-RootOutputFolder = '_Outputs/' ; % Folder where the current simulation outputs will be placed
 
 % Input file specification name
 runCases = CasesBase.Names;
@@ -58,26 +57,24 @@ runCases = CasesBase.Names;
 load_system(model);
 
 % 2) Set up the parallelization of parameters
-numSims = numel(runCases);
+numSims = 2; %numel(runCases);
 
 % 3) Create an array of SimulationInput objects and specify the sweep value for each simulation
 simIn(1:numSims) = Simulink.SimulationInput(model);
-for idx = 1%:numSims
+for idx = 1:numSims
     
     % Initialize the simulation
-    simIn(idx) = simIn(idx).setPreSimFcn(@(x) FASTPreSim(x,...
+    simIn(idx) = FASTPreSim(simIn(idx),...
         runCases{idx}, hSetControllerParameter, ...
         RootOutputFolder, FASTInputFolder, ...
-        Challenge, statsBase));
+        Challenge, statsBase);
     
     % Set postsimulation function
-    simIn(idx) = simIn(idx).setPostSimFcn(@(y) FASTPostSim(y,...
-        runCases{idx}, hSetControllerParameter, ...
-        RootOutputFolder, FASTInputFolder, ...
-        Challenge, statsBase));
+    simIn(idx) = simIn(idx).setPostSimFcn(@(y) FASTPostSim(y, simIn(idx)));
     
 end
 
 %% 4) Simulate the model 
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
 simOut = parsim(simIn);
+%simOut = sim(simIn);
