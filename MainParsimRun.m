@@ -82,4 +82,3 @@ end
 %% 4) Simulate the model 
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
 simOut = parsim(simIn);
-%simOut = sim(simIn);
