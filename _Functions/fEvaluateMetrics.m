@@ -4,7 +4,7 @@ function M = fEvaluateMetrics(R, p)
 % The metrics values for each variable are stored in the variable M.Values.
 % 
 % INPUTS: 
-%   R: structure returned by fPreProcessFolder, contains statistics for each signal and files
+%   R: structure returned by fComputeOutStats, contains statistics for each signal and files
 %   p: structure returned by fMetricVars, contains infor about how to compute the metrics
 %
 % OUTPUTS: 

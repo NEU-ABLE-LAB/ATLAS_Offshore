@@ -10,10 +10,10 @@ p.FFT_WinLen = 4096;% Window Length for Spectra averaging. Smoother with lower w
 % --- Channels to be added to output files
 p.AdditionalChannels={
 'TwrClearance', '-transpose(min(transpose([{TwrClrnc1} {TwrClrnc2} {TwrClrnc3}])))';
-'RootMnormc1', 'sqrt({RootMxc1}.^2  + {RootMyc1}.^2)';
-'TwrBsMnormt', 'sqrt({TwrBsMxt}.^2  + {TwrBsMyt}.^2)';
+'RootMnormc1', 'sqrt({RootMxc1}.^2  + {RootMyc1}.^2)'; % Not used
+'TwrBsMnormt', 'sqrt({TwrBsMxt}.^2  + {TwrBsMyt}.^2)'; % Not used
 'NcIMUTAs'   , 'sqrt({NcIMUTAxs}.^2 + {NcIMUTAys}.^2 + {NcIMUTAzs}.^2)';
-'LSSGagnorma', 'sqrt({LSSGagMya}.^2 + {LSSGagMza}.^2)';
+'LSSGagnorma', 'sqrt({LSSGagMya}.^2 + {LSSGagMza}.^2)'; % Not used
 'BldPitch1P' , 'fDiffSmoothStart({BldPitch1},10)/dt';
 'BldPitch2P' , 'fDiffSmoothStart({BldPitch2},10)/dt';
 'BldPitch3P' , 'fDiffSmoothStart({BldPitch3},10)/dt';

@@ -94,6 +94,7 @@ newOut.CF = CF;
 newOut.CF_Comp = CF_Comp;
 newOut.CF_Vars = CF_Vars;
 newOut.CF_Freq = CF_Freq;
+newOut.pMetrics = pMetrics;
 
 clear mex
 

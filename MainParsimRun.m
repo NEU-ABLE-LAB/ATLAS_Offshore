@@ -3,11 +3,11 @@
 %
 % Modeled from `Main.m` and `fRunFAST.m`
 
-%% Initialization
-% ref: Main.m
-
 restoredefaultpath;
 clear all;close all;clc;
+
+%% Initialization
+% ref: Main.m
 addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 

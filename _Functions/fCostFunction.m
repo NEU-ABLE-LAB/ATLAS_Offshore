@@ -35,7 +35,10 @@ for i = 1:nVars
         nSum=0;
         CF_Freq.Ki{i}=nan(1,length(cFreqRelevant)+1);
         for kk = 1:length(cFreqRelevant)
-            k = find(ismember(cFreqAll,cFreqRelevant{kk})); if isempty(k); error('Wrong frequency name %s',cFreqRelevant{kk}); end
+            k = find(ismember(cFreqAll,cFreqRelevant{kk})); 
+            if isempty(k)
+                error('Wrong frequency name %s',cFreqRelevant{kk}); 
+            end
             CF_Freq.Ki{i}(kk) = k;
             CF_Freq.Ri {i}(kk) =  ( x{i}(k)/xRef{i}(k) );
             CF_Freq.Rin{i}(kk) =  ( x{i}(k)/xRef{i}(k) ).*n(k); % Ratio of spectra amplitudes, to the power n
@@ -43,7 +46,8 @@ for i = 1:nVars
         end
         CF_Freq.Ki{i}(end) = length(cFreqAll)+1;
         %  Last is ULS
-        pULS=0.25; nULS=pULS/(1-pULS)*nSum; % scale such that ULS portion is pULS
+        pULS=0.25; 
+        nULS=pULS/(1-pULS)*nSum; % scale such that ULS portion is pULS
         CF_Freq.Ri {i}(end) = ( x{i}(end)/xRef{i}(end) )  ; % For ULS 
         CF_Freq.Rin{i}(end) = ( x{i}(end)/xRef{i}(end) )*nULS; % For ULS 
         nSum=nSum+nULS;
@@ -74,12 +78,12 @@ end
 % --- Cost function
 iAEP = find(ismember(p.Vars(:,1),'AEP'));
 IVars = setdiff(1:size(p.Vars,1), iAEP);
-AEP_Scale = x{iAEP}/xRef{iAEP} ; 
+AEP_Scale = x{iAEP}/xRef{iAEP}; 
 
 CF_Vars(iAEP) =  1/AEP_Scale ; % Inverse here so all all factors whould be minimized
 
 if CF_Constraints>0
-    CF=CF_Constraints;
+    CF = CF_Constraints;
 else
     CF = sum(CF_Vars(IVars)) * CF_Vars(iAEP);
 end
@@ -89,7 +93,7 @@ end
 Components = p.Vars(:,5);
 CF_Comp = nan(1,p.nComp);
 for iC = 1:p.nComp
-    I = find(ismember(Components,p.uComponents{iC}));
+    I = ismember(Components,p.uComponents{iC});
 	CF_Comp(iC) = sum(CF_Vars(I));
 end
 
