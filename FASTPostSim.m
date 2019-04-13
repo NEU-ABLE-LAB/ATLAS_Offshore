@@ -11,6 +11,13 @@ OutputFolder    = in.Variables(strcmp({in.Variables.Name},'OutputFolder')).Value
 Challenge       = in.Variables(strcmp({in.Variables.Name},'Challenge')).Value;
 statsBase       = in.Variables(strcmp({in.Variables.Name},'statsBase')).Value;
 
+newOut.runCase         = runCase         ;
+newOut.runName         = runName         ;
+newOut.FASTInputFolder = FASTInputFolder ;
+newOut.OutputFolder    = OutputFolder    ;
+newOut.Challenge       = Challenge       ;
+newOut.statsBase       = statsBase       ;
+
 PENALTY = 1000; % ref: fCostFunction.m
 
 %% Clean up files
