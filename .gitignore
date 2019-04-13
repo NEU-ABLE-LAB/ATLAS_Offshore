@@ -10,6 +10,7 @@ _BaselineResults/
 
 # Output files from key runs
 _Outputs/
+*.mat
 
 ##---------------------------------------------------
 ##MATLAB.gitignore
