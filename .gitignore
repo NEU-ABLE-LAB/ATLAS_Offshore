@@ -13,6 +13,15 @@ _Outputs/
 *.mat
 
 ##---------------------------------------------------
+##OpenMLC temporary files
+##---------------------------------------------------
+*.asv
+*~
+*.txt
+save_GP
+
+
+##---------------------------------------------------
 ##MATLAB.gitignore
 ##https://github.com/github/gitignore/blob/master/Global/MATLAB.gitignore
 ##---------------------------------------------------
