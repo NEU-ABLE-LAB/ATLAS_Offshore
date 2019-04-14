@@ -18,32 +18,41 @@ fCostFunctionPlot (simOut(caseN).CF, simOut(caseN).CF_Comp, ...
     simOut(caseN).pMetrics, folders, 'absFreq');
 
 %% Determine correlation between signals
-
-for caseN = 1%:nCases
+assert(~any(diff(cellfun(@length,{simOut.ChanName}))), ...
+    'Some cases have different number of channels');
+nChannels = length(simOut(1).ChanName);
+rmsChans = zeros(nChannels,nCases);
+for caseN = 1:nCases
 
     % Some channels do not contain valid data
-    [~,validChans] = setxor(simOut(caseN).ChanName,{...
-        'TwstDefl1', 'TwstDefl2', 'TwstDefl3', ...
-        'TTDspTwst', 'B1N3Clrnc'});
-    validChans = sort(validChans);
+    validChans = all(simOut(caseN).Channels ~= 0, 1);
+    validChanNames = simOut(caseN).ChanName(validChans);
     
     % Normalize each column, preserving sign
     % ref: https://www.mathworks.com/matlabcentral/answers/372602-normalizing-columns-does-my-function-do-the-same-as-normc#answer_295940
     normc_fcn = @(m) sqrt(m.^2 ./ sum(m.^2)) .* sign(m);
+    rmsChans(:,caseN) = rms(simOut(caseN).Channels);
     normChans = normc_fcn(simOut(caseN).Channels(:,validChans));
     
     % Calculate the correlation matrix
     R = corrcoef(normChans);
     
+    figure('windowstyle','docked');
+    heatmap(...
+        simOut(caseN).ChanName(validChans), ...
+        simOut(caseN).ChanName(validChans), ...
+        R)
     
     % Calculate the PCA
     [coef,~,latent] = pca(normChans);
     
     figure('windowstyle','docked');
     heatmap(...
-        [num2str(validChans) ...
-            repmat('-',length(validChans),1) ...
+        [num2str((1:sum(validChans))') ...
+            repmat('-',sum(validChans),1) ...
             num2str(latent,'%0.1E')], ...
-        simOut(caseN).ChanName(validChans), ...
+        validChanNames, ...
         coef)
 end
+
+%%  

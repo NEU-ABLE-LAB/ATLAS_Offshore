@@ -29,6 +29,7 @@ Spec        = NaN(nCases,nVars,length(R.Freq));
 % --- Computing value of each variable
 for iVar = 1:nVars
     id = fGetChannelID(R.ChanName, p.Vars{iVar,3});
+    
     if length(id)>1
         id = id(1); % duplicate channel name
         fprintf('Duplicate channel name: %s %s\n',p.Vars{iVar,3},R.ChanName{id})
@@ -39,6 +40,7 @@ for iVar = 1:nVars
         VarValues(:,iVar) = R.Max(:,id);
         [Values{iVar}, IMain(iVar)] = max(VarValues(:,iVar));
         PlotValues(:,iVar)          = VarValues(:,iVar)     ;
+        
     elseif strfind(Kind,'FRQ')==1
         % Spectral amplitudes at frequencies of interest
         for iFreq=1:nRefFreq
@@ -62,9 +64,13 @@ for iVar = 1:nVars
         [Values{iVar}, IMain(iVar)] = max(VarValues(:,iVar));
         PlotValues(:,iVar)          = VarValues(:,iVar)     ;
     elseif strfind(Kind,'MEAN')==1 % FLS has been removed now
-        if     isequal(Kind, 'MEAN-Mean'); Val = R.Mean(:,id);
-        elseif isequal(Kind, 'MEAN-Trvl'); Val = R.Trvl(:,id);
-        else error('Unsupported subkind %s',Kind); end
+        if     isequal(Kind, 'MEAN-Mean')
+            Val = R.Mean(:,id);
+        elseif isequal(Kind, 'MEAN-Trvl')
+            Val = R.Trvl(:,id);
+        else
+            error('Unsupported subkind %s',Kind);
+        end
         PlotValues(:,iVar) = Val;
         VarValues(:,iVar)  = Val; % NOTE: no probability
         [~, IMain(iVar)]   = max (VarValues(:,iVar));

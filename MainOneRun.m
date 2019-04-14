@@ -14,7 +14,13 @@ addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and
 %% User Parameters
 % ref: Main.m
 
-SimulinkModelFile       = 'NREL5MW_Example_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+% path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
+if contains(version, '(R2018a)')
+    model = 'MLC_IPC_r2018a' ; 
+else
+    model = 'MLC_IPC' ; 
+end
+
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
 RootOutputFolder            = '_Outputs/' ; % Folder where the current simulation outputs will be placed
 BaselineFolder          = '_BaselineResults/'; % Folder where "reference simulations are located"
@@ -75,7 +81,7 @@ Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter);
 %% Run simulation
 % ref: fRunFAST.m
 try
-    sim(SimulinkModelFile);
+    sim(model);
     
     % Move output files to output directory
     movefile([FASTInputFolder runName '.SFunc.outb'], ...
@@ -88,7 +94,6 @@ try
 catch exception
     % rethrow(exception); % FOR NOW RETHROW!!!
     disp(exception.message)
-    ErrorList{end+1}=sprintf('Simulation %s failed: %s', Parameter.FASTfile, exception.message);
     FAST_SFunc(0,0,0,0);% reset sFunction
     
     % Delete duplicated input files
@@ -118,9 +123,6 @@ delete([FASTInputFolder runName '_SD.dat'])
 %% Load Output from control and baseline
 % ref: fRunFAST.m
 outCtrlFName = [OutputFolder runSpec '.SFunc.outb'];
-outCtrl = struct();
-[outCtrl.Channels, outCtrl.ChanName, outCtrl.ChanUnit, ...
-    outCtrl.FileID, outCtrl.DescStr] = fReadFASTbinary(outCtrlFName);
 
 [Channels, ChanName, ChanUnit, ...
     FileID, DescStr] = fReadFASTbinary(outCtrlFName);

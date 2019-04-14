@@ -45,10 +45,10 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 % ref: Main.m
 
 % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
+model = 'NREL5MW_Example_IPC';
+% model = 'MLC_IPC' ; 
 if contains(version, '(R2018a)')
-    model = 'NREL5MW_Example_IPC_r2018a' ; 
-else
-    model = 'NREL5MW_Example_IPC' ; 
+    model = [model '_r2018a']; 
 end
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
 
@@ -81,4 +81,14 @@ end
 
 %% 4) Simulate the model 
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
-simOut = parsim(simIn);
+% tic
+% simOut = parsim(simIn);
+% toc
+
+%%
+tic
+simOut2 = cell(numSims,1);
+parfor simN = 1:numSims
+    simOut2{simN} = sim(simIn(simN));
+end
+toc

@@ -32,8 +32,8 @@ pitch_init = str2double(fGetVal(ed,'BlPitch(1)'))  ;
 Parameter = struct();
 % --- Turbine  
 Parameter.Turbine.Omega_rated = rpm2radPs(12.1);       % [rad/s]
-Parameter.Turbine.P_el_rated  = 5e6;                      % [W]
-Parameter.Turbine.i  = 1/97;
+Parameter.Turbine.P_el_rated  = 5e6;                   % [W]
+Parameter.Turbine.i  = 1/97;                           % The gear ratio
 % --- Generator
 Parameter.Generator.eta_el      	= 0.944;                % [-]
 Parameter.Generator.M_g_dot_max     = 15e3;                 % [-]

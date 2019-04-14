@@ -80,6 +80,11 @@ iAEP = find(ismember(p.Vars(:,1),'AEP'));
 IVars = setdiff(1:size(p.Vars,1), iAEP);
 AEP_Scale = x{iAEP}/xRef{iAEP}; 
 
+% Penelize simulations that result in negative energy generation
+if AEP_Scale < 0
+    CF_Constraints = CF_Constraints + PENALTY;
+end
+
 CF_Vars(iAEP) =  1/AEP_Scale ; % Inverse here so all all factors whould be minimized
 
 if CF_Constraints>0

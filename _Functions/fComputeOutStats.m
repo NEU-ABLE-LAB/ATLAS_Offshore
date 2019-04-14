@@ -21,11 +21,19 @@ if ~exist(folder,'file'); error('Folder not found: %s',folder); end;
 if folder(end)~='/' && folder(end)~='\'
    folder=[folder '/'];
 end
+
 OutFiles = arrayfun(@(x) x.name, dir([folder '*.outb']),'UniformOutput',false);
 nFiles  = length(OutFiles);
 nCases  = length(Cases.Names);
-if nFiles<=0; error('No *.outb files found in folder %s',folder); end;
-if nFiles~=nCases; warning('Inconsistent number of files: %d cases are specified in the case file but %d .outb files are found in %s .',nCases,nFiles,folder); end;
+
+if nFiles<=0
+    error('No *.outb files found in folder %s',folder); 
+end
+
+if nFiles~=nCases
+    warning('Inconsistent number of files: %d cases are specified in the case file but %d .outb files are found in %s .',...
+        nCases,nFiles,folder); 
+end
 
 % for simplicity, we define the same frequency vector for all files
 R.Freq = 0:0.01:2;
@@ -33,7 +41,7 @@ R.Freq = 0:0.01:2;
 R.OutFiles = cell(nCases,1);
 for iFile = 1:nCases
     filename=dir([folder Cases.Names{iFile} '*.outb']);
-    if isempty(filename);
+    if isempty(filename)
         error('No file with pattern `%s` were found in folder %s. \n Has this simulation run properly?',[Cases.Names{iFile} '*.outb'],folder);
     elseif length(filename)>1
         error('Several file with pattern `%s` were found in folder %s. Please remove the unwanted files.\n',[Cases.Names{iFile} '*.outb'],folder);
@@ -64,7 +72,7 @@ for iFile = 1:nCases
     % Stats for all channels 
     for iChan = 1:nChan
         % To save some time now, we only do that for the required channels
-        id=find(ismember(p.Vars(:,3),R.ChanName{iChan}));
+        id=find(ismember(p.Vars(:,3),R.ChanName{iChan}), 1);
         if isempty(id)
             continue % We skip this channel
         end
@@ -73,20 +81,6 @@ for iFile = 1:nCases
         % --- FFT
         [S,f] =  fpwelch(sig,p.FFT_WinLen,[],[],1/dt,'detrend',true) ; % smoothen more with lower window sizes
         S0 = interp1(f,S,R.Freq);
-        % --- Spectral amplitudes at frequencies of interest
-        %fprintf('df=%.4f\n',f(2)-f(1))
-        % nRefFreq=size(p.FreqVars,1);
-        % SpecA=NaN(nRefFreq,1); 
-        % for iFreq=1:nRefFreq
-        %     SpecA(iFreq,1)=interp1(R.Freq,S0,p.FreqVars{iFreq,2});
-        % end
-        % figure(iChan)
-        % semilogy(f,S,'Color',[0.5,0.5,0.5]); hold all
-        % %semilogy(cell2mat(p.FreqVars(:,2)),SpecA,'ko')
-        % %semilogy(cell2mat(p.FreqVars(end-4:end,2)),SpecA(end-4:end),'ko','MarkerFaceColor','k')
-        % hold all
-        % xlim([0,2])
-        % title(R.ChanName{iChan})
         % -- Capping power
         if isequal(lower(R.ChanName{iChan}),'genpwr')
             sig(sig>7000)=7000;
