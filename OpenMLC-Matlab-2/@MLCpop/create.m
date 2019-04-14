@@ -13,27 +13,15 @@ i=1;
     switch mlc_parameters.generation_method
         case 'random_maxdepth'
             [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,indiv_to_generate,i,0,verb);
-%             while i<=n_indiv_to_generate
-%                mlcind=MLCind;
-%                mlcind.generate(mlc_parameters,0);
-%                [mlctable,number]=mlctable.add_individual(mlcind);
-%                if number>0
-%                     if verb>1;fprintf('Generating individual %i\n',i-n_indiv_to_generate+n_indiv);end
-%                     mlcpop.individuals(i)=number;
-%                     i=i+1;
-%                else
-%                    fprintf('replica\n')
-%                end
-%             end
-case 'fixed_maxdepthfirst'
+        case 'fixed_maxdepthfirst'
             [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,1,verb);
         case 'random_maxdepthfirst'
-             [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,2,verb);
+            [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,2,verb);
         case 'full_maxdepthfirst'
-             [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,3,verb);
+            [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,3,verb);
         case 'mixed_maxdepthfirst' %% 50% at full, 50% random, at maxdepthfirst
-             [mlcpop,mlctable,i]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate(1:round(n_indiv_to_generate/2)),i,1,verb);
-              [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,3,verb);
+            [mlcpop,mlctable,i]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate(1:round(n_indiv_to_generate/2)),i,1,verb);
+            [mlcpop,mlctable]=fill_creation(mlcpop,mlctable,mlc_parameters,indiv_to_generate,i,3,verb);
         case 'mixed_ramped_even'        %% 50% full, 50% random with ramped depth
             changed_param=mlc_parameters;
             n=round(linspace(n_indiv_to_generate/(length(mlc_parameters.ramp)*2),n_indiv_to_generate,length(mlc_parameters.ramp)*2));

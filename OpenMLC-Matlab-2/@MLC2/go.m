@@ -55,6 +55,7 @@ end
         mlc.generate_population;
         curgen=1;
     end
+    
     while curgen<=ngen %% ok we can do something
         switch mlc.population(curgen).state
             case 'init'  

@@ -21,15 +21,18 @@ classdef MLCpop < handle
         obj=remove_individual(obj,idx);
         
         function obj=MLCpop(mlc_parameters,gen)
+        
             if nargin<2
                 gen=1;
             end
             obj.gen=gen;
+            
             if mod(gen,mlc_parameters.cascade(2))==0
                 obj.subgen=1;
             else
                 obj.subgen=mlc_parameters.cascade(1);
             end
+            
             if length(mlc_parameters.size)>1 && gen>1
                 gensize=mlc_parameters.size(2);
             else

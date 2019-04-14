@@ -22,14 +22,12 @@ classdef MLCparameters < handle
 %    You should have received a copy of the GNU General Public License
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- 
-
-properties % (data type)(default) Description
-    size            % (num)[1000] Population size
-    sensors         % (num)[1] Number of sensors
+properties % (data type)[default] Description
+    size            %*(num)[1000]$N_i$ Population size
+    sensors         % (num)[1]$N_s$ Number of sensors
     sensor_spec     % (bool)[0] Is a sensor list provided?
     sensor_list     % ??? (`sensors`x1 num)[] Numbering system for sensors
-    controls        % (num)[1] Number of controls
+    controls        % (num)[1]$N_b$ Number of controls
     sensor_prob     % (num)[0.33] Probability of adding a sensor (vs constant) when creating leaf
     leaf_prob       % (num)[0.3] Probability of creating a leaf (vs adding operation) 
     range           % (num)[10] New constants in GP will be drawn from +/- this range
@@ -40,56 +38,66 @@ properties % (data type)(default) Description
     end_character   % ??? Never referenced in code
     individual_type % (str)['tree'] The only acceptable type is 'tree'
     
-    maxdepth            % (num) Maximum depth of program tree
-    maxdepthfirst       %
-    mindepth            % (num) Minimum depth of program tree
-    mutmaxdepth         %
-    mutmindepth         %
-    mutsubtreemindepth  %
-    generation_method   %
-    gaussigma           %
-    ramp                %
-    maxtries            %
-    mutation_types      %
+    maxdepth            % (num)[15] Maximum depth of program tree
+    maxdepthfirst       % (num)[5] 
+    mindepth            % (num)[2] Minimum depth of program tree
+    mutmaxdepth         % (num)[15] 
+    mutmindepth         % (num)[2]
+    mutsubtreemindepth  % (num)[2]
+    generation_method   % (str)['mixed_ramped_gauss'] The method of generating tree
+                        %   'random_maxdepth' - 
+                        %   'fixed_maxdepthfirst' - 
+                        %   'random_maxdepthfirst' - 
+                        %   'full_maxdepthfirst'
+                        %   'mixed_maxdepthfirst' - 50% at full, 50% random, at maxdepthfirst
+                        %   'mixed_ramped_even' - 50% full, 50% random with ramped depth
+                        %   'mixed_ramped_gauss' - 50% full 50% random gaussian distrib
+                        %   SEE: Duriez 2017 pg 25
+    gaussigma           % (num)[3] The variance?? for the 'mixed_ramped gauss' generation method
+    ramp                % (array)[2:8]
+    maxtries            % (num)[10]
+    mutation_types      % (array)[1:4]
     
-    elitism             % (num) Number of best individuals to carry over to next generation
-    probrep             % (num) Probability of replication
-    probmut             % (num) Probability of mutation
-    probcro             % (num) Probability of crossover
-    selectionmethod     % 
-    tournamentsize      % 
-    lookforduplicates   % 
-    simplify            % 
-    cascade             % 
+    elitism             %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
+    probrep             %*(num)[0.1]$P_r$ Probability of replication
+    probmut             %*(num)[0.4]$P_m$ Probability of mutation
+    probcro             %*(num)[0.5]$P_c$ Probability of crossover
+    selectionmethod     % (str)['tournament'] The only acceptable type is 'tournament'
+    tournamentsize      % (num)[7]$N_p$ The number of individuals that enter the tournament
+    lookforduplicates   % (bool)(1) Remove (strict) duplicates 
+    simplify            % (bool)(0) Simplify LISP expressions
+    cascade             % (array)[1 1] Sets `obj.subgen` properties. See `MLCop.m`
 
-    % Evaluation method: serial (`mfile_standalone`) or parallel (`mfile_multi`)
-    evaluation_method           
-    
-    evaluation_function         % Cost function name. `J=evalFun(ind,mlc_parameters,i,fig)`
-    indfile                     %
-    Jfile                       % 
-    exchangedir                 %
-    evaluate_all                %
-    ev_again_best               %
-    ev_again_nb                 %
-    ev_again_times              %
-    artificialnoise             %
-    execute_before_evaluation   %
-    badvalue                    % The value to return when `evaluation_function` determines the controller is 'bad'
-    badvalues_elim              %
-    preevaluation               %
-    preev_function              %
-    
-    save              % 
-    saveincomplete    % 
+   
+    evaluation_method           %*(str)['mfile_standalone'] Evaluation method: 
+                                %   serial (`mfile_standalone`) 
+                                %   parallel (`mfile_multi`)
+    evaluation_function         %*(expr)['toy_problem'] Cost function name. `J=evalFun(ind,mlc_parameters,i,fig)`
+    indfile                     % ??? Never referenced in code. (str)['ind.dat'] 
+    Jfile                       % ??? Never referenced in code. (str)['J.dat'] 
+    exchangedir                 % ??? Never referenced in code. (str)[fullfile(pwd,'evaluator0')] 
+    evaluate_all                % ??? Never referenced in code. (bool)[0] 
+    ev_again_best               %*(bool)[0] Should elite individuals be reevaluated
+    ev_again_nb                 % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
+    ev_again_times              % ?(num)[5] The number of times to reevaluate best individuals
+    artificialnoise             % ??? Never referenced in code. (bool)[0] 
+    execute_before_evaluation   % (expr)[''] A Matlab expression to be evaluated with `eval()` before evaluation.
+    badvalue                    %*(num)[1E36] The value to return when `evaluation_function` determines the controller is 'bad'
+    badvalues_elim              % (str)['first'] When should bad individuals be eliminated
+                                %   'none' Never remove bad individuals
+                                %   'first' Only remove bad individuals in the first generation
+                                %   'all' Remove bad individuals during all generations
+    preevaluation               % (bool)[0] Should individuals be pre-evaluated
+    preev_function              % (expr)[''] A Matlab expression to be evaluated with `eval()` to pre-evalute an individual
+                                %   Expression should return `1` if pre-evaluation identified a valid individual
+                                
+    save              % (bool)[1] Should populations be saved to `mlc_be.mat` every time they're created and to `mlc_ae.mat` after evaluation
+    savedir           % (str)[fullfile(pwd,'save_GP')] The directory to save files to
+    saveincomplete    % ?(bool)[1] Should incomplete evaulations be saved
     verbose           % (num)[2] Level of verbose output: `0`, `1`, `2`, ...
-    fgen              % 
-    show_best         % 
+    fgen              % ??? Never referenced in code. (num)[250] 
+    show_best         % ??? Never referenced in code. (bool)[1]
     problem_variables % (struct)[] A structure of data/variables to pass to `evaluation_function`
-end
-
-properties 
-    savedir
 end
 
 properties (SetAccess = private, Hidden)   
