@@ -1,5 +1,5 @@
-%% oneRun
-% This script runs one load case
+%% MainParsimRun
+% Script that runs all the runs in parallel
 %
 % Modeled from `Main.m` and `fRunFAST.m`
 
@@ -85,7 +85,8 @@ end
 % simOut = parsim(simIn);
 % toc
 
-%%
+%% Test to make sure parfor works
+% Need to comment out `Simulate the model` section above
 tic
 simOut2 = cell(numSims,1);
 parfor simN = 1:numSims
