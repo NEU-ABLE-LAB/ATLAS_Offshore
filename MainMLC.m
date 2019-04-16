@@ -46,6 +46,7 @@ sysMdl = 'MLC_IPC_sys';
 ctrlMdl = 'MLC_IPC_ctrl'; % Reference model for controller
 if contains(version, '(R2018a)')
     sysMdl = [sysMdl '_r2018a']; 
+    ctrlMdl = [ctrlMdl '_r2018a']; 
 end
 
 % Input file specification name
@@ -59,17 +60,17 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
     BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, statsBase);
 
 %% Test MLC
-ind = struct('formal',{{'S0','2*S1','2','sin(S8)','3.4+S2','S11.*3'}});
-parfor k = 1
-    J = MLC_eval(ind,MLC_params);
-end
+% ind = struct('formal',{{'S0','2*S1','2','sin(S8)','3.4+S2','S11.*3'}});
+% parfor k = 1
+%     J = MLC_eval(ind,MLC_params);
+% end
 
 %% Run MLC
 
-% % Create a MLC object
-% mlc=MLC2(MLC_params); 
-%                       
-% % Launch GP for 50 generations and displays the best individual if
-% % implemented in the evaluation function at the end of each generation
-% % evaluation
-% mlc.go(50,3)
+% Create a MLC object
+mlc=MLC2(MLC_params); 
+                      
+% Launch GP for 50 generations and displays the best individual if
+% implemented in the evaluation function at the end of each generation
+% evaluation
+mlc.go(50,3)
