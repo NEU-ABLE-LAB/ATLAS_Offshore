@@ -9,9 +9,6 @@ parameters.size=1000;
         parameters.range=10;
         parameters.precision=4;
         parameters.opsetrange=1:9; 
-        parameters.formal=1;
-        parameters.end_character='';
-        parameters.individual_type='tree';
 
 
         %%  GP algortihm parameters (CHANGE IF YOU KNOW WHAT YOU DO)
@@ -44,8 +41,6 @@ parameters.size=1000;
         %parameters.evaluation_method='standalone_files';
         parameters.evaluation_method='mfile_standalone';
         parameters.evaluation_function='toy_problem';
-        parameters.indfile='ind.dat';
-        parameters.Jfile='J.dat';
         parameters.exchangedir=fullfile(pwd,'evaluator0');
         parameters.evaluate_all=0;
         parameters.ev_again_best=0;
@@ -55,11 +50,8 @@ parameters.size=1000;
         parameters.execute_before_evaluation='';
         parameters.badvalue=10^36;
         parameters.badvalues_elim='first';
-        %parameters.badvalues_elim='none';
-        %parameters.badvalues_elim='all';
         parameters.preevaluation=0;
         parameters.preev_function='';
-        parameters.problem_variables.gamma=0.1;
         %% MLC behaviour parameters 
         parameters.save=1;
         parameters.saveincomplete=1;

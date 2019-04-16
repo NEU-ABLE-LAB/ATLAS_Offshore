@@ -20,6 +20,7 @@ _Outputs/
 # Windows default autosave extension
 *.asv
 *.bak
+*~$*
 
 # OSX / *nix default autosave extension
 *.m~
@@ -44,6 +45,7 @@ codegen/
 # Simulink autosave extension
 *.autosave
 *.slxc
+*.original
 
 # Octave session info
 octave-workspace

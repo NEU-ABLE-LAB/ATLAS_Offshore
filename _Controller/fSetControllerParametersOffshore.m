@@ -1,4 +1,5 @@
-function [Parameter] = fSetControllerParametersOffshore(Parameter)
+function [Parameter] = fSetControllerParametersOffshore(Parameter,...
+    MLC_parameters)
 % Sets the controller parameter.
 % This function takes a structure and supplements it with additional fields for the controller parameters.
 % 
@@ -60,10 +61,32 @@ Parameter.IPC.numG21 = 0.0       ; % [s]
 Parameter.IPC.denG21 = 1.0       ; % [s]
 Parameter.IPC.numG22 = -3.0715E-8; % [s]
 Parameter.IPC.denG22 = 1.0       ; % [s]
-% <<<
-% <<<
-% <<<
-% <<<
 
+%% MLC Control parameters
+
+% System information
+Parameter.MLC.totNSensors = 110;
+
+% Constraints
+Parameter.assert.pitchVLim = 10;    % [deg/s]
+Parameter.assert.twrClear = -4;     % [m]
+Parameter.assert.twrTopAcc = 3.3;   % [m/s2]
+Parameter.assert.rotSpeed = 15.73;  % [rpm]
+Parameter.assert.minGenPwr = 1;     % [W]
+
+% Parameter.MLC.filter.n = 1;
+
+%% Signal selection and processing
+
+% FAST Output Array index names
+Parameter.outListIdx = MLC_parameters.problem_variables.outListIdx;
+Parameter.sensorIdxs = MLC_parameters.problem_variables.sensorIdxs;
+
+% Values for signal normalization
+Parameter.sensorsNormOffset = ...
+    MLC_parameters.problem_variables.sensorsMean;    
+Parameter.sensorNormGain = ...
+    MLC_parameters.problem_variables.sensorsDetrendRMS;
+Parameter.sensorNormGain(isinf(Parameter.sensorNormGain)) = 0;
 
 end

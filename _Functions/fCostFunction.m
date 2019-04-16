@@ -1,4 +1,4 @@
-function [CF, CF_Comp, CF_Vars, CF_Freq] = fCostFunction(x,xRef,p);
+function [CF, CF_Comp, CF_Vars, CF_Freq] = fCostFunction(x,xRef,p)
 % Compute cost function 
 % 
 % INPUTS: 

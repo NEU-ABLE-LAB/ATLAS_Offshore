@@ -48,6 +48,7 @@ function J=dyn_sys_problem(ind,gen_param,i,~);
     else
         LE=sys.LE;
     end
+    
     if crashed==1;
         J=gen_param.badvalue;
         if verb>1;fprintf('(%i) Bad fitness: sim crashed\n',i);end
@@ -61,6 +62,7 @@ function J=dyn_sys_problem(ind,gen_param,i,~);
         J=abs(20-max(LE));
         if verb>0;fprintf(['(%i) J= ' num2str(J) '\n'],i);end
     end
+    
     if nargin==4
         [sys]=x0_rate_my_dynsys_eval(ind,gen_param,i,verb>1);
         plot3(sys.Y(:,1),sys.Y(:,2),sys.Y(:,3));

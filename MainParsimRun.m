@@ -45,8 +45,8 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 % ref: Main.m
 
 % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
-model = 'NREL5MW_Example_IPC';
-% model = 'MLC_IPC' ; 
+% model = 'NREL5MW_Example_IPC';
+model = 'MLC_IPC_sys' ; 
 if contains(version, '(R2018a)')
     model = [model '_r2018a']; 
 end
@@ -62,7 +62,8 @@ runCases = CasesBase.Names;
 load_system(model);
 
 % 2) Set up the parallelization of parameters
-numSims = numel(runCases);
+% numSims = numel(runCases);
+numSims = 1;
 
 % 3) Create an array of SimulationInput objects and specify the sweep value for each simulation
 simIn(1:numSims) = Simulink.SimulationInput(model);
@@ -79,17 +80,36 @@ for idx = 1:numSims
     
 end
 
+%% Choose computation type
+switch 'parfor'
+    
+    case 'parsim'
 %% 4) Simulate the model 
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
-% tic
-% simOut = parsim(simIn);
-% toc
+
+        tic
+        simOut = parsim(simIn);
+        toc
 
 %% Test to make sure parfor works
 % Need to comment out `Simulate the model` section above
-tic
-simOut2 = cell(numSims,1);
-parfor simN = 1:numSims
-    simOut2{simN} = sim(simIn(simN));
+
+    case 'parfor'
+        tic
+        simOut2 = cell(numSims,1);
+        parfor simN = 1:numSims
+            simOut2{simN} = sim(simIn(simN));
+        end
+        toc
+
+%% Regular for loop
+
+    case 'for'
+        tic
+        simOut2 = cell(numSims,1);
+        for simN = 1:numSims
+            simOut2{simN} = sim(simIn(simN));
+        end
+        toc
+
 end
-toc
