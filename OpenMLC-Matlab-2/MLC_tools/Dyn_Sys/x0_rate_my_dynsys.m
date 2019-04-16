@@ -16,9 +16,8 @@ eval(['[T,LE,Y]=lyapunov(' num2str(parameters.controls) ',@my_lyapunov_ev' num2s
 if verb;fprintf(['(%i) done in ' num2str(toc) ' seconds\n'],ev);end
 
 delete(['my_lyapunov_ev' num2str(ev) '.m']);
-    LE=LE(end,:);
 
-
+LE=LE(end,:);
 
 sys.LE=LE;
 
