@@ -78,7 +78,18 @@ p.sensor_prob=0.33;        % (num)[0.33] Probability of adding a sensor (vs cons
 p.leaf_prob=0.3;           % (num)[0.3] Probability of creating a leaf (vs adding operation) 
 p.range=10;                %*(num)[10] New constants in GP will be drawn from +/- this range
 p.precision=4;             % (num)[4] Maximum number of significant digits of new constants
-p.opsetrange=1:9;          % (array)[1:9] An array specifying the mathematical operations used by the GP, as specified in `opset.m`
+p.opsetrange=1:7;          % (array)[1:9] An array specifying the mathematical operations used by the GP, as specified in `opset.m`
+                           %   - 1  addition       (+)
+                           %   - 2  substraction   (-)
+                           %   - 3  multiplication (*)
+                           %   - 4  division       (%)
+                           %   - 5  sinus         (sin)
+                           %   - 6  cosinus       (cos)
+                           %   - 7  logarithm     (log)
+                           %   - 8  exp           (exp)
+                           %   - 9  tanh          (tanh)
+                           %   - 10 modulo        (mod)
+                           %   - 11 power         (pow)
 p.individual_type='tree';  % (str)['tree'] The only acceptable type is 'tree'
 
 
@@ -119,7 +130,7 @@ p.cascade=[1 1];               % (array)[1 1] Sets `obj.subgen` properties. See 
 
 %% Evaluator parameters        % (data type)[default] Description
 p.evaluation_method=...        %*(str)['mfile_standalone'] Evaluation method: 
-    'mfile_standalone';             %   `mfile_standalone` Compute serialy 
+    'mfile_multi';             %   `mfile_standalone` Compute serialy 
                                %   `mfile_multi` Compute in parallel
 p.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
     'MLC_eval';                %   `J=evalFun(ind,mlc_parameters,i,fig)`

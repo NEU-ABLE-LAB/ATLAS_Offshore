@@ -35,6 +35,7 @@ fstFName  = [FASTInputFolder runName '.fst'];
 Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter); 
 
 %% Set parameters to model
+    
 in = in.setVariable('runCase', runCase);
 in = in.setVariable('runName', runName);
 in = in.setVariable('Challenge', Challenge);
@@ -43,5 +44,6 @@ in = in.setVariable('OutputFolder', OutputFolder);
 in = in.setVariable('FASTInputFolder', FASTInputFolder);
 in = in.setVariable('statsBase', statsBase);
 in = in.setVariable('Parameter', Parameter);
+
 
 end

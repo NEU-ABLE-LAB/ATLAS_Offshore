@@ -66,6 +66,7 @@ Parameter.IPC.denG22 = 1.0       ; % [s]
 
 % System information
 Parameter.MLC.totNSensors = 110;
+Parameter.MLC.gain = 1E-2;
 
 % Constraints
 Parameter.assert.pitchVLim = 10;    % [deg/s]
