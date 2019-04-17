@@ -3,7 +3,8 @@
 % INPUTS:
 %   runCases - The name of all the cases to run
 function p = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
-    BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, statsBase)
+    BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, ...
+    statsBase, initialPop)
 
 %% Custom Parmeters
 
@@ -146,7 +147,10 @@ p.badvalues_elim='all';        % (str)['first'] When should bad individuals be e
 p.preevaluation=1;             %*(bool)[0] Should individuals be pre-evaluated
 p.preev_function='MLC_preeval';% (expr)[''] A Matlab expression to be evaluated with `eval()` to pre-evalute an individual
                                %   Expression should return `1` if pre-evaluation identified a valid individual
-
+if exist('initialPop','var') && ~isempty(initialPop)
+	p.initialPop = initialPop;
+end
+                               
 %% Problem Specific Parameters
 
 % Load baseline data

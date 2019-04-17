@@ -4,10 +4,10 @@ n_indiv_to_generate=length(indiv_to_generate);
 switch mlc_parameters.evaluation_method
     case 'mfile_multi'
         
-        indiv_generated = zeros(n_indiv_to_generate,1);
         newInds = cell(n_indiv_to_generate,1);
         
-        parfor (newIdvN = 1:n_indiv_to_generate,0)
+		disp(sprintf('Generating %d individuals',n_indiv_to_generate));
+        parfor (newIdvN = 1:n_indiv_to_generate)
             isOk = false;
             while ~isOk
                 newInds{newIdvN}=MLCind;
@@ -27,6 +27,7 @@ switch mlc_parameters.evaluation_method
                 [mlctable,number,already_exist]=mlctable.add_individual(newInds{newIdvN});
                 
                 if already_exist
+                    isOk = false;
                     while ~isOk
                         newInds{newIdvN}=MLCind;
                         newInds{newIdvN}.generate(mlc_parameters,type);
@@ -34,6 +35,8 @@ switch mlc_parameters.evaluation_method
                     end
                 end
             end
+			
+            mlcpop.individuals(indiv_to_generate(newIdvN))=number;
         end
     
     otherwise
@@ -57,7 +60,7 @@ switch mlc_parameters.evaluation_method
                 if verb>3;fprintf('replica\n');end
             end
         end
-    end
+end
 
 
 

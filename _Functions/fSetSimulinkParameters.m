@@ -51,7 +51,7 @@ Parameter.PitchActuator.Delay           = 0.2;              % [s]
 %% --- SIMULATION Dependent parameters 
 % --------------------------------------------------------------------------------{
 % -- Initial Conditions at 13.5934 m/s - NEED TO BE REPLACED
-fprintf('Simulation params: T=%.0f - pitch_0=%.1f\n',TMax,pitch_init); 
+% fprintf('Simulation params: T=%.0f - pitch_0=%.1f\n',TMax,pitch_init); 
 Parameter.IC.theta                      = deg2rad(pitch_init);  	% [rad]              
 Parameter.IC.M_g                        = 43093.55;       	% [Nm] 
 Parameter.IC.Omega                      = rpm2radPs(12.1); 	% [rad/s]

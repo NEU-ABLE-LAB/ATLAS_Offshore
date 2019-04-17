@@ -7,7 +7,6 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
         eval(mlc_parameters.execute_before_evaluation);
     end
         
-    
     %% Determine individuals to evaluate
     idv_to_evaluate=mlcpop.individuals(eval_idx);
     JJ=zeros(1,length(idv_to_evaluate));
@@ -27,7 +26,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
 
     switch mlc_parameters.evaluation_method
         case 'test'
-            for i=istart:length(eval_idx);
+            for i=istart:length(eval_idx)
                 if mlc_parameters.saveincomplete==1
                     ic=i;
                     save(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'JJ','ic');
@@ -38,22 +37,26 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
             end
             
         case 'mfile_multi'
+            
             eval(['heval=@' mlc_parameters.evaluation_function ';']);
             f=heval;
-            try
-            if matlabpool('size')==0
-                matlabpool 6
-            end
-            end
             
             nidx=length(eval_idx);
+            parForIndvs = mlctable.individuals;
             
-            parfor i=istart:nidx;
-                if verb>3;fprintf('Individual %i from generation %i\n',eval_idx(i),ngen);end
-                if verb>4;fprintf('%s\n',mlctable.individuals(idv_to_evaluate(i)).value);end
+            parfor i=istart:nidx
+                
+                if verb>3
+                    fprintf('Individual %i from generation %i\n',...
+                        eval_idx(i),ngen)
+                end
+                if verb>4
+                    fprintf('%s\n',...
+                        parForIndvs(idv_to_evaluate(i)).value)
+                end
                 
                 %retrieve object in the table
-                m=mlctable.individuals((idv_to_evaluate(i)));
+                m=parForIndvs(idv_to_evaluate(i));
                 
                 JJ(i)=feval(f,m,mlc_parameters,i);
                 date_ev(i)=now;
@@ -62,7 +65,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
         case 'mfile_standalone'
         eval(['heval=@' mlc_parameters.evaluation_function ';']);
         f=heval;
-        for i=istart:length(eval_idx);
+        for i=istart:length(eval_idx)
             if mlc_parameters.saveincomplete==1
                 ic=i;
                 save(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'JJ','ic');

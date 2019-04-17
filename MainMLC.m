@@ -56,8 +56,11 @@ runCases = CasesBase.Names;
 hSetControllerParameter = @fSetControllerParametersOffshore; 
 
 %% MLC Parameters
+iPopFile = '';
+% iPopFile = 'MLC_out.mat';
 MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
-    BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, statsBase);
+    BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, ...
+    statsBase, iPopFile);
 
 %% Test MLC
 % ind = struct('formal',{{'S0','2*S1','2','sin(S8)','3.4+S2','S11.*3'}});

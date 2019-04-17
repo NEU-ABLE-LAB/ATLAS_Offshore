@@ -52,7 +52,23 @@ end
     
     curgen=length(mlc.population);
     if curgen==0 %% population is empty, we have to create it
-        mlc.generate_population;
+        
+        if ~isempty(mlc.parameters.initialPop)
+            
+            % Load initial population from file
+            iPop = load(mlc.parameters.initialPop);
+            mlc.table = iPop.mlctable;
+            mlc.population = iPop.mlcpop;
+            mlc.population(1).state='created';
+            disp('Loaded initial population from file');
+            
+        else
+            
+            % Generate initial population
+            mlc.generate_population;
+            
+        end
+        
         curgen=1;
     end
     
@@ -60,7 +76,16 @@ end
         switch mlc.population(curgen).state
             case 'init'  
                 if curgen==1
-                    mlc.generate_population;
+                    if ~isempty(mlc.parameters.initialPop)
+                        % Load initial population from file
+                        iPop = load(mlc.parameters.initialPop);
+                        mlc.table = iPop.mlctable;
+                        mlc.population = iPop.mlcpop;
+                        disp('Loaded initial population from file');
+                    else
+                        % Generate initial population
+                        mlc.generate_population;
+                    end
                 else     %% unlikely CHECK THIS.
                     mlc.evolve_population;
                 end

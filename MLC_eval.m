@@ -146,7 +146,6 @@ try
 catch
     
     J = MLC_params.badvalue;
-    clear mex;
     
     % Switch all of the workers back to their original folder.
     close_system(tmpCtrlMdl, 0);
@@ -154,7 +153,12 @@ catch
     rmdir(tmpDir,'s');
     rmpath(currDir);
     
+    clear mex;
+    Simulink.sdi.cleanupWorkerResources
+    return
 end
+
+Simulink.sdi.cleanupWorkerResources
 
 %% Switch all of the workers back to their original folder.
 close_system(tmpCtrlMdl, 0);

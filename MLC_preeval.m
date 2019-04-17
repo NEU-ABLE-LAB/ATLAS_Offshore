@@ -134,6 +134,8 @@ catch e
     end
 end
 
+Simulink.sdi.cleanupWorkerResources
+
 %% Check validity
 % Saturation blocks in the model will prevent signals that are too large
 % Assert statements in the model will catch pitch speed limits
