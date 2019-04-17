@@ -147,10 +147,14 @@ catch
     J = MLC_params.badvalue;
     
     % Switch all of the workers back to their original folder.
-    close_system(tmpCtrlMdl, 0);
-    cd(currDir);
-    rmdir(tmpDir,'s');
-    rmpath(currDir);
+    try
+        close_system(tmpCtrlMdl, 0);
+        cd(currDir);
+        rmdir(tmpDir,'s');
+        rmpath(currDir);
+    catch e
+        warning(e.message)
+    end
     
     clear mex;
     Simulink.sdi.cleanupWorkerResources
@@ -160,10 +164,14 @@ end
 Simulink.sdi.cleanupWorkerResources
 
 %% Switch all of the workers back to their original folder.
-close_system(tmpCtrlMdl, 0);
-cd(currDir);
-rmdir(tmpDir,'s');
-rmpath(currDir);
 
+try
+    close_system(tmpCtrlMdl, 0);
+    cd(currDir);
+    rmdir(tmpDir,'s');
+    rmpath(currDir);
+catch e
+    warning(e.message)
+end
 
 end

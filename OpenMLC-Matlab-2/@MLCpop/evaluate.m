@@ -44,7 +44,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
             nidx=length(eval_idx);
             parForIndvs = mlctable.individuals;
             
-            pp = parpool;
+            pp = gcp();
             ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
             
             parfor i=istart:nidx

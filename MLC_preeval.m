@@ -125,10 +125,14 @@ catch e
         disp(exprs')
         
         % Switch all of the workers back to their original folder.
-        close_system(tmpCtrlMdl, 0);
-        cd(currDir);
-        rmdir(tmpDir,'s');
-        rmpath(currDir);
+        try
+            close_system(tmpCtrlMdl, 0);
+            cd(currDir);
+            rmdir(tmpDir,'s');
+            rmpath(currDir);
+        catch e
+            warning(e.message)
+        end
         
         return
     end
@@ -151,9 +155,13 @@ else
 end
 
 %% Switch all of the workers back to their original folder.
-close_system(tmpCtrlMdl, 0);
-cd(currDir);
-rmdir(tmpDir,'s');
-rmpath(currDir);
+try
+    close_system(tmpCtrlMdl, 0);
+    cd(currDir);
+    rmdir(tmpDir,'s');
+    rmpath(currDir);
+catch e
+    warning(e.message)
+end
 
 end
