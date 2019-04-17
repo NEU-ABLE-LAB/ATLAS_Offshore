@@ -7,6 +7,10 @@ switch mlc_parameters.evaluation_method
         newInds = cell(n_indiv_to_generate,1);
         
 		disp(sprintf('Generating %d individuals',n_indiv_to_generate));
+
+        pp = gcp();
+        ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
+        
         parfor (newIdvN = 1:n_indiv_to_generate)
             isOk = false;
             while ~isOk
@@ -16,6 +20,8 @@ switch mlc_parameters.evaluation_method
                 
             end
             disp(sprintf('Generated individual %i\n',indiv_to_generate(newIdvN)))
+            
+            ppm.increment();
         end
         
         for newIdvN = 1:n_indiv_to_generate
