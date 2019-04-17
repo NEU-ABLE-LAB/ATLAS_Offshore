@@ -106,7 +106,6 @@ caseN = randi(length(runCases));
 %% Run simulation
 
 % Add parameters to controller model workspace
-caseN = 1;
 fstFName  = [FASTInputFolder runCases{caseN} '.fst'];
 Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter); 
 hws = get_param(tmpCtrlMdl,'modelWorkspace');
@@ -117,7 +116,7 @@ simIn = Simulink.SimulationInput(sysMdl);
 
 % Change control model to temporary copy
 simIn = simIn.setBlockParameter(...
-    'MLC_IPC_sys/Participant''s New Blade Pitch Control (CPC + IPC)/MLC_IPC_ctrl',...
+    [sysMdl '/CPC_IPC/MLC_IPC_ctrl'],...
     'ModelFile',[tmpCtrlMdl '.slx']);
 
 % Set presimulation function
@@ -139,7 +138,7 @@ try
     % Compute cost from output
     J = simOut.CF;
     if MLC_params.verbose
-        disp(exprs)
+        disp(exprs')
         disp(J)
     end
     
