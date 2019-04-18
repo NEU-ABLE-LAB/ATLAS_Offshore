@@ -12,15 +12,17 @@ addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 % Default controller
 % exprs = {{'0'},{'0'},{'0'},{'0'},{'0'},{'0'}};
 
-load('mlc_ae.mat')
+load('20190418_063233mlc_de.mat')
+% load('20190418_0707mlc_ae.mat')
 
-min(mlc.population.costs(mlc.population.costs>0))
+min(mlc.population(end).costs(...
+    [mlc.population(end).costs]>0))
 
-[~,minIdx] = min(mlc.population.costs(...
-    mlc.population.costs>0));
+[~,minIdx] = min(mlc.population(end).costs(...
+    mlc.population(end).costs>0));
 
 exprs = mlc.table.individuals(...
-    mlc.population.individuals(minIdx)).formal';
+    mlc.population(end).individuals(minIdx)).formal';
 
 nSensors = mlc.parameters.problem_variables.nSensors;
 sensorIdxs = mlc.parameters.problem_variables.sensorIdxs;
@@ -120,6 +122,8 @@ end
 % Save the system for reference by parallel agents
 save_system(model)
 close_system(model)
+
+clear mex
 
 %% Initialize Parallelization
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
