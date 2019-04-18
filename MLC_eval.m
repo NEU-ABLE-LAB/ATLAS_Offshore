@@ -109,7 +109,8 @@ try
 
     % Add parameters to controller model workspace
     fstFName  = [FASTInputFolder runCases{caseN} '.fst'];
-    Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter); 
+    Parameter = fSetSimulinkParameters(fstFName, ...
+        hSetControllerParameter); 
     hws = get_param(tmpCtrlMdl,'modelWorkspace');
     hws.assignin('Parameter',Parameter);
 

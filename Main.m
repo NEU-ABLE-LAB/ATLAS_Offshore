@@ -35,7 +35,6 @@ for iFolder = 1:size(folders,1)
 end
 
 fCostFunctionPlot (CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, folders);
-% fCostFunctionPrint(CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, folders);
 
 if any(CF)>=1000
     error('\nSome of the constraints were exceeded (see outputs above). The cost function was set to a disqualifying value.\n')
