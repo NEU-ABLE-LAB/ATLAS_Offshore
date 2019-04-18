@@ -90,9 +90,9 @@ end
                     mlc.evolve_population;
                 end
             case 'created'
-                if mlc.parameters.save==1;save(fullfile(mlc.parameters.savedir,'mlc_be.mat'),'mlc');end
+                if mlc.parameters.save==1;save(fullfile(mlc.parameters.savedir,[datestr(now,'YYYYmmDD_HHMMSS') 'mlc_be.mat']),'mlc');end
                 mlc.evaluate_population;
-                if mlc.parameters.save==1;save(fullfile(mlc.parameters.savedir,'mlc_ae.mat'),'mlc');end
+                if mlc.parameters.save==1;save(fullfile(mlc.parameters.savedir,[datestr(now,'YYYYmmDD_HHMMSS') 'mlc_ae.mat']),'mlc');end
             case 'evaluated'
                 curgen=curgen+1; 
                 if figs>0
