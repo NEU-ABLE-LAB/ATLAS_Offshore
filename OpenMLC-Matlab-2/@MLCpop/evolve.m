@@ -2,6 +2,7 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
 % copyright
     ngen=mlcpop.gen;         
     verb=mlc_parameters.verbose;
+	
     if nargin<4
         mlcpop2=MLCpop(mlc_parameters,ngen+1);
     end
@@ -9,9 +10,15 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
     idxsubgen=subgen(mlcpop,mlc_parameters);
     idxsubgen2=subgen(mlcpop2,mlc_parameters);
     
-    for i=1:length(idxsubgen2);
+    for i=1:length(idxsubgen2)
+        
         idxsubgen2{i}=idxsubgen2{i}(mlcpop2.individuals(idxsubgen2{i})==-1);
-        if verb>0;fprintf('Evolving sub-population %i/%i\n',i,mlcpop2.subgen);end
+		
+        if verb>0
+			fprintf('Evolving sub-population %i/%i\n',...
+				i, mlcpop2.subgen)
+		end
+		
         if length(idxsubgen)==1
             idx_source_pool=idxsubgen{1};
         else
@@ -34,6 +41,11 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         
         %% completing population
         while individuals_created<length(idxsubgen2{i})
+		
+			if verb>1
+				fprintf('Created %i individuals\n', individuals_created)
+			end
+		
             op=choose_genetic_op(mlc_parameters,length(idxsubgen2{i})-individuals_created);
             
             switch op
@@ -74,7 +86,7 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
                     while fail==1
                         idv_orig=choose_individual(mlcpop,mlc_parameters,idx_source_pool);
                         idv_orig2=idv_orig;
-                        while idv_orig2==idv_orig;
+                        while idv_orig2==idv_orig
                             idv_orig2=choose_individual(mlcpop,mlc_parameters,idx_source_pool);
                         end
                         idv_dest=idxsubgen2{i}(individuals_created+1);
@@ -103,13 +115,8 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
                         individuals_created=individuals_created+1;
                                  
                     end
-                    
             end
         end
-        
-        
-        
-        
     end
     
     

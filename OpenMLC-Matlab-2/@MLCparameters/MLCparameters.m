@@ -97,7 +97,8 @@ properties % (data type)[default] Description
     savedir=...                  % (str)[fullfile(pwd,'save_GP')] The directory to save files to
         fullfile(pwd,'save_GP');            % ?(bool)[1] Should incomplete evaulations be saved
     saveincomplete=1;            %
-    initialPop='';               % (str)[''] Path to `mlcpop` and `mlctable` with initial populations
+    initialPop='';               % (str)[''] Path to .mat `mlcpop` and `mlctable` with initial populations
+    restartWith='';              % (str)[''] Path to .mat with MLC object to restart with
     verbose=2;                   % (num)[2] Level of verbose output: `0`, `1`, `2`, ...
 end
 

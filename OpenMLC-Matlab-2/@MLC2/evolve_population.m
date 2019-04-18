@@ -25,31 +25,22 @@ function mlc=evolve_population(mlc,n)
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if nargin<2
-        n=length(mlc.population);
+    n=length(mlc.population);
+end
+
+[mlc.population(n+1),mlc.table]=mlc.population(n).evolve(mlc.parameters,mlc.table);
+
+%% Remove duplicates
+if mlc.parameters.lookforduplicates
+    mlc.population(n+1).remove_duplicates;
+    idx=find(mlc.population(n+1).individuals==-1);
+    while ~isempty(idx)
+            [mlc.population(n+1),mlc.table]=mlc.population(n).evolve(mlc.parameters,mlc.table,mlc.population(n+1));
+            mlc.population(n+1).remove_duplicates;
+            idx=find(mlc.population(n+1).individuals==-1);
     end
-    [mlc.population(n+1),mlc.table]=mlc.population(n).evolve(mlc.parameters,mlc.table);
-    
-    %% Remove duplicates
-    if mlc.parameters.lookforduplicates
-        mlc.population(n+1).remove_duplicates;
-        idx=find(mlc.population(n+1).individuals==-1);
-        while ~isempty(idx);
-                [mlc.population(n+1),mlc.table]=mlc.population(n).evolve(mlc.parameters,mlc.table,mlc.population(n+1));
-                mlc.population(n+1).remove_duplicates;
-                idx=find(mlc.population(n+1).individuals==-1);
-        end
-    end
-    mlc.population(n+1).state='created';
+end
+
+mlc.population(n+1).state='created';
     
     
-    
-
-
-
-
-
-
-
-
-
-
