@@ -12,8 +12,7 @@ addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 % Default controller
 % exprs = {{'0'},{'0'},{'0'},{'0'},{'0'},{'0'}};
 
-load('20190418_120725mlc_ae.mat')
-% load('20190418_0707mlc_ae.mat')
+load('save_GP/20190417-2203/20190418_120725mlc_ae.mat')
 
 min(mlc.population(end).costs(...
     [mlc.population(end).costs]>0))

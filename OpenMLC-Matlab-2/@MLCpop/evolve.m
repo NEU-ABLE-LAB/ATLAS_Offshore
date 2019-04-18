@@ -54,8 +54,8 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         end
         
         %% Determine operations to use
-        ops = cell();
-        indNums = cell();
+        ops = {};
+        indNums = {};
         nOps = 0;
         while individuals_created<length(idxsubgen2{i})
         
@@ -108,7 +108,7 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         
         % Prepare variables for parallel mutation and crossover operations
         gcp();
-        ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
+        ppm = ParforProgMon('MLCpop.evaluate', nOps);
         mlctable_individuals = mlctable.individuals;
         
         idv_orig  = cell(nOps,1);

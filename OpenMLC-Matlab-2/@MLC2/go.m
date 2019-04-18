@@ -96,7 +96,7 @@ end
             case 'evaluated'
                 curgen=curgen+1; 
                 if figs>0
-                    mlc.show_best;
+%                     mlc.show_best;
                     drawnow;
                 end
                 if figs>1

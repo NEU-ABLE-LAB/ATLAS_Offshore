@@ -113,7 +113,7 @@ end
      end
     
      c=colormap(gray);
-     c=flipud(gray)
+     c=flipud(gray);
      colormap(c)
      %clb=colorbar;set(clb,'fontsize',20,'linewidth',2,'fontweight','bold')
      t=title('Population repartition (\%)');set(t,'interpreter','latex','fontsize',30)
