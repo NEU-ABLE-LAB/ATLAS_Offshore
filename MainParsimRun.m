@@ -62,8 +62,7 @@ runCases = CasesBase.Names;
 load_system(model);
 
 % 2) Set up the parallelization of parameters
-% numSims = numel(runCases);
-numSims = 1;
+numSims = numel(runCases);
 
 % 3) Create an array of SimulationInput objects and specify the sweep value for each simulation
 simIn(1:numSims) = Simulink.SimulationInput(model);
