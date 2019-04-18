@@ -34,7 +34,13 @@ function mlc=evaluate_population(mlc,n)
 
     %% first evaluation
     idx=1:length(mlc.population(n).individuals);
-    [mlc.population(n),mlc.table]=mlc.population(n).evaluate(mlc.table,mlc.parameters,idx);
+    
+    [mlc.population(n), mlc.table] = ...
+        mlc.population(n).evaluate(mlc.table, mlc.parameters, idx);
+    
+    if mlc.parameters.save==1
+        save(fullfile(mlc.parameters.savedir,'mlc_de.mat'),'mlc')
+    end
     
     %% remove bad individuals
     elim=0;
@@ -48,11 +54,23 @@ function mlc=evaluate_population(mlc,n)
     end
     
     if elim==1
-        [mlc.population(n),idx]=mlc.population(n).remove_bad_indivs(mlc.parameters);
+        
+        [mlc.population(n), idx] = ...
+            mlc.population(n).remove_bad_indivs(mlc.parameters);
+        cullingN = 1;
+        
         while ~isempty(idx)
-            [mlc.population(n),mlc.table]=mlc.population(n).create(mlc.parameters,mlc.table);
-            [mlc.population(n),mlc.table]=mlc.population(n).evaluate(mlc.table,mlc.parameters,idx);
-            [mlc.population(n),idx]=mlc.population(n).remove_bad_indivs(mlc.parameters);
+            
+            [mlc.population(n), mlc.table] = ...
+                mlc.population(n).create(mlc.parameters,mlc.table);
+            
+            [mlc.population(n), mlc.table] = ...
+                mlc.population(n).evaluate(mlc.table, mlc.parameters,idx);
+            
+            [mlc.population(n), idx] = ...
+                mlc.population(n).remove_bad_indivs(mlc.parameters);
+            
+            cullingN = cullingN + 1;
         end
     end
     

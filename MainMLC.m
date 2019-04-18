@@ -6,6 +6,7 @@ clear all;close all;clc;
 
 %% Initialization
 % ref: Main.m
+addpath(pwd)
 addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
@@ -18,6 +19,7 @@ FASTInputFolder        = [pwd '/_Inputs/LoadCases/'] ; % directory of the FAST i
 case_file              = [pwd '/_Inputs/_inputs/Cases.csv']; % File defining the cases that are run
 BaselineFolder         = [pwd '/_BaselineResults/'] ; % Folder where "reference simulations are located"
 RootOutputFolder       = [pwd '/_Outputs/']         ; % Folder where the current simulation outputs will be placed
+ctrlFolder             = [pwd '/_Controller/']      ; % Location of Simulink files
 % All paths have to be absolute because of parallelization
 
 %% Script Preprocessing
@@ -59,8 +61,8 @@ hSetControllerParameter = @fSetControllerParametersOffshore;
 % iPopFile = '';
 iPopFile = 'MLC_out.mat';
 MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
-    BaselineFolder, RootOutputFolder, FASTInputFolder, Challenge, ...
-    statsBase, iPopFile);
+    ctrlFolder, BaselineFolder, RootOutputFolder, FASTInputFolder, ...
+    Challenge, statsBase, iPopFile);
 
 %% Test MLC
 % ind = struct('formal',{{'S0','2*S1','2','sin(S8)','3.4+S2','S11.*3'}});
