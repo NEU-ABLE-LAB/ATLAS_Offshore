@@ -6,12 +6,14 @@ switch mlc_parameters.evaluation_method
         
         newInds = cell(n_indiv_to_generate,1);
         
-		disp(sprintf('Generating %d individuals',n_indiv_to_generate));
+		fprintf('Generating %d individuals\n',n_indiv_to_generate);
 
         pp = gcp();
-        ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
+        ppm = ParforProgMon('MLCpop.fill_creation - generate:', ...
+            n_indiv_to_generate);
         
         parfor (newIdvN = 1:n_indiv_to_generate)
+            
             isOk = false;
             while ~isOk
                 newInds{newIdvN}=MLCind;
@@ -19,29 +21,53 @@ switch mlc_parameters.evaluation_method
                 isOk = newInds{newIdvN}.preev(mlc_parameters);
                 
             end
-            disp(sprintf('Generated individual %i\n',indiv_to_generate(newIdvN)))
+            fprintf('Generated individual %i\n\n',indiv_to_generate(newIdvN))
             
             ppm.increment();
+            
+        end
+        
+        % Variable initialization
+        already_exist = true(n_indiv_to_generate,1);
+        number = -ones(n_indiv_to_generate,1);
+        
+        % Replace duplicate individuals
+        while any(already_exist)
+        
+            % Add individuals to mlctable, keeping track if the individual is a duplicate
+            for newIdvN = find(already_exist)
+            
+                [mlctable, number(newIdvN), already_exist(newIdvN)] = ...
+                    mlctable.add_individual( newInds{newIdvN} );
+                
+            end
+            
+            % Generate new individuals to replace duplicates
+            fprintf('Replacing %d duplicate individuals\n\n',...
+                sum(already_exist));
+                
+            pp = gcp();
+            ppm = ParforProgMon('MLCpop.fill_creation - exists:', ...
+                n_indiv_to_generate);
+            
+            parfor replaceIndN = find(already_exist)
+                
+                isOk = false;
+                while ~isOk
+                    newInds{replaceIndN}=MLCind;
+                    newInds{replaceIndN}.generate(mlc_parameters,type);
+                    isOk = newInds{replaceIndN}.preev(mlc_parameters);
+                end
+                
+                fprintf('Generated replacement individual %i\n\n',...
+                    indiv_to_generate(replaceIndN))
+                  
+                ppm.increment();
+                
+            end
         end
         
         for newIdvN = 1:n_indiv_to_generate
-
-            already_exist = true;
-            
-            while already_exist
-                
-                [mlctable,number,already_exist]=mlctable.add_individual(newInds{newIdvN});
-                
-                if already_exist
-                    isOk = false;
-                    while ~isOk
-                        newInds{newIdvN}=MLCind;
-                        newInds{newIdvN}.generate(mlc_parameters,type);
-                        isOk = newInds{newIdvN}.preev(mlc_parameters);
-                    end
-                end
-            end
-			
             mlcpop.individuals(indiv_to_generate(newIdvN))=number;
         end
     

@@ -1,4 +1,4 @@
-function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
+function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
 % copyright
     verb=mlc_parameters.verbose;
     ngen=mlcpop.gen;
@@ -14,7 +14,9 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
     if verb>0;fprintf('Evaluation of generation %d\n',ngen);end
     if verb>1;fprintf(['Evaluation method: "' mlc_parameters.evaluation_method '"\n']);end
     %% Check if method was interrupted
-    if exist(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'file') && mlc_parameters.saveincomplete==1;
+    if exist(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'file') && ...
+            mlc_parameters.saveincomplete==1
+        
         ic=0;
         load(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'JJ','ic');
         istart=ic;
@@ -48,7 +50,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
             ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
             
             parfor i=istart:nidx
-                
+                               
                 if verb>3
                     fprintf('Individual %i from generation %i\n',...
                         eval_idx(i),ngen)
@@ -65,6 +67,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx);
                 date_ev(i)=now;
                 
                 ppm.increment();
+                
             end
             
         case 'mfile_standalone'
