@@ -12,7 +12,7 @@ addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 % Default controller
 % exprs = {{'0'},{'0'},{'0'},{'0'},{'0'},{'0'}};
 
-load('20190418_063233mlc_de.mat')
+load('20190418_120725mlc_ae.mat')
 % load('20190418_0707mlc_ae.mat')
 
 min(mlc.population(end).costs(...
@@ -142,11 +142,22 @@ for idx = 1:numSims
         Challenge, statsBase);
     
     % Set postsimulation function
-    simIn(idx) = simIn(idx).setPostSimFcn(@(y) FASTPostSim(y, simIn(idx)));
+    simIn(idx) = simIn(idx).setPostSimFcn(...
+        @(y)FASTPostSim(y, simIn(idx)));
     
 end
 
 %% 4) Simulate the model 
 % ref: https://www.mathworks.com/help/simulink/ug/running-parallel-simulations.html
 
-simOut = parsim(simIn);
+% % Delete any crashed jobs
+% delete(myCluster.Jobs)
+% 
+% % Run the simulations in parallel
+% simOut = parsim(simIn);
+
+simOut = cell(numSims,1);
+for simN = 1:numSims
+    simOut{simN} = sim(simIn(simN));
+    clear mex
+end

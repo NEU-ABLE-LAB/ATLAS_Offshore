@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.926"
+    ComputedModelVersion    "1.927"
     NumModelReferences	    0
     NumTestPointedSignals   7
     TestPointedSignal {
@@ -247,9 +247,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "thisi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 18 00:39:01 2019"
-  RTWModifiedTimeStamp	  477448265
-  ModelVersionFormat	  "1.%<AutoIncrement:926>"
+  LastModifiedDate	  "Thu Apr 18 08:01:26 2019"
+  RTWModifiedTimeStamp	  477475286
+  ModelVersionFormat	  "1.%<AutoIncrement:927>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -3934,7 +3934,7 @@ Model {
 	  System {
 	    Name		    "pitch_ctrl_1"
 	    Location		    [-5, 0, 1514, 873]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    SetExecutionDomain	    off
 	    ExecutionDomainType	    "Deduce"
@@ -10132,7 +10132,7 @@ Model {
       System {
 	Name			"OpenFAST Turbine Model"
 	Location		[-5, 0, 1514, 873]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	SetExecutionDomain	off
 	ExecutionDomainType	"Deduce"
@@ -13766,9 +13766,6 @@ Stateflow {
     screen		    [1 1 3600 1200 1.180555555555556]
     treeNode		    [0 23 0 0]
     viewObj		    22
-    visible		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -13795,10 +13792,8 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = my_log((my_log(((my_div((my_log(9.437) + (my_div(u(6),1.307))),(my_div(("
-      "4.096 * u(9)),(u(3) * u(6)))))) * cos(((my_div(2.6,u(9))) + (my_div(0.2029,u(7))))))) * (((((6.16 + 0.1809) + (2"
-      ".301 + 8.637)) - my_log((u(5) + u(7)))) - (cos(my_log(u(26))) * (((-2.503) + (-1.297)) - (1.789 + (-2.738))))) *"
-      " (my_log((((-6.532) - 4.131) + sin((-2.547)))) - (my_log(sin(u(3))) - cos(sin((-1.284))))))));"
+      script		      "function y = fcn(u)\ny = sin(cos(my_log(cos(sin((((u(26) + (-8.702)) - cos(2.334)) + cos(cos(9.23"
+      "2))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -13921,10 +13916,9 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = (my_div(sin((my_div((my_div(cos(sin((u(3) + 6.751))),(((my_div(u(25),u(7"
-      "))) * cos(5.896)) - cos(sin(3.123))))),my_log((cos((my_div((-9.967),(-2.4)))) + (cos((-9.561)) * my_log(3.435)))"
-      ")))),cos(cos((my_log(sin(sin((-9.057)))) + ((my_log((-5.32)) + (3.763 * 3.028)) + (cos(1.308) - cos((-3.615)))))"
-      "))));"
+      script		      "function y = fcn(u)\ny = cos((((cos(((my_div((-6.021),(-4.139))) + ((-8.9) + (-2.656)))) * sin((m"
+      "y_log((-5.506)) + (9.254 - (-5.814))))) - (cos((cos(5.765) - (my_div(4.159,0.4555)))) + my_log(((my_div(u(2),u(2"
+      "6))) + cos((-7.49)))))) - sin((cos(my_log((6.198 + u(7)))) * cos(((u(46) + 2.414) - (my_div(6.975,5.819))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -14047,10 +14041,9 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = (my_div(sin((my_div((my_div(cos(sin((u(3) + 6.751))),(((my_div(u(25),u(7"
-      "))) * cos(5.896)) - cos(sin(3.123))))),my_log((cos((my_div((-9.967),(-2.4)))) + (cos((-9.561)) * my_log(3.435)))"
-      ")))),cos(cos((my_log(sin(sin((-9.057)))) + ((my_log((-5.32)) + (3.763 * 3.028)) + (cos(1.308) - cos((-3.615)))))"
-      "))));"
+      script		      "function y = fcn(u)\ny = cos((((cos(((my_div((-6.021),(-4.139))) + ((-8.9) + (-2.656)))) * sin((m"
+      "y_log((-5.506)) + (9.254 - (-5.814))))) - (cos((cos(5.765) - (my_div(4.159,0.4555)))) + my_log(((my_div(u(2),u(2"
+      "6))) + cos((-7.49)))))) - sin((cos(my_log((6.198 + u(7)))) * cos(((u(46) + 2.414) - (my_div(6.975,5.819))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -14173,9 +14166,10 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = sin((my_div(my_log(cos(((my_div(((-4.828) - u(91)),cos(5.073))) * cos((("
-      "-1.948) + (-5.261)))))),(my_div(cos((((2.92 + (-1.406)) * my_log(7.447)) * (my_div((7.264 * 1.578),cos(9.11)))))"
-      ",(my_div(sin(((u(47) + u(46)) * (8.514 + u(91)))),sin((((-1.804) - u(24)) + (u(26) - (-9.591)))))))))));"
+      script		      "function y = fcn(u)\ny = cos(((((my_div(((u(9) + 6.486) * sin((-0.8411))),my_log(cos(u(9))))) + ("
+      "sin(my_log((-6.301))) - ((u(26) + u(47)) - sin((-4.179))))) * (my_div(((sin((-6.813)) * my_log((-2.407))) + (cos"
+      "(4.909) + sin(6.878))),cos((((-3.952) - u(34)) - (u(5) - u(47))))))) + my_log(((cos(sin(u(9))) - my_log((u(10) +"
+      " u(3)))) * (sin(((-0.07202) + 9.768)) * (my_div((u(34) + (-6.601)),(u(74) - u(7)))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -14298,12 +14292,7 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = ((my_div(sin(((my_div((my_div(((-7.107) + u(5)),(my_div(0.22,2.431)))),("
-      "(u(5) + u(3)) - (my_div(0.1066,(-4.21)))))) - (((2.323 - (-9.083)) * (my_div(u(25),u(26)))) - (my_div(cos(1.454)"
-      ",(my_div(1.397,(-0.5011)))))))),(cos(my_log(sin((u(24) * 1.171)))) + (((cos(u(26)) * ((-9.076) + 2.494)) * (sin("
-      "4.668) - sin(5.956))) * sin((cos(6.089) - sin(u(74)))))))) + cos((my_div((my_log(my_log(my_log(u(74)))) - ((sin("
-      "u(7)) + cos(8.705)) + sin(sin((-0.6145))))),(cos((my_div(cos((-0.382)),sin((-9.961))))) * cos((my_div(sin(u(3)),"
-      "my_log(u(47))))))))));"
+      script		      "function y = fcn(u)\ny = my_log(cos(my_log(my_log(cos(my_log(my_log((-5.282))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -14426,9 +14415,11 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u)\ny = (my_log((cos((cos(cos((-1.6))) - cos(cos(6.789)))) + my_log(cos((((-5.24"
-      "7) + 3.926) + ((-7.33) - u(46))))))) * my_log((my_div(((sin(my_log(6.966)) + cos((1.521 + u(74)))) + sin((my_div"
-      "(((-4.466) * (-2.208)),(u(7) - 3.086))))),cos(my_log((my_div(my_log((-1.773)),(my_div(u(3),1.968))))))))));"
+      script		      "function y = fcn(u)\ny = sin(((((my_div(sin(sin((-1.594))),((u(91) - 7.727) * (4.836 + u(10))))) "
+      "+ my_log(cos((my_div((-4.663),(-9.273)))))) - sin((my_div((sin((-3.975)) - sin((-5.546))),sin((5.15 - (-5.354)))"
+      ")))) * ((my_div((cos((u(34) - 2.57)) - (cos(u(2)) + (u(91) * 6.704))),(((my_div(u(9),u(34))) + (5.097 - u(25))) "
+      "+ cos((my_div(u(9),(-9.534))))))) + (my_div(((((-9.381) - u(24)) + (u(3) - (-9.479))) * ((u(3) - (-6.724)) + (3."
+      "95 * (-5.042)))),sin(((1.209 * 2.107) * sin(5.893))))))));"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
