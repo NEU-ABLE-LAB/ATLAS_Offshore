@@ -46,7 +46,7 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 
 % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
 % model = 'NREL5MW_Example_IPC';
-model = 'MLC_IPC_sys' ; 
+model = 'NREL5MW_Baseline' ; 
 if contains(version, '(R2018a)')
     model = [model '_r2018a']; 
 end
@@ -80,6 +80,8 @@ for idx = 1:numSims
 end
 
 %% Choose computation type
+simOut = Simulink.SimulationOutput;
+simOut(numSims) = simOut;
 switch 'parfor'
     
     case 'parsim'
@@ -95,9 +97,8 @@ switch 'parfor'
 
     case 'parfor'
         tic
-        simOut2 = cell(numSims,1);
         parfor simN = 1:numSims
-            simOut2{simN} = sim(simIn(simN));
+            simOut(simN) = sim(simIn(simN));
         end
         toc
 
@@ -105,10 +106,18 @@ switch 'parfor'
 
     case 'for'
         tic
-        simOut2 = cell(numSims,1);
         for simN = 1:numSims
-            simOut2{simN} = sim(simIn(simN));
+            simOut(simN) = sim(simIn(simN));
         end
         toc
 
 end
+
+%% Present results
+[CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, Metrics, RunsStats] = ...
+    fCostFunctionSimOut(simOut, Challenge, metricsBase);
+
+folders = {'',model};
+
+fCostFunctionPlot (CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, folders);
+

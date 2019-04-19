@@ -55,7 +55,8 @@ for iDir = 1:nDirs
 	if iDir==1
 		xRef=Metrics{iDir}.Values;
 	end
-    [CF(iDir), CF_Comp(iDir,:), CF_Vars(iDir,:), CF_Freq{iDir}] = fCostFunction(Metrics{iDir}.Values, xRef, pMetrics);
+    [CF(iDir), CF_Comp(iDir,:), CF_Vars(iDir,:), CF_Freq{iDir}] = ...
+        fCostFunction(Metrics{iDir}.Values, xRef, pMetrics);
 
     % --- Safety check
     if length(FilesStats{iDir}.OutFiles)~=length(Cases.Names);
