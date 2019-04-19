@@ -5,6 +5,7 @@
 # Only save the `_Controller` folder in the final version
 FINAL/*
 !FINAL/_Controller*
+!FINAL/Main.m*
 
 # Changed controllers
 *FINAL_MLC_IPC.mdl
