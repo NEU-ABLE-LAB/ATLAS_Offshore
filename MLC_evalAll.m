@@ -104,20 +104,17 @@ end
 numSims = numel(runCases);
 
 % Add parameters to controller model workspace
-fstFName  = [FASTInputFolder runCases{caseN} '.fst'];
+fstFName  = [FASTInputFolder runCases{1} '.fst'];
 Parameter = fSetSimulinkParameters(fstFName, ...
     hSetControllerParameter); 
 hws = get_param(tmpCtrlMdl,'modelWorkspace');
 hws.assignin('Parameter',Parameter);
 
 % 3) Create an array of SimulationInput objects and specify the sweep value for each simulation
-simIn(1:numSims) = Simulink.SimulationInput(model);
+simIn(1:numSims) = Simulink.SimulationInput(sysMdl);
 simOut = cell(numSims,1);
 
 for idx = 1:numSims
-
-    % Create SimulationInput object
-    simIn(idx) = Simulink.SimulationInput(sysMdl);
 
     % Change control model to temporary copy
     simIn(idx) = simIn(idx).setBlockParameter(...
@@ -126,7 +123,7 @@ for idx = 1:numSims
 
     % Set presimulation function
     simIn(idx) = FASTPreSim(simIn(idx),...
-            runCases{caseN}, ...
+            runCases{idx}, ...
             @(x)hSetControllerParameter(x), ...
             RootOutputFolder, ...
             FASTInputFolder, ...

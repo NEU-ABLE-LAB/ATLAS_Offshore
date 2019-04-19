@@ -7,8 +7,9 @@ clear all;close all;clc;
 addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
+addpath(pwd);
 
-load('save_GP/20190417-2203/20190419_001459mlc_ae.mat')
+load('save_GP/20190417-2203/20190419_110244mlc_ae.mat')
 
 %% Select best individuals
 nBest = 1;
