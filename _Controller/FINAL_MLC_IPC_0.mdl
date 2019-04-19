@@ -1,5 +1,5 @@
 Model {
-  Name			  "FINAL_MLC_IPC"
+  Name			  "FINAL_MLC_IPC_0"
   Version		  9.2
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
@@ -11,28 +11,28 @@ Model {
     NumTestPointedSignals   7
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "FINAL_MLC_IPC/MLC_IPC"
+      FullBlockPath	      "FINAL_MLC_IPC_0/MLC_IPC"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "FINAL_MLC_IPC/NREL Baseline Generator Torque Control"
+      FullBlockPath	      "FINAL_MLC_IPC_0/NREL Baseline Generator Torque Control"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "OutData"
-      FullBlockPath	      "FINAL_MLC_IPC/OpenFAST Turbine Model"
+      FullBlockPath	      "FINAL_MLC_IPC_0/OpenFAST Turbine Model"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "y"
-      FullBlockPath	      "FINAL_MLC_IPC/OpenFAST Turbine Model"
+      FullBlockPath	      "FINAL_MLC_IPC_0/OpenFAST Turbine Model"
       PortIndex		      2
       LogSignal		      1
       MaxPoints		      5000
@@ -40,21 +40,21 @@ Model {
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "FINAL_MLC_IPC/MLC_IPC/Mux"
+      FullBlockPath	      "FINAL_MLC_IPC_0/MLC_IPC/Mux"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "FINAL_MLC_IPC/MLC_IPC/Mux3"
+      FullBlockPath	      "FINAL_MLC_IPC_0/MLC_IPC/Mux3"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "FINAL_MLC_IPC/MLC_IPC/NREL 5MW Baseline Pitch Controller"
+      FullBlockPath	      "FINAL_MLC_IPC_0/MLC_IPC/NREL 5MW Baseline Pitch Controller"
       LogSignal		      1
       UseCustomName	      1
       LogName		      "theta"
@@ -72,80 +72,80 @@ Model {
     NumExternalFileReferences 13
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/NREL 5MW Baseline Pitch Controller/PI Anti-Windup with rate feedforward/Satur"
-      "ation Dynamic1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/NREL 5MW Baseline Pitch Controller/PI Anti-Windup with rate feedforward/Sat"
+      "uration Dynamic1"
       SID		      "7636"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Compare To Zero"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Compare To Zero"
       SID		      "7667"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Compare To Zero1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Compare To Zero1"
       SID		      "7668"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Saturation Dynamic"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_1/Continuous Integrator Dynamic/Saturation Dynamic"
       SID		      "7676"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_1/Saturation Dynamic1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_1/Saturation Dynamic1"
       SID		      "7685"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Compare To Zero"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Compare To Zero"
       SID		      "7793"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Compare To Zero1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Compare To Zero1"
       SID		      "7794"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Saturation Dynamic"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_2/Continuous Integrator Dynamic/Saturation Dynamic"
       SID		      "7802"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_2/Saturation Dynamic1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_2/Saturation Dynamic1"
       SID		      "7811"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Compare To Zero"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Compare To Zero"
       SID		      "7832"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Logic and Bit\nOperations/Compare\nTo Zero"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Compare To Zero1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Compare To Zero1"
       SID		      "7833"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Saturation Dynamic"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_3/Continuous Integrator Dynamic/Saturation Dynamic"
       SID		      "7841"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "FINAL_MLC_IPC/MLC_IPC/pitch_ctrl_3/Saturation Dynamic1"
+      Path		      "FINAL_MLC_IPC_0/MLC_IPC/pitch_ctrl_3/Saturation Dynamic1"
       SID		      "7850"
       Type		      "LIBRARY_BLOCK"
     }
@@ -247,7 +247,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "thisi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 18 21:54:28 2019"
+  LastModifiedDate	  "Thu Apr 18 21:55:03 2019"
   RTWModifiedTimeStamp	  477525216
   ModelVersionFormat	  "1.%<AutoIncrement:930>"
   SampleTimeColors	  off
@@ -306,11 +306,11 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    8
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "FINAL_MLC_IPC"
+    model_		    "FINAL_MLC_IPC_0"
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "FINAL_MLC_IPC"
+      Cell		      "FINAL_MLC_IPC_0"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -2358,7 +2358,7 @@ Model {
     }
   }
   System {
-    Name		    "FINAL_MLC_IPC"
+    Name		    "FINAL_MLC_IPC_0"
     Location		    [-5, 0, 1514, 873]
     Open		    off
     PortBlocksUseCompactNotation off
@@ -5068,7 +5068,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7690::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 2"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 2"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -5187,7 +5187,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7691::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 3"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 3"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -6624,7 +6624,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7816::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 4"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 4"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -6743,7 +6743,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7817::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 5"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 5"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -8180,7 +8180,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7855::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 6"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 6"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -8299,7 +8299,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7856::19"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 7"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 7"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  ZOrder		  10
@@ -9565,7 +9565,7 @@ Model {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "7092::4431"
-		  Tag			  "Stateflow S-Function FINAL_MLC_IPC 1"
+		  Tag			  "Stateflow S-Function FINAL_MLC_IPC_0 1"
 		  Ports			  [14, 2]
 		  Position		  [180, 90, 230, 390]
 		  ZOrder		  64
@@ -13285,7 +13285,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "FINAL_MLC_IPC"
+    name		    "FINAL_MLC_IPC_0"
     created		    "03-Aug-2011 15:24:03"
     isLibrary		    0
     sfVersion		    80000014
