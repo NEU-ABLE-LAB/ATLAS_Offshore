@@ -78,16 +78,16 @@ Parameter.assert.minGenPwr = 1;     % [W]
 % Parameter.MLC.filter.n = 1;
 
 %% Signal selection and processing
+if exist('MLC_parameters','var')
+    % FAST Output Array index names
+    Parameter.outListIdx = MLC_parameters.problem_variables.outListIdx;
+    Parameter.sensorIdxs = MLC_parameters.problem_variables.sensorIdxs;
 
-% FAST Output Array index names
-Parameter.outListIdx = MLC_parameters.problem_variables.outListIdx;
-Parameter.sensorIdxs = MLC_parameters.problem_variables.sensorIdxs;
-
-% Values for signal normalization
-Parameter.sensorsNormOffset = ...
-    MLC_parameters.problem_variables.sensorsMean;    
-Parameter.sensorNormGain = ...
-    MLC_parameters.problem_variables.sensorsDetrendRMS;
-Parameter.sensorNormGain(isinf(Parameter.sensorNormGain)) = 0;
-
+    % Values for signal normalization
+    Parameter.sensorsNormOffset = ...
+        MLC_parameters.problem_variables.sensorsMean;    
+    Parameter.sensorNormGain = ...
+        MLC_parameters.problem_variables.sensorsDetrendRMS;
+    Parameter.sensorNormGain(isinf(Parameter.sensorNormGain)) = 0;
+end
 end

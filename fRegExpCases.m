@@ -32,16 +32,16 @@ for caseN = 1:nCases
     tokens = regexp(filenames{caseN}, 'DLC(\d+)_','tokens');
     DLC = str2double(tokens{1}{1});
     
-    Cases(caseN).DLC = DLC;
-    Cases(caseN).Tab(:, getCol('DLC')) = DLC;
+    Cases.DLC(caseN) = DLC;
+    Cases.Tab(caseN, getCol('DLC')) = DLC;
 
     %% (WS) Wind speed
     tokens = regexp(filenames{caseN}, '_ws(\d+)_','tokens');
     WSAbove = str2double(tokens{1}{1});
     ws = WSAbove + VRated;
     
-    Cases(caseN).ws = ws;
-    Cases(caseN).Tab(:, getCol('WSAbove')) = ws;
+    Cases.ws(caseN) = ws;
+    Cases.Tab(caseN, getCol('WSAbove')) = ws;
 
     %% (Yaw) Yaw error
     if contains(filenames{caseN}, '_yeNEG_')
@@ -52,22 +52,22 @@ for caseN = 1:nCases
         error('Unknown yaw error setting')
     end
     
-    Cases(caseN).Yaw = YawErr;
-    Cases(caseN).Tab(:, getCol('YawErr')) = YawErr;
+    Cases.Yaw(caseN) = YawErr;
+    Cases.Tab(caseN, getCol('YawErr')) = YawErr;
 
     %% (WiSeed) Wind seed
     tokens = regexp(filenames{caseN}, '_s(\d+)_','tokens');
     WiSeed = str2double(tokens{1}{1});
     
-    Cases.WiSeed = WiSeed;
-    Cases(caseN).Tab(:, getCol('WiSeed')) = WiSeed;
+    Cases.WiSeed(caseN) = WiSeed;
+    Cases.Tab(caseN, getCol('WiSeed')) = WiSeed;
 
     %% (WaSeed) Wave seed
     tokens = regexp(filenames{caseN}, '_r(\d+)','tokens');
     WaSeed = str2double(tokens{1}{1});
     
-    Cases.WaSeed = WaSeed;
-    Cases(caseN).Tab(:, getCol('WaSeed')) = WaSeed;
+    Cases.WaSeed(caseN) = WaSeed;
+    Cases.Tab(caseN, getCol('WaSeed')) = WaSeed;
 
     %% (bPitch) Blade pitch
     bPitch = 0;
@@ -75,8 +75,8 @@ for caseN = 1:nCases
         bPitch = 1;
     end
 
-    Cases(caseN).bPitch = bPitch;
-    Cases(caseN).Tab(:, getCol('bPitch')) = bPitch;
+    Cases.bPitch(caseN) = bPitch;
+    Cases.Tab(caseN, getCol('bPitch')) = bPitch;
         
     %% (iGust) Wind type
     %   * (ECD) Extreme Coherent gust with Direction Change
@@ -95,8 +95,8 @@ for caseN = 1:nCases
         iGust = 4;
     end
     
-    Cases(caseN).iGust = iGust;
-    Cases(caseN).Tab(:, getCol('iGust')) = iGust;
+    Cases.iGust(caseN) = iGust;
+    Cases.Tab(caseN, getCol('iGust')) = iGust;
 
     %% (bDirty) Blade is clean or dirty
     bDirty = 0;
@@ -104,8 +104,8 @@ for caseN = 1:nCases
         bDirty = 1;
     end
     
-    Cases(caseN).bDirty = bDirty;
-    Cases(caseN).Tab(:, getCol('bDirty')) = bDirty;
+    Cases.bDirty(caseN) = bDirty;
+    Cases.Tab(caseN, getCol('bDirty')) = bDirty;
 
     %% (tSim) Simulation length (s)
     % The file names don't contain the simulation length.
@@ -129,11 +129,11 @@ for caseN = 1:nCases
         error('Unknown Tsim')
     end
     
-    Cases(caseN).tSim = tSim;
-    Cases(caseN).Tab(:, getCol('tSim')) = tSim;
+    Cases.tSim(caseN) = tSim;
+    Cases.Tab(caseN, getCol('tSim')) = tSim;
     
     %% (Names) File names
-    Cases(caseN).Names = filenames;
+    Cases.Names{caseN} = filenames;
 
 end
 
