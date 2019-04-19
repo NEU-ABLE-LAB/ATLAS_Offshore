@@ -2,6 +2,14 @@
 ##Large Files stored in Google Drive
 ##---------------------------------------------------
 
+# Only save the `_Controller` folder in the final version
+FINAL/*
+!FINAL/_Controller*
+
+# Changed controllers
+*FINAL_MLC_IPC.mdl
+*FINAL_MLC_IPC_r2018a
+
 # Turbine Load Cases (~152 MB)
 _Inputs/
 
