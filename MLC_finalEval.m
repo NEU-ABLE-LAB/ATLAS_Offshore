@@ -14,11 +14,12 @@ load('save_GP/20190417-2203/20190419_110244mlc_ae.mat')
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
 %% Select best individuals
-nBest = 1;
+nBest = 96;
 
 goodIdxs = mlc.population(end).costs>0 & mlc.population(end).costs<1;
 [~,goodIdxs] = sort(mlc.population(end).costs(goodIdxs));
 disp(mlc.population(end).costs(goodIdxs)')
+nBest = min(nBest, length(goodIdxs));
 
 % Display best to be copied into `my_controller.m`
 exprs = cell(nBest,1);
@@ -54,7 +55,7 @@ for bestN = 1:nBest
 end
 
 %% Compute full cost for best individuals
-for bestN = 1:nBest
+parfor bestN = 1:nBest
     
     simOut = MLC_evalAll(...
         mlc.table.individuals(mlc.population(end).individuals(goodIdxs(nBest))),...

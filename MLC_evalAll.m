@@ -134,7 +134,7 @@ for idx = 1:numSims
         @(y) FASTPostSim(y, simIn(idx)));
 
     % Run simulation
-    simOut(idx) = sim(simIn(idx));
+    simOut{idx} = sim(simIn(idx));
     
 end
 
