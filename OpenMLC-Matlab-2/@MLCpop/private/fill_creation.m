@@ -27,6 +27,10 @@ switch mlc_parameters.evaluation_method
             
         end
         
+        % Clean up temporary Simulink files
+        % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
+        parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
+        
         % Variable initialization
         already_exist = true(n_indiv_to_generate,1);
         number = -ones(n_indiv_to_generate,1);
@@ -65,6 +69,11 @@ switch mlc_parameters.evaluation_method
                 ppm.increment();
                 
             end
+            
+            % Clean up temporary Simulink files
+            % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
+            parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
+            
         end
         
         for newIdvN = 1:n_indiv_to_generate

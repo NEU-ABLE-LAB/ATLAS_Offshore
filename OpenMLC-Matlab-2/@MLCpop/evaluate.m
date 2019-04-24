@@ -70,6 +70,10 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
                 
             end
             
+            % Clean up temporary Simulink files
+            % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
+            parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
+            
         case 'mfile_standalone'
         eval(['heval=@' mlc_parameters.evaluation_function ';']);
         f=heval;

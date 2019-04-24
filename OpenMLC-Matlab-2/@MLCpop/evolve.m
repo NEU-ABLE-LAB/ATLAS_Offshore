@@ -185,6 +185,10 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
             
             ppm.increment(); %#ok<PFBNS>
         end
+
+        % Clean up temporary Simulink files
+        % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
+        parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
         
         % Add mutated and crossover individuals
         for opN = 1:nOps
