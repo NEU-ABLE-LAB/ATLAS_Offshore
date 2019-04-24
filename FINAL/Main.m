@@ -8,7 +8,7 @@ addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 
 %% User Parameters (can be modified by the contestants)
-SimulinkModelFile       = 'NREL5MW_Baseline.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
+SimulinkModelFile       = 'FINAL_MLC_IPC.mdl' ; % path to the Simulink model (should be in the folder '_Controller')
 hSetControllerParameter = @fSetControllerParametersOffshore   ; % handle to the function which sets the Controller parameter (should be in the folder '_Controller')
 OutputFolder            = '_Outputs/' ; % Folder where the current simulation outputs will be placed
 folders    = {
