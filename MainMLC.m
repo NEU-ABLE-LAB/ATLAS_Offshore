@@ -61,10 +61,17 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
     Challenge, statsBase, iPopFile);
 
 %% Test MLC
-% ind = struct('formal',{{'S0','2*S1','2','sin(S8)','3.4+S2','S11.*3'}});
-% parfor k = 1
-%     J = MLC_eval(ind,MLC_params);
+
+% ind = struct('formal',{{'S0*0','2*S1*0','2*0','sin(S8)*0',...
+%     '3.4*0+S2*0','S11.*3*0'}});
+% 
+% if MLC_preeval(ind, MLC_params)
+%     disp('Valid')
 % end
+% 
+% % parfor k = 1
+%     J = MLC_eval(ind,MLC_params);
+% % end
 
 %% Run MLC
 

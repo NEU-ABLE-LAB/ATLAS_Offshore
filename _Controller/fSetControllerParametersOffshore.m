@@ -78,10 +78,8 @@ end
 
 %% MLC Control Law
 if exist('exprs','var')
-    
-    for k = 1:length(exprs)
-        Parameter.MLC.ctrl{k} = eval(['@(u)(' exprs{k} ')']);
-    end
+       
+    Parameter.MLC.ctrl = exprs;
     
 end
 

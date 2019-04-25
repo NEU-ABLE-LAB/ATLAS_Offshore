@@ -23,7 +23,7 @@ sensorNames = { ...
     'RootMyc2'  % Blade 2 out-of-plane moment (i.e., the moment caused by out-of-plane forces) at the blade root
     'RootMzc2'  % Blade 2 pitching moment at the blade root
     'RootMyc3'  % Blade 3 out-of-plane moment (i.e., the moment caused by out-of-plane forces) at the blade root
-    'RootMzc4'  % Blade 3 pitching moment at the blade root
+    'RootMzc3'  % Blade 3 pitching moment at the blade root
     'RotTorq'   % Low-speed shaft torque (this is constant along the shaft and is equivalent to the rotor torque)
     'TwrBsMyt'  % Tower base pitching (or fore-aft) moment (i.e., the moment caused by fore-aft forces)
     'GenPwr'    % Electrical generator power

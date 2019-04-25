@@ -133,7 +133,7 @@ for caseN = 1:nCases
     Cases.Tab(caseN, getCol('tSim')) = tSim;
     
     %% (Names) File names
-    Cases.Names{caseN} = filenames;
+    Cases.Names{caseN} = filenames{caseN};
 
 end
 

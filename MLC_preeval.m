@@ -33,9 +33,10 @@ try
     simIn = Simulink.SimulationInput(ctrlMdl);
     
     % Set simulation parameters
-    simIn = simIn.setVariable('Parameter', ...
-        fSetSimulinkParameters(fstFName, ...
-            @(pSim)hSetControllerParameter(pSim, exprs) ) ); 
+    Parameter = fSetSimulinkParameters(fstFName, ...
+        @(pSim)hSetControllerParameter(pSim, exprs) );
+    simIn = simIn.setVariable('Parameter', Parameter, ...
+        'Workspace',ctrlMdl); 
     
     % Set simulation data
     t = MLC_params.problem_variables.sensors(:,1); % Time
@@ -47,7 +48,7 @@ try
         % Simulation outputs:
         % t, x, theta_c, theta, theta_dot, theta_baseline
         simOut = sim(simIn);
-        theta = simOut.theta * 180/pi;
+        theta = 180/pi * simOut.yout.get('theta').Values.Data;
 
     catch e
         
