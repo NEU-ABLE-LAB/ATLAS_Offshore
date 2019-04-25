@@ -46,10 +46,6 @@ metricsBase = fEvaluateMetrics(statsBase, pMetricsBC);
 % path to the Simulink model (should be in the folder `_Controller`, saved as a `.slx` file)
 sysMdl = 'MLC_IPC_sys';
 ctrlMdl = 'MLC_IPC_ctrl'; % Reference model for controller
-if contains(version, '(R2018a)')
-    sysMdl = [sysMdl '_r2018a']; 
-    ctrlMdl = [ctrlMdl '_r2018a']; 
-end
 
 % Input file specification name
 runCases = CasesBase.Names;
@@ -73,10 +69,10 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 %% Run MLC
 
 % Create a MLC object
-% mlc=MLC2(MLC_params); 
+mlc=MLC2(MLC_params); 
 
 % Restart previous MLC
-load('save_GP/20190417-2203/20190418_120725mlc_ae.mat');
+% load('save_GP/20190417-2203/20190418_120725mlc_ae.mat');
                       
 % Launch GP for 50 generations and displays the best individual if
 % implemented in the evaluation function at the end of each generation

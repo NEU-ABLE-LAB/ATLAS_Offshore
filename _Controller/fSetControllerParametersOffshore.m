@@ -1,5 +1,5 @@
 function [Parameter] = fSetControllerParametersOffshore(Parameter,...
-    MLC_parameters)
+    MLC_parameters, exprs)
 % Sets the controller parameter.
 % This function takes a structure and supplements it with additional fields for the controller parameters.
 % 
@@ -47,21 +47,6 @@ Parameter.CPC.Omega_g_rated       = Parameter.Turbine.Omega_rated/Parameter.Turb
 Parameter.CPC.theta_max           = Parameter.PitchActuator.theta_max; % [rad]
 Parameter.CPC.theta_min           = Parameter.PitchActuator.theta_min; % [rad]
 
-
-%% Additional user parameters may be put here depending on the user's Simulink model
-% NOTE: Below are the values needed for the NREL5MW_Example_IPC.mdl. You may comment them.
-Parameter.CPC.k      = 11        ; % [s]
-Parameter.CPC.fl     = 0.2       ; % [s]
-Parameter.CPC.fh     = 2.0       ; % [s]
-Parameter.IPC.numG11 = -3.0715E-8; % [s]
-Parameter.IPC.denG11 = 1.0       ; % [s]
-Parameter.IPC.numG12 = 0.0       ; % [s]
-Parameter.IPC.denG12 = 1.0       ; % [s]
-Parameter.IPC.numG21 = 0.0       ; % [s]
-Parameter.IPC.denG21 = 1.0       ; % [s]
-Parameter.IPC.numG22 = -3.0715E-8; % [s]
-Parameter.IPC.denG22 = 1.0       ; % [s]
-
 %% MLC Control parameters
 
 % System information
@@ -75,10 +60,9 @@ Parameter.assert.twrTopAcc = 3.3;   % [m/s2]
 Parameter.assert.rotSpeed = 15.73;  % [rpm]
 Parameter.assert.minGenPwr = 1;     % [W]
 
-% Parameter.MLC.filter.n = 1;
-
-%% Signal selection and processing
+%% Derived MLC parameters
 if exist('MLC_parameters','var')
+    
     % FAST Output Array index names
     Parameter.outListIdx = MLC_parameters.problem_variables.outListIdx;
     Parameter.sensorIdxs = MLC_parameters.problem_variables.sensorIdxs;
@@ -89,5 +73,16 @@ if exist('MLC_parameters','var')
     Parameter.sensorNormGain = ...
         MLC_parameters.problem_variables.sensorsDetrendRMS;
     Parameter.sensorNormGain(isinf(Parameter.sensorNormGain)) = 0;
+    
 end
+
+%% MLC Control Law
+if exist('exprs','var')
+    
+    for k = 1:length(exprs)
+        Parameter.MLC.ctrl{k} = eval(['@(u)(' exprs{k} ')']);
+    end
+    
+end
+
 end

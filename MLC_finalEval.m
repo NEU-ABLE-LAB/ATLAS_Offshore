@@ -55,11 +55,14 @@ for bestN = 1:nBest
 end
 
 %% Compute full cost for best individuals
+
+numSims = numel(MLC_params.problem_variables.runCases);
 simOut = Simulink.SimulationOutput;
-simOut(nBest) = simOut;
+simOut(nBest,numSims) = simOut;
+
 parfor bestN = 1:nBest
     
-    simOut(bestN) = MLC_evalAll(...
+    simOut(bestN,:) = MLC_evalAll(...
         mlc.table.individuals(...
             mlc.population(end).individuals(goodIdxs(bestN))),...
         mlc.parameters);
