@@ -31,10 +31,9 @@ function mlc=evaluate_population(mlc,n)
                                  % it can possibly break the object
                                  % interpretation or functioning.
    end
-
-    %% first evaluation
+   
+    %% Evaluate the whole population
     idx=1:length(mlc.population(n).individuals);
-    
     [mlc.population(n), mlc.table] = ...
         mlc.population(n).evaluate(mlc.table, mlc.parameters, idx);
     
