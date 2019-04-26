@@ -36,14 +36,34 @@ Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter);
 
 %% Set parameters to model
     
-in = in.setVariable('runCase', runCase);
-in = in.setVariable('runName', runName);
-in = in.setVariable('Challenge', Challenge);
-in = in.setVariable('RootOutputFolder', RootOutputFolder);
-in = in.setVariable('OutputFolder', OutputFolder);
-in = in.setVariable('FASTInputFolder', FASTInputFolder);
-in = in.setVariable('statsBase', statsBase);
-in = in.setVariable('Parameter', Parameter);
+if isa(in, 'Simulink.SimulationInput')
+    
+    % Input is a Simulink simulation input object
+    in = in.setVariable('runCase', runCase);
+    in = in.setVariable('runName', runName);
+    in = in.setVariable('Challenge', Challenge);
+    in = in.setVariable('RootOutputFolder', RootOutputFolder);
+    in = in.setVariable('OutputFolder', OutputFolder);
+    in = in.setVariable('FASTInputFolder', FASTInputFolder);
+    in = in.setVariable('statsBase', statsBase);
+    in = in.setVariable('Parameter', Parameter);
+    
+elseif isa(in, 'Simulink.ModelWorkspace')
+    
+    % Input is a model workspace handle
+    in.assignin('runCase', runCase);
+    in.assignin('runName', runName);
+    in.assignin('Challenge', Challenge);
+    in.assignin('RootOutputFolder', RootOutputFolder);
+    in.assignin('OutputFolder', OutputFolder);
+    in.assignin('FASTInputFolder', FASTInputFolder);
+    in.assignin('statsBase', statsBase);
+    in.assignin('Parameter', Parameter);
+    
+else
+    error('Unknown input type');
+    
+end
 
 
 end

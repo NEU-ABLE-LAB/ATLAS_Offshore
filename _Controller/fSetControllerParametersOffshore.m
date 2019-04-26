@@ -1,5 +1,5 @@
 function [Parameter] = fSetControllerParametersOffshore(Parameter,...
-    MLC_parameters, exprs)
+    MLC_parameters)
 % Sets the controller parameter.
 % This function takes a structure and supplements it with additional fields for the controller parameters.
 % 
@@ -65,6 +65,7 @@ if exist('MLC_parameters','var')
     
     % FAST Output Array index names
     Parameter.outListIdx = MLC_parameters.problem_variables.outListIdx;
+    Parameter.outListLen = length(fieldnames(Parameter.outListIdx));
     Parameter.sensorIdxs = MLC_parameters.problem_variables.sensorIdxs;
 
     % Values for signal normalization
@@ -73,13 +74,6 @@ if exist('MLC_parameters','var')
     Parameter.sensorNormGain = ...
         MLC_parameters.problem_variables.sensorsDetrendRMS;
     Parameter.sensorNormGain(isinf(Parameter.sensorNormGain)) = 0;
-    
-end
-
-%% MLC Control Law
-if exist('exprs','var')
-       
-    Parameter.MLC.ctrl = exprs;
     
 end
 

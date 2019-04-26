@@ -196,7 +196,7 @@ pMLC.problem_variables=struct(...
 
 % Process the MLC parameters through the model parameters
 pMLC.problem_variables.hSetControllerParameter = ...
-    @(pSim, exprs)hSetControllerParameter(pSim, pMLC, exprs);
+    @(pSim)hSetControllerParameter(pSim, pMLC);
 
 %% MLC behavior parameters     % (data type)[default] Description
 pMLC.save=1;                      % (bool)[1] Should populations be saved to `mlc_be.mat` every time they're created and to `mlc_ae.mat` after evaluation
