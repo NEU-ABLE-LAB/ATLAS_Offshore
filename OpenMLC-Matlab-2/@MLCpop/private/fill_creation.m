@@ -24,7 +24,7 @@ switch mlc_parameters.evaluation_method
                 isOk = newInds{newIdvN}.preev(mlc_parameters);
                 nTries = nTries + 1;
                 
-                if mod(nTries,1)==0
+                if mod(nTries,5)==0
                     fprintf('Tried %i times to generate individual %i\n', ...
                         nTries, newIdvN);
                 end

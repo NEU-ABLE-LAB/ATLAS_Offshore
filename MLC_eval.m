@@ -129,7 +129,7 @@ try
     
     %% Switch all of the workers back to their original folder.
     
-    close_system(tmpCtrlMdl, 0);
+    close_system(tmpSysMdl, 0);
     cd([MLC_params.problem_variables.RootOutputFolder '../'])
     
     try

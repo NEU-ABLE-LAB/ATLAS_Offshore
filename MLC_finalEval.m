@@ -9,7 +9,7 @@ addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
-load('save_GP/20190417-2203/20190419_110244mlc_ae.mat')
+load('save_GP/20190426-0056/20190426_145827mlc_ae.mat')
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
@@ -24,12 +24,12 @@ nBest = min(nBest, length(goodIdxs));
 % Display best to be copied into `my_controller.m`
 exprs = cell(nBest,1);
 code2paste = cell(0);
-code2paste{nBest} = '';
+code2paste{nBest,1} = '';
 
 for bestN = 1:nBest
     
     exprs{bestN} = mlc.table.individuals(...
-        mlc.population(end).individuals(goodIdxs(nBest))).formal;
+        mlc.population(end).individuals(goodIdxs(bestN))).formal;
     
     for exprN = 1:length(exprs{bestN})
         
@@ -53,6 +53,24 @@ for bestN = 1:nBest
         
     end
 end
+
+outListNames = fieldnames(MLC_params.problem_variables.outListIdx);
+outListLen = length(outListNames);
+outListIdxs = regexp(code2paste,'u\((\d*)\)','tokens');
+for k = 1:length(outListIdxs)
+    outListIdxs{k} = cellfun(@(sensorIdx)str2double(sensorIdx{1}),outListIdxs{k});
+    outListIdxs{k} = full(sparse(...
+        ones(size(outListIdxs{k})),...
+        outListIdxs{k},...
+        ones(size(outListIdxs{k})),...
+        1, outListLen));
+end
+outListIdxs = cell2mat(outListIdxs);
+sensorIdxs = outListIdxs(:,MLC_params.problem_variables.sensorIdxs);
+bar(mean(sensorIdxs));
+xticks(1:length(MLC_params.problem_variables.sensorIdxs));
+xticklabels(MLC_params.problem_variables.sensorNames)
+xtickangle(90)
 
 %% Compute full cost for best individuals
 
