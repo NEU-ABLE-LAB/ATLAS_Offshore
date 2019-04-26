@@ -15,8 +15,8 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         idxsubgen2{i}=idxsubgen2{i}(mlcpop2.individuals(idxsubgen2{i})==-1);
 		
         if verb>0
-			fprintf('Evolving sub-population %i/%i\n',...
-				i, mlcpop2.subgen)
+            fprintf('Evolving sub-population %i/%i\n',...
+                i, mlcpop2.subgen)
         end
 		
         if length(idxsubgen)==1
@@ -108,7 +108,10 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         
         % Prepare variables for parallel mutation and crossover operations
         gcp();
-        ppm = ParforProgMon('MLCpop.evaluate', nOps);
+        ppm = ParforProgMon(...
+            sprintf('MLCpop.evolve - pop(%i/%i) - %i Ops: ', ...
+                i, mlcpop2.subgen, nOps), ...
+            nOps, 1,1200,160);
         mlctable_individuals = mlctable.individuals;
         
         idv_orig  = cell(nOps,1);
@@ -187,6 +190,10 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
         end
 
         % Clean up temporary Simulink files
+        % Close all Simulink system windows unconditionally
+        bdclose('all')
+        % Clean up worker repositories
+        Simulink.sdi.cleanupWorkerResources
         % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
         parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
         

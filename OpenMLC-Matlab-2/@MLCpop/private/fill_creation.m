@@ -9,8 +9,10 @@ switch mlc_parameters.evaluation_method
 		fprintf('Generating %d individuals\n',n_indiv_to_generate);
 
         pp = gcp();
-        ppm = ParforProgMon('MLCpop.fill_creation - generate:', ...
-            n_indiv_to_generate);
+        ppm = ParforProgMon(...
+            sprintf('MLCpop.fill_creation - generating %i: ', ...
+                n_indiv_to_generate), ...
+            n_indiv_to_generate, 1,1200,160);
         
         parfor (newIdvN = 1:n_indiv_to_generate)
             
@@ -34,6 +36,10 @@ switch mlc_parameters.evaluation_method
         end
         
         % Clean up temporary Simulink files
+        % Close all Simulink system windows unconditionally
+        bdclose('all')
+        % Clean up worker repositories
+        Simulink.sdi.cleanupWorkerResources
         % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
         parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
         
@@ -42,7 +48,10 @@ switch mlc_parameters.evaluation_method
         number = -ones(n_indiv_to_generate,1);
         
         % Replace duplicate individuals
+        nTries = 0;
         while any(already_exist)
+        
+            nTries = nTries+1;
         
             % Add individuals to mlctable, keeping track if the individual is a duplicate
             for newIdvN = find(already_exist(:)')
@@ -57,8 +66,10 @@ switch mlc_parameters.evaluation_method
                 sum(already_exist));
                 
             pp = gcp();
-            ppm = ParforProgMon('MLCpop.fill_creation - exists:', ...
-                n_indiv_to_generate);
+            ppm = ParforProgMon(...
+                sprintf('MLCpop.fill_creation - Replacement round %i (%i dupes):', ...
+                    nTries, length(find(already_exist))), ...
+                length(find(already_exist)), 1,1200,160);
             
             parfor replaceIndN = find(already_exist)
                 
@@ -77,6 +88,10 @@ switch mlc_parameters.evaluation_method
             end
             
             % Clean up temporary Simulink files
+            % Close all Simulink system windows unconditionally
+            bdclose('all')
+            % Clean up worker repositories
+            Simulink.sdi.cleanupWorkerResources
             % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
             parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
             

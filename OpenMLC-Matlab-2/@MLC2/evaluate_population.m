@@ -72,9 +72,9 @@ function mlc=evaluate_population(mlc,n)
             
             cullingN = cullingN + 1;
 			
-			if mlc.parameters.save==1
-				save(fullfile(mlc.parameters.savedir,[datestr(now,'YYYYmmDD_HHMMSS') 'mlc_cull.mat']),'mlc')
-			end
+            if mlc.parameters.save==1
+              save(fullfile(mlc.parameters.savedir,[datestr(now,'YYYYmmDD_HHMMSS') 'mlc_cull.mat']),'mlc')
+            end
         end
     end
     

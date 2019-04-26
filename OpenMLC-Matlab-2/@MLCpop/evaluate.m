@@ -47,7 +47,10 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
             parForIndvs = mlctable.individuals;
             
             pp = gcp();
-            ppm = ParforProgMon('MLCpop.evaluate', (nidx-istart+1));
+            ppm = ParforProgMon(...
+                sprintf('MLCpop.evaluate - gen %i - %i idv: ', ...
+                    ngen, (nidx-istart+1)), ...
+                (nidx-istart+1), 1,1200,160);
             
             parfor i=istart:nidx
                                
@@ -71,6 +74,10 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
             end
             
             % Clean up temporary Simulink files
+            % Close all Simulink system windows unconditionally
+            bdclose('all')
+            % Clean up worker repositories
+            Simulink.sdi.cleanupWorkerResources
             % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
             parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
             
