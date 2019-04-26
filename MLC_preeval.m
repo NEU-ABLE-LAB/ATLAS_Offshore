@@ -11,7 +11,7 @@ try
 
     % Simulink models
     ctrlMdl = MLC_params.problem_variables.ctrlMdl;
-
+    load_system(ctrlMdl)
 
     % Handle to function that sets controller parameters
     hSetControllerParameter = ...

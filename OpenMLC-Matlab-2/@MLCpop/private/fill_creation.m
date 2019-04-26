@@ -15,13 +15,19 @@ switch mlc_parameters.evaluation_method
         parfor (newIdvN = 1:n_indiv_to_generate)
             
             isOk = false;
+            nTries = 0;
             while ~isOk
                 newInds{newIdvN}=MLCind;
                 newInds{newIdvN}.generate(mlc_parameters,type);
                 isOk = newInds{newIdvN}.preev(mlc_parameters);
+                nTries = nTries + 1;
                 
+                if mod(nTries,1)==0
+                    fprintf('Tried %i times to generate individual %i\n', ...
+                        nTries, newIdvN);
+                end
             end
-            fprintf('Generated individual %i\n\n',indiv_to_generate(newIdvN))
+            fprintf('Generated individual %i\n',indiv_to_generate(newIdvN))
             
             ppm.increment();
             
@@ -39,7 +45,7 @@ switch mlc_parameters.evaluation_method
         while any(already_exist)
         
             % Add individuals to mlctable, keeping track if the individual is a duplicate
-            for newIdvN = find(already_exist)
+            for newIdvN = find(already_exist(:)')
             
                 [mlctable, number(newIdvN), already_exist(newIdvN)] = ...
                     mlctable.add_individual( newInds{newIdvN} );
@@ -77,7 +83,7 @@ switch mlc_parameters.evaluation_method
         end
         
         for newIdvN = 1:n_indiv_to_generate
-            mlcpop.individuals(indiv_to_generate(newIdvN))=number;
+            mlcpop.individuals(indiv_to_generate(newIdvN))=number(newIdvN);
         end
     
     otherwise
