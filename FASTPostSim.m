@@ -1,15 +1,34 @@
 %% FASTPostSim Simulink post simulation file
 % ref: fRunFAST.m
-function newOut = FASTPostSim(~,in)
+%   
+% Either provide `in` as a Simulink.SimulationInput object
+%   or make `in` empty and specify other parameters
+function newOut = FASTPostSim(~,in,...
+    runCase, runName, FASTInputFolder, OutputFolder, Challenge, statsBase)
 
 %% Initialization
 % Note: getVariables() only exists in r2018b+
-runCase         = in.Variables(strcmp({in.Variables.Name},'runCase')).Value;
-runName         = in.Variables(strcmp({in.Variables.Name},'runName')).Value;
-FASTInputFolder = in.Variables(strcmp({in.Variables.Name},'FASTInputFolder')).Value;
-OutputFolder    = in.Variables(strcmp({in.Variables.Name},'OutputFolder')).Value;
-Challenge       = in.Variables(strcmp({in.Variables.Name},'Challenge')).Value;
-statsBase       = in.Variables(strcmp({in.Variables.Name},'statsBase')).Value;
+if isa(in, 'Simulink.SimulationInput')
+    
+    runCase = in.Variables(strcmp({in.Variables.Name},...
+        'runCase')).Value;
+    
+    runName = in.Variables(strcmp({in.Variables.Name},...
+        'runName')).Value;
+    
+    FASTInputFolder = in.Variables(strcmp({in.Variables.Name},...
+        'FASTInputFolder')).Value;
+    
+    OutputFolder = in.Variables(strcmp({in.Variables.Name},...
+        'OutputFolder')).Value;
+    
+    Challenge = in.Variables(strcmp({in.Variables.Name},...
+        'Challenge')).Value;
+    
+    statsBase = in.Variables(strcmp({in.Variables.Name},...
+        'statsBase')).Value;
+    
+end
 
 newOut.runCase         = runCase         ;
 newOut.runName         = runName         ;

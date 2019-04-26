@@ -62,16 +62,16 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 
 %% Test MLC
 
-ind = struct('formal',{{'S0*0','2*S1*0','2*0'}});
+ind = struct('formal',{{'S0*0.5','2*S1*0.5','2*0'}});
 
 isValid = MLC_preeval(ind, MLC_params);
 if isValid
     disp('Valid')
 end
 
-% % parfor k = 1
+% parfor k = 1
 %     J = MLC_eval(ind,MLC_params);
-% % end
+% end
 
 %% Run MLC
 

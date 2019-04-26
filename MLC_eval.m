@@ -74,7 +74,7 @@ try
 
     % Get `Fcn` block handle
     hb = find(slroot, '-isa', 'Stateflow.EMChart', 'Path', ...
-        sprintf('%s/control_law', tmpSysMdl) );
+        sprintf('%s/MLC_IPC/control_law', tmpSysMdl) );
 
 	% Insert the expressions into the model    	
 	hb.Script = fcnText;
@@ -83,27 +83,26 @@ try
 
     % Randomly choose a design load case
     caseN = randi(length(runCases));
-    
-    % constants and specific to a given simulation.
-    fstFName  = [FASTInputFolder runCases{caseN} '.fst'];
-    Parameter = fSetSimulinkParameters(fstFName, hSetControllerParameter); 
+                
+    % Setup simulation with presimulation function
     hws = get_param(tmpSysMdl,'modelWorkspace');
-            
-    % Run presimulation function
     FASTPreSim(hws,...
             runCases{caseN}, ...
-            @(pSim)hSetControllerParameter(pSim,exprs), ...
+            @(pSim)hSetControllerParameter(pSim), ...
             RootOutputFolder, ...
             FASTInputFolder, ...
             Challenge, statsBase);
 
-    % Set postsimulation function
-    simIn = simIn.setPostSimFcn(@(y) FASTPostSim(y, simIn));
-
+    % Try running simulation and computing cost
     try
 
         % Run simulation
-        simOut = sim(simIn);
+        sim(tmpSysMdl);
+        
+        % Process output
+        simOut = FASTPostSim([],[], runCases{caseN}, ...
+            hws.getVariable('runName'), FASTInputFolder, ...
+            hws.getVariable('OutputFolder'), Challenge, statsBase);
 
         % Compute cost from output
         J = simOut.CF;
@@ -111,15 +110,37 @@ try
     catch e
 
         warning(e.message)
+        disp('  MLC_EVAL: Simulation returned error');
         J = MLC_params.badvalue;
 
+        % Switch all of the workers back to their original folder.
+        close_system(tmpSysMdl, 0);
+        cd([MLC_params.problem_variables.RootOutputFolder '../'])
+        try
+            rmdir(tmpDir,'s');
+        catch e
+            warning(e.message)
+        end
+        
         clear mex;
         return
         
     end
     
+    %% Switch all of the workers back to their original folder.
+    
+    close_system(tmpCtrlMdl, 0);
+    cd([MLC_params.problem_variables.RootOutputFolder '../'])
+    
+    try
+        rmdir(tmpDir,'s');
+    catch e
+        warning(e.message)
+    end
+    
 catch e
     
+    cd([MLC_params.problem_variables.RootOutputFolder '../'])
     warning(e.message)    
     J = MLC_params.badvalue;
     
