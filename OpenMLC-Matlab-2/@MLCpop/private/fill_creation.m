@@ -45,7 +45,7 @@ switch mlc_parameters.evaluation_method
         parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
         
         % Variable initialization
-        already_exist = true(n_indiv_to_generate,1);
+        already_exist = true(1,n_indiv_to_generate);
         number = -ones(n_indiv_to_generate,1);
         
         % Replace duplicate individuals
@@ -55,7 +55,7 @@ switch mlc_parameters.evaluation_method
             nTries = nTries+1;
         
             % Add individuals to mlctable, keeping track if the individual is a duplicate
-            for newIdvN = find(already_exist(:)')
+            for newIdvN = find(already_exist)
             
                 [mlctable, number(newIdvN), already_exist(newIdvN)] = ...
                     mlctable.add_individual( newInds{newIdvN} );
