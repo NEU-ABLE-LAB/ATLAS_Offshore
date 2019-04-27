@@ -1,3 +1,4 @@
+%% fCostFunctionSimOut Compute the aggregate cost function across and array of simOut
 function [CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, Metrics, RunsStats] = ...
     fCostFunctionSimOut(simOut, Challenge, metricsBase)
 

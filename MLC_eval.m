@@ -1,5 +1,12 @@
 %% MLC_eval Evaluates the fitness of an individual for a single case
-function J = MLC_eval(ind, MLC_params, ~, ~)
+%
+%   INPUTS
+%       ind - Current mlc.individual
+%       MLC_params - mlc.parameters
+%       ~ - Individual number???
+%       ~ - Figure handle for plot
+%
+function J = MLC_eval(ind, MLC_params, ~, hFig)
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
