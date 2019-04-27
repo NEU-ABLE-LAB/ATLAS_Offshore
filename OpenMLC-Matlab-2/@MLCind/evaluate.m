@@ -25,7 +25,7 @@ end
 
 mlcind.cost_history=[mlcind.cost_history J];
 mlcind.evaluation_time=[mlcind.evaluation_time evtime];
-mlcind.cost=mean(mlcind.cost_history);
+mlcind.cost=max(mlcind.cost_history);
     
 end
 
