@@ -67,7 +67,7 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
                 %retrieve object in the table
                 m=parForIndvs(idv_to_evaluate(i));
                 
-                JJ(i)=feval(f,m,mlc_parameters,i,~,ngen);
+                JJ(i)=feval(f,m,mlc_parameters,i,[],ngen);
                 date_ev(i)=now;
                 
                 ppm.increment();
@@ -95,7 +95,7 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
                 if verb>2;fprintf('%s\n',mlctable.individuals(idv_to_evaluate(i)).value);end
                 %retrieve object in the table
                 m=mlctable.individuals((idv_to_evaluate(i)));
-                JJ(i)=feval(f,m,mlc_parameters,i,~,ngen);
+                JJ(i)=feval(f,m,mlc_parameters,i,[],ngen);
                 date_ev(i)=now;
             end
             

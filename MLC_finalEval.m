@@ -9,7 +9,7 @@ addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
-load('save_GP/20190426-0056/20190426_190311mlc_ae.mat')
+load('save_GP/20190426-0056/20190427_005329mlc_ae_NO_EV_AGAIN_BEST.mat')
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
