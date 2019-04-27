@@ -77,6 +77,7 @@ properties % (data type)[default] Description
                                             %   parallel (`mfile_multi`)
     evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
         'toy_problem';                      %   `J=evalFun(ind,mlc_parameters,i,fig)`
+    nCases=1;                    %*(num)[1] The number different design cases that a population could be subjected to
     ev_again_best=0;             %*(bool)[0] Should elite individuals be reevaluated
     ev_again_nb=5;               % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
     ev_again_times=5;            % ?(num)[5] The number of times to reevaluate best individuals

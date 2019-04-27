@@ -7,7 +7,7 @@
 %       hFig - Figure handle for plot
 %       genN - Current generation
 %
-function J = MLC_eval(ind, MLC_params, idvN, hFig, genN)
+function J = MLC_eval(ind, MLC_params, idvN, hFig, caseN)
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
@@ -69,13 +69,7 @@ try
     %% Run simulation
 
     % Choose a design load case
-    if exist('genN','var') && ~isempty(genN)
-        
-        % Chose a load cased based on generation
-        %   Ensures all individuals in generation see the same case
-        caseN = mod(genN-1, length(runCases))+1;
-        
-    else
+    if ~(exist('caseN','var') && ~isempty(caseN))
         
         % Chose a random case
         caseN = randi(length(runCases));

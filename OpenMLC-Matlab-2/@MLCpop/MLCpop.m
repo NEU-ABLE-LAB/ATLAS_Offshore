@@ -1,13 +1,14 @@
 classdef MLCpop < handle
   % copyright  
     properties
-        individuals
-        costs
-        gen_method
-        parents
-        state
-        gen
-        subgen
+        individuals % A vector of the index where to find each individual in MLCtable
+        costs       % A vector of the cost for each individual in this generation
+        gen_method  % A vector of enums that specify the generation method
+        parents     % A cell vector list each the individual's parents
+        state       % The state of evaluation of the  population
+        gen         % The generation of the population
+        subgen      % The sub-generation of the population
+        caseN       % The design case used to evaluate population
     end
     
     methods
@@ -20,7 +21,7 @@ classdef MLCpop < handle
         [obj]=remove_duplicates(obj);
         obj=remove_individual(obj,idx);
         
-        function obj=MLCpop(mlc_parameters,gen)
+        function obj=MLCpop(mlc_parameters,gen,caseN)
         
             if nargin<2
                 gen=1;
@@ -43,6 +44,11 @@ classdef MLCpop < handle
             obj.gen_method=zeros(1,gensize)-1;
             obj.parents=cell(1,gensize);
             obj.state='init';
+            if exist('caseN','var') && ~isempty(caseN)
+                obj.caseN = caseN;
+            else
+                obj.caseN = 1;
+            end
         end
     end
 end

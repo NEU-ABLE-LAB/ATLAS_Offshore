@@ -141,14 +141,15 @@ pMLC.simplify=0;                  % (bool)(0) Simplify LISP expressions
 pMLC.cascade=[1 1];               % (array)[1 1] Sets `obj.subgen` properties. See `MLCop.m`
 
 
-%% Evaluator parameters        % (data type)[default] Description
+%% Evaluator parameters           % (data type)[default] Description
 pMLC.evaluation_method=...        %*(str)['mfile_standalone'] Evaluation method, choose one:
-...     'mfile_standalone';        %   `mfile_standalone` Compute serial
-    'mfile_multi';             %   `mfile_multi` Compute in parallel
+...     'mfile_standalone';       %   `mfile_standalone` Compute serial
+    'mfile_multi';                %   `mfile_multi` Compute in parallel
 pMLC.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
-    'MLC_eval';                %   `J=evalFun(ind,mlc_parameters,i,fig)`
+    'MLC_eval';                   %   `J=evalFun(ind,mlc_parameters,i,fig)`
+pMLC.nCases=12;                   %*(num)[1] The number different design cases that a population could be subjected to
 pMLC.ev_again_best=1;             %*(bool)[0] Should elite individuals be reevaluated
-pMLC.ev_again_nb=48;               % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
+pMLC.ev_again_nb=48;              % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
 pMLC.ev_again_times=1;            % ?(num)[5] The number of times to reevaluate best individuals
 pMLC.execute_before_evaluation='';% (expr)[''] A Matlab expression to be evaluated with `eval()` before evaluation.
 pMLC.badvalue=1000;               %*(num)[1E36] The value to return when `evaluation_function` determines the controller is 'bad'
