@@ -38,7 +38,8 @@ function mlc=evaluate_population(mlc,n)
         mlc.population(n).evaluate(mlc.table, mlc.parameters, idx);
     
     if mlc.parameters.save==1
-        save(fullfile(mlc.parameters.savedir,[datestr(now,'YYYYmmDD_HHMMSS') 'mlc_de.mat']),'mlc')
+        save(fullfile(mlc.parameters.savedir, ...
+            [datestr(now,'YYYYmmDD_HHMMSS') 'mlc_de.mat']),'mlc')
     end
     
     %% remove bad individuals
