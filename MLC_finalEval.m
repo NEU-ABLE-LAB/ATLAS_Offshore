@@ -1,6 +1,7 @@
 %% MLC_finalEval Computes total cost function for individual
 restoredefaultpath;
 clear all;close all;clc;
+dbstop if error
 
 %% Initialization
 % ref: Main.m
@@ -9,7 +10,8 @@ addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
-load('save_GP/20190426-0056/20190426_190311mlc_ae.mat')
+load('save_GP/20190426-0056/20190427_132654mlc_ae.mat')
+mlc.show_convergence
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
@@ -77,14 +79,20 @@ xtickangle(90)
 %% Compute full cost for best individuals
 
 numSims = numel(MLC_params.problem_variables.runCases);
-simOut = Simulink.SimulationOutput;
-simOut(nBest,numSims) = simOut;
+simOut = cell(numSims,1);
+J = -ones(numSims,1);
+
+pp = gcp();
+ppm = ParforProgMon(...
+    sprintf('MLC_finalEval - %i idvs w/ %i cases @ %s: ', ...
+        nBest, numSims, datestr(now,'HH:MM')), ...
+    nBest*numSims, 1,1200,160);
 
 parfor bestN = 1:nBest
     
-    simOut(bestN,:) = MLC_evalAll(...
+    [J(bestN), simOut{bestN}] = MLC_evalAll(...
         mlc.table.individuals(...
             mlc.population(end).individuals(goodIdxs(bestN))),...
-        mlc.parameters);
+        mlc.parameters, [], [], ppm);
     
 end
