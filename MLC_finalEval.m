@@ -11,6 +11,7 @@ addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
 load('save_GP/20190426-0056/20190427_132654mlc_ae.mat')
+mlc.show_convergence
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
