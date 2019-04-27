@@ -1,24 +1,26 @@
 %% MLC_finalEval Computes total cost function for individual
+restoredefaultpath;
+clear all;close all;clc;
 
 %% Initialization
 % ref: Main.m
-restoredefaultpath;
-clear all;close all;clc;
 addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
 addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
-load('save_GP/20190426-0056/20190426_145827mlc_ae.mat')
+load('save_GP/20190426-0056/20190426_190311mlc_ae.mat')
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
 %% Select best individuals
 nBest = 96;
+genN = length(mlc.population) - 0;
 
-goodIdxs = mlc.population(end).costs>0 & mlc.population(end).costs<1;
-[~,goodIdxs] = sort(mlc.population(end).costs(goodIdxs));
-disp(mlc.population(end).costs(goodIdxs)')
+goodIdxs = (mlc.population(genN).costs>0) & (mlc.population(genN).costs<1);
+[~,goodIdxs] = sort(mlc.population(genN).costs(goodIdxs));
+disp(mlc.population(genN).costs(goodIdxs)')
+fprintf('%i better than threshold individuals\n', length(goodIdxs));
 nBest = min(nBest, length(goodIdxs));
 
 % Display best to be copied into `my_controller.m`
@@ -29,7 +31,7 @@ code2paste{nBest,1} = '';
 for bestN = 1:nBest
     
     exprs{bestN} = mlc.table.individuals(...
-        mlc.population(end).individuals(goodIdxs(bestN))).formal;
+        mlc.population(genN).individuals(goodIdxs(bestN))).formal;
     
     for exprN = 1:length(exprs{bestN})
         
