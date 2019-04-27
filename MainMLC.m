@@ -65,8 +65,8 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 
 %% Test MLC
 
-% ind = struct('formal',{{'S0*0.5','2*S1*0.5','2*0'}});
-% 
+ind = struct('formal',{{'S0*0','2*S1*0','2*0'}});
+
 % isValid = MLC_preeval(ind, MLC_params);
 % if isValid
 %     disp('Valid')
@@ -76,15 +76,17 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 %     J = MLC_eval(ind,MLC_params);
 % end
 
+simOut = MLC_evalAll(ind,MLC_params);
+
 %% Run MLC
 
-% Create a MLC object
-% mlc=MLC2(MLC_params); 
-
-% Restart previous MLC
-load('save_GP/20190426-0056/20190426_172452mlc_be.mat');
-                      
-% Launch GP for 50 generations and displays the best individual if
-% implemented in the evaluation function at the end of each generation
-% evaluation
-mlc.go(50,3)
+% % Create a MLC object
+% % mlc=MLC2(MLC_params); 
+% 
+% % Restart previous MLC
+% load('save_GP/20190426-0056/20190426_172452mlc_be.mat');
+%                       
+% % Launch GP for 50 generations and displays the best individual if
+% % implemented in the evaluation function at the end of each generation
+% % evaluation
+% mlc.go(50,3)
