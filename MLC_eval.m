@@ -3,10 +3,10 @@
 %   INPUTS
 %       ind - Current mlc.individual
 %       MLC_params - mlc.parameters
-%       ~ - Individual number???
-%       ~ - Figure handle for plot
+%       idvN - Individual number???
+%       hFig - Figure handle for plot
 %
-function J = MLC_eval(ind, MLC_params, ~, hFig)
+function J = MLC_eval(ind, MLC_params, idvN, hFig)
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
@@ -56,29 +56,8 @@ try
     %% Setup simulation
 
     % Parse indvidual's expressions 
-    exprs = MLC_exprs(ind.formal, MLC_params);
+    [~,fcnText] = MLC_exprs(ind.formal, MLC_params);
     
-    % Create string to write to the script file
-    fcnText = sprintf('function y = fcn(u) \n');
-	fcnText = sprintf('%sy = [', fcnText);
-	for exprN = 1:length(exprs)
-
-        if exprN ~= 1
-            fcnText = sprintf('%s\t', ...
-                fcnText);
-        end
-        
-		fcnText = sprintf('%s\t%s', ...
-            fcnText, exprs{exprN});
-        
-        if exprN ~= length(exprs)
-            fcnText = sprintf('%s; \n ',...
-                fcnText);
-        end
-
-	end	
-	fcnText = sprintf('%s];', fcnText);
-
     % Get `Fcn` block handle
     hb = find(slroot, '-isa', 'Stateflow.EMChart', 'Path', ...
         sprintf('%s/MLC_IPC/control_law', tmpSysMdl) );
