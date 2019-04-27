@@ -1,5 +1,5 @@
 %% MLC_eval Evaluates the fitness of an individual for all cases
-function [J, simOut] = MLC_evalAll(ind, MLC_params, ~, hFig)
+function [J, simOut] = MLC_evalAll(ind, MLC_params, ~, hFig, ppm)
 
 %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
@@ -78,25 +78,57 @@ for simN = 1:numSims
         
         % Run simulation
         sim(tmpSysMdl);
+        clear mex;
         
         % Process output
         simOut{simN} = FASTPostSim([],[], runCases{simN}, ...
             hws.getVariable('runName'), FASTInputFolder, ...
             hws.getVariable('OutputFolder'), Challenge, statsBase);
 
-        clear mex;
-        
     catch e
 
         warning(e.message)
-        disp('  MLC_EVAL: Simulation returned error');
+        disp('  MLC_EVALALL: Simulation returned error');
         
         clear mex;
-        
-        J = MLC_params.badvalue;
-        
+                
     end
     
+    ppm.increment();
+    
+end
+
+%% Calculate aggregate metrics
+
+% Check for bad simulations
+%   Missing simulations
+%   Bad value simulations
+if any(cellfun(@isempty,simOut)) || ... 
+        any(cellfun(@(x)(x.CF >= mlc.parameters.badvalue),simOut))
+    
+    J = mlc.parameters.badvalue;
+    CF = mlc.parameters.badvalue;
+    CF_Comp = mlc.parameters.badvalue;
+    CF_Vars = mlc.parameters.badvalue;
+    CF_Freq = mlc.parameters.badvalue;
+    
+else
+    try
+        % Compute for good individuals
+        [CF, CF_Comp, CF_Vars, CF_Freq, ...
+            pMetrics, ~, ~] = ...
+            fCostFunctionSimOut(simOut, Challenge, ...
+                fEvaluateMetrics(statsBase, ...
+                    fMetricVars(runCases, Challenge)));
+        J = CF;
+    catch
+        % Assume bad individual if something is wrong
+        J = mlc.parameters.badvalue;
+        CF = mlc.parameters.badvalue;
+        CF_Comp = mlc.parameters.badvalue;
+        CF_Vars = mlc.parameters.badvalue;
+        CF_Freq = mlc.parameters.badvalue;
+    end
 end
 
 %% Switch all of the workers back to their original folder.
@@ -108,21 +140,11 @@ try
     rmdir(tmpDir,'s');
 catch e
     warning(e.message)
-    J = MLC_params.badvalue;
 end
 
 %% Plot figure if requested
 
-% Calculate aggregate metrics
-[CF, CF_Comp, CF_Vars, CF_Freq, ...
-    pMetrics, ~, ~] = ...
-    fCostFunctionSimOut(simOut, Challenge, ...
-        fEvaluateMetrics(statsBase, ...
-            fMetricVars(runCases, Challenge)));
-        
-J = CF;
-
-if exist('hFig','var') && ~isempty(hFig)
+if exist('hFig','var') && ~isempty(hFig) && J>=mlc.parameters.badvalue
     
     % Plot aggregate metrics
     fCostFunctionPlot(CF, CF_Comp, CF_Vars, CF_Freq, ...
