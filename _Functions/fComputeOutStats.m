@@ -31,12 +31,13 @@ if ischar(folder) && exist(folder,'file')
     OutFiles = arrayfun(@(x) x.name, dir([folder '*.outb']),'UniformOutput',false);
     nFiles  = length(OutFiles);
     
-elseif isa(folder,'Simulink.SimulationOutput')
+elseif isa(folder,'Simulink.SimulationOutput') || ...
+        isa(folder,'cell')
     
     nCases = length(Cases.Names);
     
     nFiles = length(folder);
-
+    
 else
     error('Folder not found: %s',folder)
 end
@@ -56,8 +57,9 @@ R.Freq = 0:0.01:2;
 R.OutFiles = cell(nCases,1);
 for iFile = 1:nCases
     
-    if ischar(folder) % Get data form .outb files
+    if ischar(folder) 
         
+        % Get data form .outb files
         filename=dir([folder Cases.Names{iFile} '*.outb']);
         
         if isempty(filename)
@@ -73,11 +75,22 @@ for iFile = 1:nCases
         [Channels, R.ChanName ] = fReadFASTAddChannels(...
             [folder filename], p.AdditionalChannels);
         
-    else % Get data from Simulink.SimulationOutput object
-        
+    elseif isa(folder,'Simulink.SimulationOutput')
+
+        % Get data from Simulink.SimulationOutput object
         R.OutFiles{iFile} = folder(iFile).runCase;
         Channels = folder(iFile).Channels;
         R.ChanName = folder(iFile).ChanName;
+        
+        [Channels, R.ChanName] = fAddChannels(...
+            Channels, R.ChanName, [], p.AdditionalChannels);
+             
+    elseif isa(folder,'cell')
+           
+        % Get data from Simulink.SimulationOutput object
+        R.OutFiles{iFile} = folder{iFile}.runCase;
+        Channels = folder{iFile}.Channels;
+        R.ChanName = folder{iFile}.ChanName;
         
         [Channels, R.ChanName] = fAddChannels(...
             Channels, R.ChanName, [], p.AdditionalChannels);

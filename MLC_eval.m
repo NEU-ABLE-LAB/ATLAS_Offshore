@@ -5,8 +5,9 @@
 %       MLC_params - mlc.parameters
 %       idvN - Individual number???
 %       hFig - Figure handle for plot
+%       genN - Current generation
 %
-function J = MLC_eval(ind, MLC_params, idvN, hFig)
+function J = MLC_eval(ind, MLC_params, idvN, hFig, genN)
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
@@ -67,9 +68,20 @@ try
 
     %% Run simulation
 
-    % Randomly choose a design load case
-    caseN = randi(length(runCases));
-                
+    % Choose a design load case
+    if exist('genN','var') && ~isempty(genN)
+        
+        % Chose a load cased based on generation
+        %   Ensures all individuals in generation see the same case
+        caseN = mod(genN-1, length(runCases))+1;
+        
+    else
+        
+        % Chose a random case
+        caseN = randi(length(runCases));
+        
+    end
+    
     % Setup simulation with presimulation function
     hws = get_param(tmpSysMdl,'modelWorkspace');
     FASTPreSim(hws,...
@@ -125,7 +137,7 @@ try
     end
     
     %% Plot figure if requested
-    if exist(hFig,'var') && ~isempty(hFig)
+    if exist('hFig','var') && ~isempty(hFig)
         fCostFunctionPlot(simOut.CF, simOut.CF_Comp, ...
             simOut.CF_Vars, {simOut.CF_Freq}, ...
             fMetricVars(runCases(caseN), Challenge), ...

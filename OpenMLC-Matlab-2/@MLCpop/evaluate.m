@@ -1,4 +1,5 @@
-function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
+function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
+    mlc_parameters, eval_idx)
 % copyright
     verb=mlc_parameters.verbose;
     ngen=mlcpop.gen;
@@ -66,7 +67,7 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
                 %retrieve object in the table
                 m=parForIndvs(idv_to_evaluate(i));
                 
-                JJ(i)=feval(f,m,mlc_parameters,i);
+                JJ(i)=feval(f,m,mlc_parameters,i,~,ngen);
                 date_ev(i)=now;
                 
                 ppm.increment();
@@ -82,21 +83,21 @@ function [mlcpop,mlctable]=evaluate(mlcpop,mlctable,mlc_parameters,eval_idx)
             parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
             
         case 'mfile_standalone'
-        eval(['heval=@' mlc_parameters.evaluation_function ';']);
-        f=heval;
-        for i=istart:length(eval_idx)
-            if mlc_parameters.saveincomplete==1
-                ic=i;
-                save(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'JJ','ic');
+        
+            eval(['heval=@' mlc_parameters.evaluation_function ';']);
+            f=heval;
+            for i=istart:length(eval_idx)
+                if mlc_parameters.saveincomplete==1
+                    ic=i;
+                    save(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'),'JJ','ic');
+                end
+                if verb>1;fprintf('Individual %i from generation %i\n',eval_idx(i),ngen);end
+                if verb>2;fprintf('%s\n',mlctable.individuals(idv_to_evaluate(i)).value);end
+                %retrieve object in the table
+                m=mlctable.individuals((idv_to_evaluate(i)));
+                JJ(i)=feval(f,m,mlc_parameters,i,~,ngen);
+                date_ev(i)=now;
             end
-            if verb>1;fprintf('Individual %i from generation %i\n',eval_idx(i),ngen);end
-            if verb>2;fprintf('%s\n',mlctable.individuals(idv_to_evaluate(i)).value);end
-            %retrieve object in the table
-            m=mlctable.individuals((idv_to_evaluate(i)));
-            JJ(i)=feval(f,m,mlc_parameters,i);
-            date_ev(i)=now;
-        end
-            
             
     end
 

@@ -22,14 +22,14 @@ function m=show_best(mlc,fig)
 %    You should have received a copy of the GNU General Public License
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-if nargin<2
-        fig=1;
-    end
-    eval(['heval=@' mlc.parameters.evaluation_function ';']);
-            f=heval;
-     [~,idx]=min(mlc.population(length(mlc.population)).costs);
-     m=mlc.table.individuals(mlc.population(length(mlc.population)).individuals(idx));        
-    feval(f,m,mlc.parameters,1,fig);
+if ~exist('fig') || isempty(fig)
+    fig=1;
+end
+eval(['heval=@' mlc.parameters.evaluation_function ';']);
+f=heval;
+[~,idx]=min(mlc.population(length(mlc.population)).costs);
+m=mlc.table.individuals(mlc.population(length(mlc.population)).individuals(idx));        
+feval(f,m,mlc.parameters,1,fig,-mlc.population.gen);
 
 
 

@@ -85,7 +85,8 @@ function mlc=evaluate_population(mlc,n)
     if mlc.parameters.ev_again_best
         for i=1:mlc.parameters.ev_again_times
             idx=1:mlc.parameters.ev_again_nb;
-            [mlc.population(n),mlc.table]=mlc.population(n).evaluate(mlc.table,mlc.parameters,idx);
+            [mlc.population(n),mlc.table] = ...
+                mlc.population(n).evaluate(mlc.table,mlc.parameters,idx);
             mlc.population(n).sort(mlc.parameters);
         end
     end

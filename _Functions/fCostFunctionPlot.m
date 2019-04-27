@@ -8,7 +8,8 @@
 %       - 'relVar'  Relative contribution per metric variable
 %       - 'absVar'  Absolute contribution per metric variable
 
-function fCostFunctionPlot(CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, folders, figs)
+function fCostFunctionPlot(CF, CF_Comp, CF_Vars, CF_Freq, ...
+    pMetrics, folders, figs)
 
 
 if exist('OCTAVE_VERSION', 'builtin') ~= 0; pkg load statistics; end

@@ -1,5 +1,5 @@
 %% MLC_eval Evaluates the fitness of an individual for all cases
-function [J, simOut] = MLC_evalAll(ind, MLC_params, ~, ~)
+function [J, simOut] = MLC_evalAll(ind, MLC_params, ~, hFig)
 
 %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
@@ -49,28 +49,7 @@ load_system(tmpSysMdl)
 
 %% Setup simulation
 % Parse indvidual's expressions 
-exprs = MLC_exprs(ind.formal, MLC_params);
-
-% Create string to write to the script file
-fcnText = sprintf('function y = fcn(u) \n');
-fcnText = sprintf('%sy = [', fcnText);
-for exprN = 1:length(exprs)
-
-    if exprN ~= 1
-        fcnText = sprintf('%s\t', ...
-            fcnText);
-    end
-
-    fcnText = sprintf('%s\t%s', ...
-        fcnText, exprs{exprN});
-
-    if exprN ~= length(exprs)
-        fcnText = sprintf('%s; \n ',...
-            fcnText);
-    end
-
-end	
-fcnText = sprintf('%s];', fcnText);
+[~,fcnText] = MLC_exprs(ind.formal, MLC_params);
 
 % Get `Fcn` block handle
 hb = find(slroot, '-isa', 'Stateflow.EMChart', 'Path', ...
@@ -114,6 +93,8 @@ for simN = 1:numSims
         
         clear mex;
         
+        J = MLC_params.badvalue;
+        
     end
     
 end
@@ -127,6 +108,26 @@ try
     rmdir(tmpDir,'s');
 catch e
     warning(e.message)
+    J = MLC_params.badvalue;
+end
+
+%% Plot figure if requested
+
+% Calculate aggregate metrics
+[CF, CF_Comp, CF_Vars, CF_Freq, ...
+    pMetrics, ~, ~] = ...
+    fCostFunctionSimOut(simOut, Challenge, ...
+        fEvaluateMetrics(statsBase, ...
+            fMetricVars(runCases, Challenge)));
+        
+J = CF;
+
+if exist('hFig','var') && ~isempty(hFig)
+    
+    % Plot aggregate metrics
+    fCostFunctionPlot(CF, CF_Comp, CF_Vars, CF_Freq, ...
+        pMetrics, {'',sysMdl})
+    
 end
     
 end

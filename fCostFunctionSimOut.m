@@ -3,8 +3,20 @@ function [CF, CF_Comp, CF_Vars, CF_Freq, pMetrics, Metrics, RunsStats] = ...
     fCostFunctionSimOut(simOut, Challenge, metricsBase)
 
 %% Load case and metrics init
-Cases = fRegExpCases({simOut.runCase});
-[ pMetrics   ] = fMetricVars(Cases, Challenge)              ; % Parameters for the metrics computation
+
+% Parameters for the metrics computation
+if isa(simOut,'Simulink.SimulationOutput')
+    
+    Cases = fRegExpCases({simOut.runCase});
+    
+elseif isa(simOut,'cell')
+    
+    Cases = fRegExpCases( cellfun(@(x)(x.runCase), ...
+        simOut, 'UniformOutput',false) );
+    
+end
+    
+[ pMetrics   ] = fMetricVars(Cases, Challenge)              ; 
 
 %% Loop on results folder, compute cost function1
     
