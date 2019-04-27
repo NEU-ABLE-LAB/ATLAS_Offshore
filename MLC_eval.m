@@ -124,6 +124,14 @@ try
         warning(e.message)
     end
     
+    %% Plot figure if requested
+    if exist(hFig,'var') && ~isempty(hFig)
+        fCostFunctionPlot(simOut.CF, simOut.CF_Comp, ...
+            simOut.CF_Vars, {simOut.CF_Freq}, ...
+            fMetricVars(runCases(caseN), Challenge), ...
+            {'',sysMdl});
+    end
+    
 catch e
     
     cd([MLC_params.problem_variables.RootOutputFolder '../'])
