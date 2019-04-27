@@ -201,6 +201,6 @@ pMLC.problem_variables.hSetControllerParameter = ...
 %% MLC behavior parameters     % (data type)[default] Description
 pMLC.save=1;                      % (bool)[1] Should populations be saved to `mlc_be.mat` every time they're created and to `mlc_ae.mat` after evaluation
 pMLC.savedir=...                  % (str)[fullfile(pwd,'save_GP')] The directory to save files to
-    fullfile(pwd,'save_GP');   % ?(bool)[1] Should incomplete evaulations be saved
+    'G:\Team Drives\ABLE_ATLAS_OffShore\save_GP';   % ?(bool)[1] Should incomplete evaulations be saved
 pMLC.saveincomplete=1;            %
 pMLC.verbose=2;                   % (num)[2] Level of verbose output: `0`, `1`, `2`, ...
