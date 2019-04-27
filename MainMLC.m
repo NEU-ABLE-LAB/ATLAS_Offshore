@@ -2,7 +2,10 @@
 % Use MLC to create a controller
 
 restoredefaultpath;
-clear all;close all;clc;
+clear all;
+close all;
+clc;
+dbstop if error
 
 %% Initialization
 % ref: Main.m
