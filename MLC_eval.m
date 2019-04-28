@@ -7,7 +7,8 @@
 %       hFig - Figure handle for plot
 %       genN - Current generation
 %
-function J = MLC_eval(ind, MLC_params, idvN, hFig, caseN)
+function [J, simOut] = MLC_eval(ind, MLC_params, idvN, hFig, caseN)
+simOut = {};
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
