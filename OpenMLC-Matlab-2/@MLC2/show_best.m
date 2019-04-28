@@ -25,11 +25,16 @@ function m=show_best(mlc,fig)
 if ~exist('fig') || isempty(fig)
     fig=1;
 end
+
 eval(['heval=@' mlc.parameters.evaluation_function ';']);
 f=heval;
-[~,idx]=min(mlc.population(length(mlc.population)).costs);
-m=mlc.table.individuals(mlc.population(length(mlc.population)).individuals(idx));        
-feval(f,m,mlc.parameters,1,fig,-mlc.population.gen);
+
+[~,idx] = min(mlc.population(length(mlc.population)).costs);
+
+m = mlc.table.individuals(...
+    mlc.population(length(mlc.population)).individuals(idx));       
+    
+feval(f, m, mlc.parameters, 1, fig, -mlc.population.gen);
 
 
 

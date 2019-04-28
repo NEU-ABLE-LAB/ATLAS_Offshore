@@ -4,9 +4,15 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
     verb=mlc_parameters.verbose;
 	
     if nargin<4
-        mlcpop2=MLCpop(mlc_parameters,ngen+1);
+        % Find the hardest case to test the generation on
+        [~,caseN] = max(mlctable.caseDifficulty);
+    
+        % Initialize the next generation
+        mlcpop2=MLCpop(mlc_parameters,ngen+1,caseN);
     end
+    
     if verb>0;fprintf('Evolving population\n');end
+    
     idxsubgen=subgen(mlcpop,mlc_parameters);
     idxsubgen2=subgen(mlcpop2,mlc_parameters);
     
