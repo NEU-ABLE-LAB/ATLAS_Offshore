@@ -115,7 +115,9 @@ if length(pop)>=2
     c=flipud(gray);
     colormap(c)
     %clb=colorbar;set(clb,'fontsize',20,'linewidth',2,'fontweight','bold')
-    t=title('Population repartition (\%)');set(t,'interpreter','latex','fontsize',30)
+    t=title(sprintf('Population Cost Histograms (Best = %d)', ...
+	    Jmin));
+	set(t,'interpreter','latex','fontsize',30)
     view(0,90)
     
     
