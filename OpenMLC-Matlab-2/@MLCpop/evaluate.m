@@ -49,7 +49,7 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
             
             pp = gcp();
             ppm = ParforProgMon(...
-                sprintf('MLCpop.evaluate - gen %i, case %1, w/ %i idvs @ %s : ', ...
+                sprintf('MLCpop.evaluate - gen %i, case %i, w/ %i idvs @ %s : ', ...
                     ngen, mlcpop.caseN, (nidx-istart+1), datestr(now,'HH:MM')), ...
                 (nidx-istart+1), 1,1200,160);
             
@@ -102,14 +102,14 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
     end
 
     %% End of effective evaluation
-    if  mlc_parameters.saveincomplete==1 && ~strcmp(mlc_parameters.evaluation_method,'multithread_function');
+    if  mlc_parameters.saveincomplete==1 && ~strcmp(mlc_parameters.evaluation_method,'multithread_function')
         delete(fullfile(mlc_parameters.savedir,'MLC_incomplete.mat'));
     end
 
 
     %% MLCtable update
     if verb>0;fprintf('Updating database\n');end
-    for i=1:length(eval_idx);
+    for i=1:length(eval_idx)
         if verb>2;fprintf('Individual %i from generation %i\n',eval_idx(i),ngen);end
         if verb>2;fprintf('%s\n',mlctable.individuals(idv_to_evaluate(i)).value);end
         J=JJ(i);
