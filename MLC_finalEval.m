@@ -10,13 +10,16 @@ addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(pwd);
 
-load('save_GP/20190426-0056/20190427_132654mlc_ae.mat')
+load('save_GP/20190426-0056/20190427_155043mlc_ae.mat')
+mlc.parameters.saveincomplete = 0;
+
 mlc.show_convergence
 
 MLC_params = mlc.parameters;
 nSensors = MLC_params.sensors;
+
 %% Select best individuals
-nBest = 96;
+nBest = 48;
 genN = length(mlc.population) - 0;
 
 goodIdxs = (mlc.population(genN).costs>0) & (mlc.population(genN).costs<1);
@@ -94,5 +97,12 @@ parfor bestN = 1:nBest
         mlc.table.individuals(...
             mlc.population(end).individuals(goodIdxs(bestN))),...
         mlc.parameters, [], [], ppm);
+    
+    % Close all Simulink system windows unconditionally
+    bdclose('all')
+    % Clean up worker repositories
+    Simulink.sdi.cleanupWorkerResources
+    % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
+    sdi.Repository.clearRepositoryFile
     
 end

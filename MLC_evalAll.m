@@ -104,13 +104,13 @@ end
 %   Missing simulations
 %   Bad value simulations
 if any(cellfun(@isempty,simOut)) || ... 
-        any(cellfun(@(x)(x.CF >= mlc.parameters.badvalue),simOut))
+        any(cellfun(@(x)(x.CF >= MLC_params.badvalue),simOut))
     
-    J = mlc.parameters.badvalue;
-    CF = mlc.parameters.badvalue;
-    CF_Comp = mlc.parameters.badvalue;
-    CF_Vars = mlc.parameters.badvalue;
-    CF_Freq = mlc.parameters.badvalue;
+    J = MLC_params.badvalue;
+    CF = MLC_params.badvalue;
+    CF_Comp = MLC_params.badvalue;
+    CF_Vars = MLC_params.badvalue;
+    CF_Freq = MLC_params.badvalue;
     
 else
     try
@@ -123,11 +123,11 @@ else
         J = CF;
     catch
         % Assume bad individual if something is wrong
-        J = mlc.parameters.badvalue;
-        CF = mlc.parameters.badvalue;
-        CF_Comp = mlc.parameters.badvalue;
-        CF_Vars = mlc.parameters.badvalue;
-        CF_Freq = mlc.parameters.badvalue;
+        J = MLC_params.badvalue;
+        CF = MLC_params.badvalue;
+        CF_Comp = MLC_params.badvalue;
+        CF_Vars = MLC_params.badvalue;
+        CF_Freq = MLC_params.badvalue;
     end
 end
 
@@ -144,7 +144,7 @@ end
 
 %% Plot figure if requested
 
-if exist('hFig','var') && ~isempty(hFig) && J>=mlc.parameters.badvalue
+if exist('hFig','var') && ~isempty(hFig) && J>=MLC_params.badvalue
     
     % Plot aggregate metrics
     fCostFunctionPlot(CF, CF_Comp, CF_Vars, CF_Freq, ...
