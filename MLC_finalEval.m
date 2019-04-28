@@ -1,16 +1,12 @@
 %% MLC_finalEval Computes total cost function for individual
-restoredefaultpath;
-clear all;close all;clc;
-dbstop if error
+function MLC_finalEval(fName)
 
-%% Initialization
-% ref: Main.m
-addpath(genpath([pwd,'/_Functions']));  % Matlab functions for cost function and running cases - READ ONLY
-addpath(genpath([pwd,'/_Controller'])); % Simulink model, where user scripts and models are placed
-addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
-addpath(pwd);
+% File defining the cases that are run
+case_file = '_Inputs/_inputs/Cases.csv'; 
 
-load('G:\Team Drives\ABLE_ATLAS_OffShore\save_GP\20190426-0056_2\20190428_164853mlc_ae.mat')
+%% Load the MLC object
+mlc = load(fName,'mlc');
+mlc = mlc.mlc;
 
 % Update parameters for this analysis & machine
 mlc.parameters.saveincomplete = 0;
@@ -24,23 +20,11 @@ mlc.parameters.problem_variables.ctrlFolder = ...
 mlc.show_convergence
 
 MLC_params = mlc.parameters;
-nSensors = MLC_params.sensors;
 
 %% Extract MLC problem variables specified when calling `MLC_cfg()`
 
 % Design cases
 runCases = MLC_params.problem_variables.runCases;
-
-% Simulink models
-sysMdl = MLC_params.problem_variables.sysMdl;
-
-% Handle to function that sets controller parameters
-hSetControllerParameter = ...
-        MLC_params.problem_variables.hSetControllerParameter;
-
-% Directories
-RootOutputFolder = MLC_params.problem_variables.RootOutputFolder;
-FASTInputFolder = MLC_params.problem_variables.FASTInputFolder;
 
 % Name of challenge
 Challenge = MLC_params.problem_variables.Challenge;
@@ -50,13 +34,15 @@ statsBase = MLC_params.problem_variables.statsBase;
 
 %% Select best individuals
 nBest = 8;
-genN = length(mlc.population) - 0;
+totalGens = length(mlc.population);
+GenNBack = 1; % Indexed so 1 is the last generation 
+genN = @(tmp_nGensBack)(totalGens - tmp_nGensBack - 1);
 
 goodIdxs = find(...
-    (mlc.population(genN).costs > 0) & ...
-    (mlc.population(genN).costs < 1) );
+    (mlc.population(genN(GenNBack)).costs > 0) & ...
+    (mlc.population(genN(GenNBack)).costs < 1) );
 
-disp(mlc.population(genN).costs(goodIdxs)')
+disp(mlc.population(genN(GenNBack)).costs(goodIdxs)')
 fprintf('%i better than threshold individuals\n', length(goodIdxs));
 nBest = min(nBest, length(goodIdxs));
 
@@ -68,7 +54,7 @@ fcnText = cell(nBest,1);
 for bestN = 1:nBest
     
     [exprs{bestN}, fcnText{bestN}] = MLC_exprs( mlc.table.individuals( ...
-            mlc.population(genN).individuals(goodIdxs(bestN))...
+            mlc.population(genN(GenNBack)).individuals(goodIdxs(bestN))...
         ).formal, MLC_params);
     
 end
@@ -97,38 +83,38 @@ xtickangle(90)
 
 %% Compute full cost for best individuals
 
-nGens = 1;
+nGensBack = 1;
 nCases = numel(MLC_params.problem_variables.runCases);
-simOut = cell(nBest,nCases,nGens);
+simOut = cell(nBest,nCases,nGensBack);
 
 % Get indivudals to test
 %   Doing so now minimizes parfor overhead
-idvs = cell(nBest,nGens);
-for idx = 1:(nBest*nGens)
+idvs = cell(nBest,nGensBack);
+for idx = 1:(nBest*nGensBack)
     
-    [bestN, genN] = ind2sub([nBest, nGens], idx); 
+    [bestN, GenNBack] = ind2sub([nBest, nGensBack], idx); 
     
-    idvs{bestN,genN} = mlc.table.individuals( ...
-        mlc.population(genN).individuals( ...
+    idvs{bestN,GenNBack} = mlc.table.individuals( ...
+        mlc.population(genN(GenNBack)).individuals( ...
             goodIdxs(bestN)));
         
 end
 
 % Create parfor progress monitor
-pp = gcp();
+pp = gcp(); %#ok<NASGU>
 ppm = ParforProgMon(...
     sprintf('MLC_finalEval - %i idvs w/ %i cases @ %s: ', ...
         nBest, nCases, datestr(now,'HH:MM')), ...
     nBest*nCases, 1,1200,160);
 
 % Evaluate all the individuals, cases, and generations
-parfor idx = 1:(nBest*nCases*nGens)
+parfor idx = 1:(nBest*nCases*nGensBack)
     
-    [bestN, caseN, genN] = ind2sub([nBest, nCases, nGens], idx); 
+    [bestN, caseN, GenNBack] = ind2sub([nBest, nCases, nGensBack], idx); 
 
     % Comptue cost of individual 
-    [J(idx), simOut{idx}] = MLC_eval(...
-        idvs{bestN,genN}, MLC_params, [], [], caseN);
+    [~, simOut{idx}] = MLC_eval(...
+        idvs{bestN,GenNBack}, MLC_params, [], [], caseN); %#ok<PFBNS>
     
     % Close all Simulink system windows unconditionally
     bdclose('all')
@@ -146,40 +132,59 @@ end
 CF = struct('CF',-1, 'CF_Comp',MLC_params.badvalue, ...
     'CF_Vars',MLC_params.badvalue, 'CF_Freq',MLC_params.badvalue);
 
-CF(nBest,nGens) = CF;
-for genN = 1:nGens
+CF(nBest,nGensBack) = CF;
+for GenNBack = 1:nGensBack
     for bestN = 1:nBest
         % Check for bad simulations
         %   Missing simulations
         %   Bad value simulations
-        if any(cellfun( @isempty, simOut(bestN,:,genN) )) || ... 
+        if any(cellfun( @isempty, simOut(bestN,:,GenNBack) )) || ... 
                 any(cellfun(@(x)(x.CF >= MLC_params.badvalue), ...
-                    simOut(bestN,:,genN)))
+                    simOut(bestN,:,GenNBack)))
 
-            CF(bestN,genN).CF = MLC_params.badvalue;
-            CF(bestN,genN).CF_Comp = MLC_params.badvalue;
-            CF(bestN,genN).CF_Vars = MLC_params.badvalue;
-            CF(bestN,genN).CF_Freq = MLC_params.badvalue;
+            CF(bestN,GenNBack).CF = MLC_params.badvalue;
+            CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue;
+            CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue;
+            CF(bestN,GenNBack).CF_Freq = MLC_params.badvalue;
 
         else
             try
                 % Compute for good individuals
-                [CF(bestN,genN).CF, ...
-                    CF(bestN,genN).CF_Comp, ...
-                    CF(bestN,genN).CF_Vars, ...
-                    CF(bestN,genN).CF_Freq, ...
-                    ~, ~, ~] = ...
-                        fCostFunctionSimOut(simOut(bestN,:,genN), ...
-                            Challenge, ...
-                            fEvaluateMetrics(statsBase, ...
-                                fMetricVars(runCases, Challenge)));
+                [CF(bestN,GenNBack).CF, ...
+                    CF(bestN,GenNBack).CF_Comp, ...
+                    CF(bestN,GenNBack).CF_Vars, ...
+                    CF(bestN,GenNBack).CF_Freq, ...
+                    ~, ~, ~] = fCostFunctionSimOut(...
+                        simOut(bestN,:,GenNBack), ...
+                        Challenge, ...
+                        fEvaluateMetrics(statsBase, ...
+                            fMetricVars(runCases, Challenge)));
             catch
                 % Assume bad individual if something is wrong
-                CF(bestN,genN).CF = MLC_params.badvalue;
-                CF(bestN,genN).CF_Comp = MLC_params.badvalue;
-                CF(bestN,genN).CF_Vars = MLC_params.badvalue;
-                CF(bestN,genN).CF_Freq = MLC_params.badvalue;
+                CF(bestN,GenNBack).CF = MLC_params.badvalue;
+                CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue;
+                CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue;
+                CF(bestN,GenNBack).CF_Freq = MLC_params.badvalue;
             end
         end
     end
 end
+
+%% Plot aggregate metrics
+GenNBack = 1;
+
+pMetrics = fMetricVars(...
+    fReadCases(case_file), Challenge);
+
+folders = cell(nBest,2);
+folders(:) = '';
+folders(:,2) = arrayfun(@(tmp_idv)( sprintf( 'Gen %i - Idv %i', ...
+    genN(GenNBack),tmp_idv)),goodIdxs(1:nBest),...
+    'UniformOutput',false)';
+
+fCostFunctionPlot(...
+    [CF.CF], ...
+    reshape([CF.CF_Comp],nBest,length(CF(1).CF_Comp)), ...
+    reshape([CF.CF_Vars],nBest,nCases), ...
+    [CF.CF_Freq], ...
+    pMetrics, folders)
