@@ -134,7 +134,10 @@ else
     end
 end
 
-saveas(figure(666), fullfile(mlc.parameters.savedir,'convergence.png'))
+if mlc.parameters.saveincomplete
+    saveas(figure(666), ...
+        fullfile(mlc.parameters.savedir,'convergence.png'))
+end
 
 end
 
