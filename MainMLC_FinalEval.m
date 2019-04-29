@@ -202,16 +202,46 @@ for GenNBack = 1:nGensBack
     folders(:,2) = arrayfun(@(tmp_idv)( sprintf( 'Gen %i - Idv %i', ...
         genN(GenNBack),tmp_idv)),goodIdxs(1:nBest),...
         'UniformOutput',false)';
-
+    
+    % Extract costs
+    tmp_CF = [CF(:,GenNBack).CF];
+    tmp_CF_Comp = {CF(:,GenNBack).CF_Comp};
+    for k = 1:length(tmp_CF_Comp)
+        if length(tmp_CF_Comp{k})==1
+            tmp_CF_Comp{k} = ones(1,length(pMetrics.uComponents)) * ...
+                MLC_params.badvalue;
+        end
+    end
+    tmp_CF_Comp = cell2mat(tmp_CF_Comp');
+    tmp_CF_Vars = {CF(:,GenNBack).CF_Vars};
+    for k = 1:length(tmp_CF_Vars)
+        if length(tmp_CF_Vars{k})==1
+            tmp_CF_Vars{k} = ones(1,12) * ...
+                MLC_params.badvalue;
+        end
+    end
+    tmp_CF_Vars = cell2mat(tmp_CF_Vars');
+    tmp_CF_Freq = [CF(:,GenNBack).CF_Freq];
+    for k = 1:length(tmp_CF_Freq)
+        if length(tmp_CF_Freq{k})==1
+            tmp_CF_Freq{k} = struct('MRi',nan(12,10),'MAbs',nan(12,10));
+        end
+    end
+    
     fCostFunctionPlot(...
-        [CF(:,GenNBack).CF], ...
-        reshape([CF(:,GenNBack).CF_Comp], length(CF(1).CF_Comp), nBest)', ...
-        reshape([CF(:,GenNBack).CF_Vars], nCases, nBest)', ...
-        [CF(:,GenNBack).CF_Freq], ...
-        pMetrics, folders)
+        tmp_CF, ...
+        tmp_CF_Comp, ...
+        tmp_CF_Vars, ...
+        tmp_CF_Freq, ...
+        pMetrics, folders,'absVar')
     
 end
 
 %% Save results back to the file
-simOutSmall = cellfun(@(x)(rmfield(x,'Channels')), simOut);
+simOutSmall = simOut;
+for k = 1:numel(simOutSmall)
+    if isstruct(simOutSmall{k}) && isfield(simOutSmall{k},'Channels')
+        simOutSmall{k} = rmfield(simOutSmall{k},'Channels');
+    end
+end
 save(fName,'mlc','simOutSmall')
