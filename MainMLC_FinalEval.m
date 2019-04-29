@@ -242,6 +242,8 @@ for GenNBack = 1:nGensBack
         tmp_CF_Freq, ...
         pMetrics, folders,'absVar')
     
+    ylim([0 2]);
+    
 end
 
 %% Save results back to the file
