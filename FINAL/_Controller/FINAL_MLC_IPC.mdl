@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.934"
+    ComputedModelVersion    "1.935"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
@@ -114,9 +114,9 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [2562.0, 1407.0]
+	  Extents		  [3000.0, 2000.0]
 	  ZoomFactor		  [1.75]
-	  Offset		  [61.821428571428577, 170.14938287140427]
+	  Offset		  [61.821428571428555, 170.14938287140427]
 	}
 	Object {
 	  $ObjectID		  7
@@ -134,7 +134,7 @@ Model {
 	  LoadSaveID		  "6692"
 	  Extents		  [2562.0, 1407.0]
 	  ZoomFactor		  [0.8]
-	  Offset		  [-217.56617569915892, -86.024279170605269]
+	  Offset		  [-217.56617569915898, -86.024279170605269]
 	}
 	PropName		"EditorsInfo"
       }
@@ -170,9 +170,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "thisi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 29 16:10:22 2019"
-  RTWModifiedTimeStamp	  478453588
-  ModelVersionFormat	  "1.%<AutoIncrement:934>"
+  LastModifiedDate	  "Mon Apr 29 17:07:13 2019"
+  RTWModifiedTimeStamp	  478458033
+  ModelVersionFormat	  "1.%<AutoIncrement:935>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -2833,7 +2833,7 @@ Model {
 	  }
 	  System {
 	    Name		    "NREL 5MW Baseline Pitch Controller"
-	    Location		    [502, 98, 1833, 966]
+	    Location		    [117, 78, 1448, 946]
 	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    SetExecutionDomain	    off
@@ -2968,7 +2968,7 @@ Model {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"PI Anti-Windup with rate feedforward"
-		Location		[502, 98, 1833, 966]
+		Location		[117, 78, 1448, 946]
 		Open			on
 		PortBlocksUseCompactNotation off
 		SetExecutionDomain	off
@@ -8050,7 +8050,6 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "NREL Baseline Blade Pitch Control"
       SrcPort		      1
-      Points		      [0, 0]
       DstBlock		      "Bus\nCreator1"
       DstPort		      2
     }
@@ -8583,10 +8582,7 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = fcn(u) \n     y = [	(u(34) + (-0.142)); \n      		(((u(34) + (-1.231)) + (u(24) * my"
-      "_log(((my_log(((((my_div(cos(cos((-7.539))),cos((-7.539)))) - (u(5) + sin(6.23))) * cos((-6.317))) * (-1.601))) "
-      "* my_log((-0.04364))) * (-1.601))))) + (u(24) * my_log((((u(5) + (u(30) * (-7.418))) * (u(34) + (-2.662))) * (-1"
-      ".601))))); \n      		(u(34) + (-0.142))];"
+      script		      "function y = fcn(u) \ny = fCtrlExpr(u);"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
