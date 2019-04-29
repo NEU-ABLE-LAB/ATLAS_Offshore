@@ -38,8 +38,6 @@ mlc.parameters.problem_variables.RootOutputFolder = ...
 mlc.parameters.problem_variables.ctrlFolder = ...
     [pwd '/_Controller/']      ; % Location of Simulink files
 
-mlc.show_convergence
-
 MLC_params = mlc.parameters;
 
 %% Extract MLC problem variables specified when calling `MLC_cfg()`
@@ -69,10 +67,19 @@ nBest = min(nBest, length(goodIdxs));
 
 %% Display characteristics of best individuals
 
+% Plot convergence
+mlc.show_convergence
+set(gca,'yscale','linear')
+ylim([min(cellfun(@min,{mlc.population.costs})) 1.1])
+xticks(gca, 1:length(mlc.population));
+xticklabels( gca, cellfun( @(x,y)(sprintf('%s:%i',x,y)), ...
+    xticklabels(gca), {mlc.population.caseN}', 'UniformOutput',false))
+xtickangle(gca,90)
+
 % Extract control logic
-exprs = cell(nBest,1);
-fcnText = cell(nBest,1);
-for bestN = 1:nBest
+exprs = cell(length(goodIdxs),1);
+fcnText = cell(length(goodIdxs),1);
+for bestN = 1:length(goodIdxs)
     
     [exprs{bestN}, fcnText{bestN}] = MLC_exprs( mlc.table.individuals( ...
             mlc.population(genN(GenNBack)).individuals(goodIdxs(bestN))...
@@ -96,7 +103,7 @@ outListIdxs = cell2mat(outListIdxs);
 sensorIdxs = outListIdxs(:,MLC_params.problem_variables.sensorIdxs);
 
 % Plot sensor use statistics
-figure
+figure('windowstyle','docked')
 bar(mean(sensorIdxs));
 xticks(1:length(MLC_params.problem_variables.sensorIdxs));
 xticklabels(MLC_params.problem_variables.sensorNames)
