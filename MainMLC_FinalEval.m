@@ -6,7 +6,7 @@ dbstop if error
 
 % Parameters
 nBest = 8;
-nGensBack = 8;
+nGensBack = 5;
 
 %% Request MLC mat file
 [fName,fPath] = uigetfile;
@@ -55,7 +55,7 @@ statsBase = MLC_params.problem_variables.statsBase;
 
 totalGens = length(mlc.population);
 GenNBack = 1; % Indexed so 1 is the last generation 
-genN = @(tmp_nGensBack)(totalGens - tmp_nGensBack - 1);
+genN = @(tmp_nGensBack)(totalGens - tmp_nGensBack + 1);
 
 goodIdxs = find(...
     (mlc.population(genN(GenNBack)).costs > 0) & ...
@@ -280,6 +280,7 @@ for GenNBack = 1:nGensBack
         genN(GenNBack), ...
         mlc.population(genN(GenNBack)-1).caseN));
     xlabel('Case #')
+    ylim([0 2])
 end
 
 %% Save results back to the file
