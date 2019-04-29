@@ -4,8 +4,14 @@ clear all
 clc
 dbstop if error
 
+% Parameters
+nBest = 8;
+nGensBack = 8;
+
 %% Request MLC mat file
-fName = input('Please enter the path to the MLC mat file\n','s');
+[fName,fPath] = uigetfile;
+fName = fullfile(fPath,fName);
+
 assert(exist(fName,'file')>0, ...
     'MLC mat file does not exist on path');
 
@@ -48,7 +54,7 @@ Challenge = MLC_params.problem_variables.Challenge;
 statsBase = MLC_params.problem_variables.statsBase;
 
 %% Select best individuals
-nBest = 8;
+
 totalGens = length(mlc.population);
 GenNBack = 1; % Indexed so 1 is the last generation 
 genN = @(tmp_nGensBack)(totalGens - tmp_nGensBack - 1);
@@ -98,7 +104,6 @@ xtickangle(90)
 
 %% Compute full cost for best individuals
 
-nGensBack = 1;
 nCases = numel(MLC_params.problem_variables.runCases);
 simOut = cell(nBest,nCases,nGensBack);
 
@@ -118,9 +123,9 @@ end
 % Create parfor progress monitor
 pp = gcp(); 
 ppm = ParforProgMon(...
-    sprintf('MLC_finalEval - %i idvs w/ %i cases @ %s: ', ...
-        nBest, nCases, datestr(now,'HH:MM')), ...
-    nBest*nCases, 1,1200,160);
+    sprintf('MLC_finalEval - %i idvs w/ %i cases & %i gens@ %s: ', ...
+        nBest, nCases, nGensBack, datestr(now,'HH:MM')), ...
+    nBest*nCases*nGensBack, 1,1200,160);
 
 % Evaluate all the individuals, cases, and generations
 parfor idx = 1:(nBest*nCases*nGensBack)
@@ -130,7 +135,7 @@ parfor idx = 1:(nBest*nCases*nGensBack)
     % Comptue cost of individual 
     [~, simOut{idx}] = MLC_eval(...
         idvs{bestN,GenNBack}, MLC_params, [], [], caseN); %#ok<PFBNS>
-    
+
     % Close all Simulink system windows unconditionally
     bdclose('all')
     % Clean up worker repositories
@@ -187,23 +192,25 @@ for GenNBack = 1:nGensBack
 end
 
 %% Plot aggregate metrics
-GenNBack = 1;
-
 pMetrics = fMetricVars(...
-    fReadCases(case_file), Challenge);
+fReadCases(case_file), Challenge);
+    
+for GenNBack = 1:nGensBack
 
-folders = cell(nBest,2);
-folders(:) = '';
-folders(:,2) = arrayfun(@(tmp_idv)( sprintf( 'Gen %i - Idv %i', ...
-    genN(GenNBack),tmp_idv)),goodIdxs(1:nBest),...
-    'UniformOutput',false)';
+    folders = cell(nBest,2);
+    folders(:) = '';
+    folders(:,2) = arrayfun(@(tmp_idv)( sprintf( 'Gen %i - Idv %i', ...
+        genN(GenNBack),tmp_idv)),goodIdxs(1:nBest),...
+        'UniformOutput',false)';
 
-fCostFunctionPlot(...
-    [CF.CF], ...
-    reshape([CF.CF_Comp],length(CF(1).CF_Comp),nBest)', ...
-    reshape([CF.CF_Vars],nCases,nBest)', ...
-    [CF.CF_Freq], ...
-    pMetrics, folders)
+    fCostFunctionPlot(...
+        [CF(:,GenNBack).CF], ...
+        reshape([CF(:,GenNBack).CF_Comp], length(CF(1).CF_Comp), nBest)', ...
+        reshape([CF(:,GenNBack).CF_Vars], nCases, nBest)', ...
+        [CF(:,GenNBack).CF_Freq], ...
+        pMetrics, folders)
+    
+end
 
 %% Save results back to the file
 simOutSmall = cellfun(@(x)(rmfield(x,'Channels')), simOut);
