@@ -6,7 +6,7 @@ dbstop if error
 
 % Parameters
 nBest = 8;
-nGensBack = 8;
+nGensBack = 5;
 
 %% Request MLC mat file
 [fName,fPath] = uigetfile;
@@ -254,6 +254,8 @@ for genNBack = 1:nGensBack
         tmp_CF_Freq, ...
         pMetrics, folders,'absVar')
     
+    ylim([0 2]);
+    
 end
 
 %% Plot Comparison of each case
@@ -278,6 +280,7 @@ for genNBack = 1:nGensBack
         genN(genNBack), ...
         mlc.population(genN(genNBack)-1).caseN));
     xlabel('Case #')
+    ylim([0 2])
 end
 
 %% Print the best control logic
