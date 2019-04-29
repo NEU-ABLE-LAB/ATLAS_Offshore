@@ -155,6 +155,8 @@ parfor idx = 1:(nBest*nCases*nGensBack)
 end
 
 %% Compute aggregate evaluation of individual across all cases
+pMetrics = fMetricVars(...
+    fReadCases(case_file), Challenge);
 
 CF = struct('CF',-1, 'CF_Comp',MLC_params.badvalue, ...
     'CF_Vars',MLC_params.badvalue, 'CF_Freq',MLC_params.badvalue);
@@ -171,9 +173,15 @@ for GenNBack = 1:nGensBack
                     simOut(bestN,:,GenNBack)))
 
             CF(bestN,GenNBack).CF = MLC_params.badvalue;
-            CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue;
-            CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue;
-            CF(bestN,GenNBack).CF_Freq = MLC_params.badvalue;
+            
+            CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue * ...
+                ones(1,length(pMetrics.uComponents));
+            
+            CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue * ...
+                ones(1,length(pMetrics.VarsWeights));
+            
+            CF(bestN,GenNBack).CF_Freq = struct( ...
+                'MRi',nan(12,10), 'MAbs',nan(12,10));
 
         else
             try
@@ -190,17 +198,21 @@ for GenNBack = 1:nGensBack
             catch
                 % Assume bad individual if something is wrong
                 CF(bestN,GenNBack).CF = MLC_params.badvalue;
-                CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue;
-                CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue;
-                CF(bestN,GenNBack).CF_Freq = MLC_params.badvalue;
+
+                CF(bestN,GenNBack).CF_Comp = MLC_params.badvalue * ...
+                    ones(1,length(pMetrics.uComponents));
+
+                CF(bestN,GenNBack).CF_Vars = MLC_params.badvalue * ...
+                    ones(1,length(pMetrics.VarsWeights));
+
+                CF(bestN,GenNBack).CF_Freq = struct( ...
+                    'MRi',nan(12,10), 'MAbs',nan(12,10));
             end
         end
     end
 end
 
 %% Plot aggregate metrics
-pMetrics = fMetricVars(...
-fReadCases(case_file), Challenge);
     
 for GenNBack = 1:nGensBack
 
@@ -246,6 +258,30 @@ for GenNBack = 1:nGensBack
     
 end
 
+%% Plot Comparison of each case
+for GenNBack = 1:nGensBack
+    
+    figure('windowstyle','docked')
+    
+    tmp_CF = simOutSmall(:,:,GenNBack);
+    
+    for n = 1:numel(tmp_CF)
+        if isstruct(tmp_CF{n})
+            tmp_CF{n} = tmp_CF{n}.CF;
+        else
+            tmp_CF{n} = MLC_params.badvalue;
+        end
+    end
+    tmp_CF = cell2mat(tmp_CF);
+    
+    bar(tmp_CF')
+    
+    title(sprintf('Performance on Cases: Gen %i from Case %', ...
+        genN(GenNBack), ...
+        mlc.population(genN(GenNBack)-1).caseN));
+    xlabel('Case #')
+end
+
 %% Save results back to the file
 simOutSmall = simOut;
 for k = 1:numel(simOutSmall)
@@ -253,4 +289,4 @@ for k = 1:numel(simOutSmall)
         simOutSmall{k} = rmfield(simOutSmall{k},'Channels');
     end
 end
-save(fName,'mlc','simOutSmall')
+save(fName,'mlc','simOutSmall','CF')
