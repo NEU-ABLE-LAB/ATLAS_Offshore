@@ -29,7 +29,7 @@ function mlc=go(mlc,ngen,figs)
 try
     rng('shuffle'); % Official recommanded seed shuffling
 catch %% take into account versions problems
-    rand('seed',sum(100*clock)); % Old school deprecated seed shuffling
+    rand('seed',sum(100*clock)); %#ok<RAND> % Old school deprecated seed shuffling
 end
 
 %% Solve the problem

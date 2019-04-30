@@ -44,7 +44,7 @@ i=1;
                 [mlcpop,mlctable,i]=fill_creation(mlcpop,mlctable,changed_param,indiv_to_generate(1:n(j)+round((n(j+1)-n(j))/2)),i,1,verb);
                 [mlcpop,mlctable,i]=fill_creation(mlcpop,mlctable,changed_param,indiv_to_generate(1:n(j+1)),i,3,verb);
             end
-            save('MLC_out.mat','mlcpop','mlctable');
+            save('MLC_ipop.mat','mlcpop','mlctable');
     end
     
 end

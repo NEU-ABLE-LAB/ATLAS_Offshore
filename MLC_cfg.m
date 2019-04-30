@@ -13,7 +13,7 @@ function pMLC = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 sensorNames = { ...
     ... VARIABLES USED IN DEFAULT PID CONTROLLER
     'RotSpeed'  % Rotor azimuth angular speed	About the xa- and xs-axes	(rpm)
-    'GenSpeed'  % Angular speed of the high-speed shaft and generator	Same sign as LSSGagVxa / LSSGagVxs / LSSGagV	(rpm)
+    'Azimuth'   % Rotor azimuth (deg). Replacing `GenSpeed` in the origional MLC. 
     'BldPitch1' % Blade 1 pitch angle (position)	Positive towards feather about the minus zc1- and minus zb1-axes	(deg)
     'BldPitch2' % Blade 2 pitch angle (position)	Positive towards feather about the minus zc2- and minus zb2-axes	(deg)
     'BldPitch3' % Blade 3 pitch angle (position)	Positive towards feather about the minus zc3- and minus zb3-axes	(deg)
@@ -132,8 +132,8 @@ pMLC.mutation_types=1:4;       % (array)[1:4]
 %% Optimization parameters     % (data type)[default] Description
 pMLC.elitism=10;                  %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
 pMLC.probrep=0.1;                 %*(num)[0.1]$P_r$ Probability of replication
-pMLC.probmut=0.4;                 %*(num)[0.4]$P_m$ Probability of mutation
-pMLC.probcro=0.5;                 %*(num)[0.5]$P_c$ Probability of crossover
+pMLC.probmut=0.5;                 %*(num)[0.4]$P_m$ Probability of mutation
+pMLC.probcro=0.4;                 %*(num)[0.5]$P_c$ Probability of crossover
 pMLC.selectionmethod='tournament';% (str)['tournament'] The only acceptable type is 'tournament'
 pMLC.tournamentsize=7;            % (num)[7]$N_p$ The number of individuals that enter the tournament
 pMLC.lookforduplicates=1;         % (bool)(1) Remove (strict) duplicates 

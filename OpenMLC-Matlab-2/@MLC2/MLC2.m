@@ -73,14 +73,6 @@ classdef MLC2 < handle
             obj.parameters.opset=opset(obj.parameters.opsetrange);
             obj.version=vers;
             
-            
-            
-            
-            
-            
-            
-            
-            
         end
     end
 end

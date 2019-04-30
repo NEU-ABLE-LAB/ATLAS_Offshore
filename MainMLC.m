@@ -81,10 +81,10 @@ MLC_params = MLC_cfg(runCases ,sysMdl, ctrlMdl, hSetControllerParameter, ...
 %% Run MLC
 
 % Create a MLC object
-% mlc=MLC2(MLC_params); 
+mlc=MLC2(MLC_params); 
 
 % Restart previous MLC
-load('save_GP/20190426-0056/20190427_105749mlc_ae_NEW_SAVE_LOC.mat');
+% load('save_GP/20190426-0056/20190427_105749mlc_ae_NEW_SAVE_LOC.mat');
                       
 % Launch GP for 50 generations and displays the best individual if
 % implemented in the evaluation function at the end of each generation
