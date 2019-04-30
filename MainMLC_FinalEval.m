@@ -6,7 +6,7 @@ dbstop if error
 
 % Parameters
 nBest = 8;
-nGensBack = 5;
+nGensBack = 6;
 
 %% Request MLC mat file
 [fName,fPath] = uigetfile;
@@ -263,7 +263,7 @@ for GenNBack = 1:nGensBack
     
     figure('windowstyle','docked')
     
-    tmp_CF = simOutSmall(:,:,GenNBack);
+    tmp_CF = simOut(:,:,GenNBack);
     
     for n = 1:numel(tmp_CF)
         if isstruct(tmp_CF{n})
