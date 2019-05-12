@@ -6,7 +6,7 @@ dbstop if error
 
 % Parameters
 nBest = 8;
-nGensBack = 6;
+nGensBack = 4;
 
 %% Request MLC mat file
 [fName,fPath] = uigetfile;
@@ -240,10 +240,12 @@ for genNBack = 1:nGensBack
         end
     end
     tmp_CF_Vars = cell2mat(tmp_CF_Vars');
-    tmp_CF_Freq = [CF(:,genNBack).CF_Freq];
+    tmp_CF_Freq = cell(size(CF(:,genNBack)));
     for k = 1:length(tmp_CF_Freq)
         if length(tmp_CF_Freq{k})==1
             tmp_CF_Freq{k} = struct('MRi',nan(12,10),'MAbs',nan(12,10));
+        else
+            tmp_CF_Freq{k} = CF(k,genNBack).CF_Freq;
         end
     end
     
