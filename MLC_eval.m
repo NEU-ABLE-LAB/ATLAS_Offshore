@@ -62,7 +62,7 @@ try
     
     % Get `Fcn` block handle
     hb = find(slroot, '-isa', 'Stateflow.EMChart', 'Path', ...
-        sprintf('%s/MLC_IPC/control_law', tmpSysMdl) );
+       sprintf('%s/MLC_IPC/control_law', tmpSysMdl) );
 
 	% Insert the expressions into the model    	
 	hb.Script = fcnText;

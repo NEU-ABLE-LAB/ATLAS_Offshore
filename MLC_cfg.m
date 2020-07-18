@@ -168,11 +168,11 @@ end
 
 % Load baseline data
 disp('Loading baseline data')
-baselineResults = load([BaselineFolder 'baselineResults.mat'],'simOut');
+baselineResults = load([BaselineFolder 'BaselineSimout.mat'],'simOut');
 disp('Baseline data loaded')
 
 % Baseline signals and normalizations
-sensors = baselineResults.simOut(1).Channels(:, ...
+sensors = baselineResults.simOut{1}.Channels(:, ...
     cellfun(@(x)(outListIdx.(x)),fieldnames(outListIdx)));
 sensorsMean = mean(sensors);
 sensorsDetrendRMS = rms(sensors - sensorsMean);
