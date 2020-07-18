@@ -1,7 +1,15 @@
 %% MLC_preeval Pre-evaluation of individual to determine validity
 function isValid = MLC_preeval(ind, MLC_params)
+clc
+clear
+load('TO_PREEVAL')
+
+
 
 isValid = false;
+
+
+
 
 try
     %% Extract MLC problem variables specified when calling `MLC_cfg()`
