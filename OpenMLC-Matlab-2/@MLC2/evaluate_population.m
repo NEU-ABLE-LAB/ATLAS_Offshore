@@ -97,11 +97,3 @@ function mlc=evaluate_population(mlc,n)
         mean( mlc.population(n).costs( ...
             1:round(end*mlc.parameters.probrep*2) ) );
     
-
-
-
-
-
-
-
-

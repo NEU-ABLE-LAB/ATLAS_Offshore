@@ -53,8 +53,8 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
                     ngen, mlcpop.caseN, (nidx-istart+1), datestr(now,'HH:MM')), ...
                 (nidx-istart+1), 1,1200,160);
             
-            parfor i=istart:nidx
-                               
+            %parfor i=istart:nidx
+            for i=istart:nidx                  
                 if verb>3
                     fprintf('Individual %i from generation %i\n',...
                         eval_idx(i),ngen)

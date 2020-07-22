@@ -15,7 +15,7 @@ switch mlc_parameters.evaluation_method
                 n_indiv_to_generate, datestr(now,'HH:MM') ), ...
             n_indiv_to_generate, 1,1200,160);
         
-        for (newIdvN = 1:n_indiv_to_generate)
+        parfor (newIdvN = 1:n_indiv_to_generate)
             
             isOk = false;
             nTries = 0;

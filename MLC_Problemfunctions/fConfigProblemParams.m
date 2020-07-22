@@ -3,6 +3,9 @@ function Parameters = fConfigProblemParams()
 %% Sensor Information
 % outList is the list of all outputs in the outdata signal
 Parameters.outListIdx = fGetOutList();
+Parameters.nStates = 3; % number of allowable states to the controler
+
+
 
 %   List of sensors in outdata that the GP will be able to use 
 %   Comment out unused sensors
@@ -50,6 +53,12 @@ Parameters.nSensors = length(Parameters.sensorNames);
 % Convert index in sensorNames to index in outList, gives signal number of
 % each of the sensors in sensorNames
 Parameters.sensorIdxs = cellfun(@(x)(Parameters.outListIdx.(x)), Parameters.sensorNames);
+for j = 1 : Parameters.nStates
+   %for each state append the input number
+   Parameters.sensorIdxs(Parameters.nSensors + j) = length(fieldnames(Parameters.outListIdx)) + j;
+   %allows MLC2FAST to correctly identify state variables 
+end    
+
 
 %% Baseline Signal Information 
 % Baseline signals and normalizations
@@ -64,16 +73,27 @@ Parameters.BaselineDetrendRMS = rms(Parameters.BaselineSimout - Parameters.Basel
 
 % Baseline Stats
 Parameters.Challenge = 'Offshore'                 ; % 'Offshore' or 'Onshore', important for cost function
+
 case_file = 'Cases.csv';
 CasesBase = fReadCases(case_file); % DLC Cases
+Parameters.runCases = CasesBase.Names;
+
 pMetricsBC = fMetricVars(CasesBase, Parameters.Challenge); % Parameters for the metrics computation
 
 % Compute folder stats and spectra - or load them from a file
 PreProFile=  ['PrePro_Offshore.mat'];
 Parameters.statsBase = load(PreProFile);
 
+
  %% Other Information
 
- Parameters.nStates = 3; % number of allowable states to the controler 
+ 
+
+ %Path to FAST_Par
+ Parameters.FastPath = 'C:\Users\James\Documents\GitHub\ATLAS_FAST-par';   % Fast_Par
+ Parameters.MLCPath = pwd;
+ 
+ 
+ 
  
 end 
