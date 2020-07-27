@@ -9,6 +9,7 @@ dbstop if error
 addpath(pwd)
 addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
 addpath(genpath([pwd,'/MLC_Problemfunctions'])); % functions related to the turbine problem 
+addpath(genpath([pwd,'/ParforProgMon'])); % Parfor progress monitor 
 
 %% Configure Problem Parameters
 
