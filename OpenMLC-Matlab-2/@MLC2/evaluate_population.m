@@ -92,8 +92,12 @@ function mlc=evaluate_population(mlc,n)
     end
     mlc.population(n).state='evaluated';
         
-    %% Update case difficulty
+    %% Update case difficulty, specific to this analysis
+    %Update case dificulty for this case
     mlc.table.caseDifficulty( mlc.population(n).caseN ) = ...
-        mean( mlc.population(n).costs( ...
-            1:round(end*mlc.parameters.probrep*2) ) );
+        mean( mlc.population(n).costs(1:round(end*mlc.parameters.probrep*2)));
+   
+    
+        
+end        
     

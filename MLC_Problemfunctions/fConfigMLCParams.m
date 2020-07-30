@@ -1,6 +1,6 @@
 function [MLC_Params] = fConfigMLCParams(problem_variables)
 %% GP problem parameters            % (data type)[default] Description
-MLC_Params.size=50;                 %*(num)[1000]$N_i$ Population size
+
 MLC_Params.sensors=...              %*(num)[1]$N_s$ Number of sensors               outlist sensors +3 states
     problem_variables.nSensors + problem_variables.nStates;
 MLC_Params.sensor_spec=0;           % ?(bool)[0] Is a sensor list provided
@@ -67,8 +67,7 @@ MLC_Params.evaluation_method=...        %*(str)['mfile_standalone'] Evaluation m
 MLC_Params.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
     'MLC_eval';                   %   `J=evalFun(ind,mlc_parameters,i,fig)`
 MLC_Params.nCases=12;                   %*(num)[1] The number different design cases that a population could be subjected to
-MLC_Params.ev_again_best=1;             %*(bool)[0] Should elite individuals be reevaluated
-MLC_Params.ev_again_nb=5;               % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
+
 MLC_Params.ev_again_times=1;            % ?(num)[5] The number of times to reevaluate best individuals
 MLC_Params.execute_before_evaluation='';% (expr)[''] A Matlab expression to be evaluated with `eval()` before evaluation.
 MLC_Params.badvalue=1000;               %*(num)[1E36] The value to return when `evaluation_function` determines the controller is 'bad'

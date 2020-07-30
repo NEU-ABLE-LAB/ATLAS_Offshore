@@ -40,47 +40,14 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
             end
             
         case 'mfile_multi'
-            
-            %commented out stuff shoul be able to be ha
+            if mlcpop.gen <= 12
+                mlcpop.caseN = mlcpop.gen;
+            end
+                       
             eval(['heval=@' mlc_parameters.evaluation_function ';']);
-            f=heval;
-            
-%             nidx=length(eval_idx);
-%             parForIndvs = mlctable.individuals;
-%             
-%             pp = gcp();
-%             ppm = ParforProgMon(...
-%                 sprintf('MLCpop.evaluate - gen %i, case %i, w/ %i idvs @ %s : ', ...
-%                     ngen, mlcpop.caseN, (nidx-istart+1), datestr(now,'HH:MM')), ...
-%                 (nidx-istart+1), 1,1200,160);
-%             
-%             %parfor i=istart:nidx
-%             for i=istart:nidx                  
-%                 if verb>3
-%                     fprintf('Individual %i from generation %i\n',...
-%                         eval_idx(i),ngen)
-%                 end
-%                 if verb>4
-%                     fprintf('%s\n',...
-%                         parForIndvs(idv_to_evaluate(i)).value)
-%                 end
-%                 
-%                 %retrieve object in the table
-%                 m=parForIndvs(idv_to_evaluate(i));
+            f=heval;  
+            JJ =feval(f,mlctable.individuals(idv_to_evaluate),mlc_parameters,mlcpop.caseN);
                 
-                  JJ =feval(f,mlctable.individuals(idv_to_evaluate),mlc_parameters,mlcpop.caseN);
-                
-%                 ppm.increment();
-%                 
-%             end
-%             
-%             % Clean up temporary Simulink files
-%             % Close all Simulink system windows unconditionally
-%             bdclose('all')
-%             % Clean up worker repositories
-%             Simulink.sdi.cleanupWorkerResources
-%             % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
-%             parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
             
         case 'mfile_standalone'
         

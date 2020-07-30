@@ -29,7 +29,7 @@ tmpSysMdl = split(tmpDir,filesep);
 tmpSysMdl = tmpSysMdl{end};
 
 try
-    copyfile(['C:\Users\James\Documents\GitHub\ATLAS_Offshore\MLC_Problemfunctions\Files\MLC_PreEval.mdl'], ['./' tmpSysMdl '.mdl']);
+    copyfile([MLC_params.problem_variables.MLCPath '\MLC_Problemfunctions\Files\MLC_PreEval.mdl'], ['./' tmpSysMdl '.mdl']);
 catch e
     warning('Could not find system model file to copy, check Main_par where the system model is defined and make sure the system model is in the correct folder')
     rethrow(e);

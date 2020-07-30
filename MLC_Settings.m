@@ -13,29 +13,33 @@ addpath(genpath([pwd,'/ParforProgMon'])); % Parfor progress monitor
 
 %% Configure Problem Parameters
 
+%--- General Parameters
 % Problem based parameters can be changed within the config function below:
 problem_variables = fConfigProblemParams();
 
+%--- Path Info
+%Path to FAST_Par
+problem_variables.FastPath = 'D:\Documents\GitHub\ATLAS_FAST-par';   % Fast_Par
+problem_variables.MLCPath = pwd;
 
 %% Configure MLC Parameters
 
+%--- General Parameters
 % MLC parameters can be changed within the config function below:
 MLC_Params = fConfigMLCParams(problem_variables);
 
-%% Test MLC
+%--- Generations and Population
+MLC_Params.size = 20;                  %*(num)[1000]$N_i$ Population size
+Ngens = 20;                            % number of generations to evaluate and evolve
 
-% ind = struct('formal',{{'S0*0','2*S1*0','2*0'}});
+MLC_Params.ev_again_best = 0;          %*(bool)[0] Should elite individuals be reevaluated
+MLC_Params.ev_again_nb = 1;            % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
 
-% isValid = MLC_preeval(ind, MLC_params);
-% if isValid
-%     disp('Valid')
-% end
+MLC_Params.elitism = 1;                %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
 
-% parfor k = 1
-%     J = MLC_eval(ind,MLC_params);
-% end
+%--- Evaluation
 
-% simOut = MLC_evalAll(ind,MLC_params);
+
 
 %% Machine Learning Control
 
@@ -46,7 +50,5 @@ mlc=MLC2(MLC_Params);
 fname = [mlc.parameters.savedir,'\',datestr(now,'YYYYmmDD-HHMMSS'),'_MLC_TEST_SETTINGS'];
 save(fname,'mlc')
                       
-% Launch GP for 50 generations and displays the best individual if
-% implemented in the evaluation function at the end of each generation
-% evaluation
-mlc.go(10,3)
+% Launch GP 
+ mlc.go(Ngens,3)

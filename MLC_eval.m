@@ -12,9 +12,9 @@ function costs = MLC_eval(ind, MLC_params, caseN)
     for ii = 1 : length(ind)
         [~,fcnText{ii}] = MLC_MLC2Fast(ind(ii).formal, MLC_params);
     end
-    
+       
     if ~(exist('caseN','var') && ~isempty(caseN))
-        % Chose a random case
+        % something may have went wrong, chose a random case
         caseN = randi(12); 
     end
     

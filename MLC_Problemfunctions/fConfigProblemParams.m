@@ -84,16 +84,4 @@ pMetricsBC = fMetricVars(CasesBase, Parameters.Challenge); % Parameters for the 
 PreProFile=  ['PrePro_Offshore.mat'];
 Parameters.statsBase = load(PreProFile);
 
-
- %% Other Information
-
- 
-
- %Path to FAST_Par
- Parameters.FastPath = 'C:\Users\James\Documents\GitHub\ATLAS_FAST-par';   % Fast_Par
- Parameters.MLCPath = pwd;
- 
- 
- 
- 
 end 
