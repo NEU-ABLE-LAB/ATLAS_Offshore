@@ -40,10 +40,14 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
             end
             
         case 'mfile_multi'
-            if mlcpop.gen <= 12
-                mlcpop.caseN = mlcpop.gen;
+            %select load case to run
+            switch mlc_parameters.problem_variables.eval_type  
+                case 'case_difficulty'
+                    [~,mlcpop.caseN] = max(mlc_parameters.problem_variables.caseDifficulty);
+                case 'ind_random'
+                    mlcpop.caseN = 'random'
             end
-                       
+            
             eval(['heval=@' mlc_parameters.evaluation_function ';']);
             f=heval;  
             JJ =feval(f,mlctable.individuals(idv_to_evaluate),mlc_parameters,mlcpop.caseN);

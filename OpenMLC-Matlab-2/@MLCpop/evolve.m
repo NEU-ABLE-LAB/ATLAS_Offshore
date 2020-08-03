@@ -4,9 +4,7 @@ function [mlcpop2,mlctable]=evolve(mlcpop,mlc_parameters,mlctable,mlcpop2)
     verb=mlc_parameters.verbose;
 	
     if nargin<4
-        % Find the hardest case to test the generation on
-        [~,caseN] = max(mlctable.caseDifficulty);
-    
+        caseN = 1;
         % Initialize the next generation
         mlcpop2=MLCpop(mlc_parameters,ngen+1,caseN);
     end

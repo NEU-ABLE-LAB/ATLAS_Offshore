@@ -22,12 +22,6 @@ classdef MLCtable < handle
             obj.hashlist=zeros(1,Nind);
             obj.costlist=zeros(1,Nind);
             obj.number=0;
-            if exist('mlc_parameters','var') && ~isempty(mlc_parameters)
-                obj.caseDifficulty = ...
-                    ones(mlc_parameters.nCases,1) * mlc_parameters.badvalue;
-            else 
-                obj.caseDifficulty=10^36;
-            end
         end
     end
 end

@@ -5,17 +5,12 @@
 %       MLC_params - mlc.parameters
 %       caseN - load case to run
 %
-function costs = MLC_eval(ind, MLC_params, caseN)
+function costs = MLC_eval(ind, MLC_params, MLC_Runcase)
     fcnText = cell(1, length(ind));
     costs = zeros(1, length(ind));
     
     for ii = 1 : length(ind)
         [~,fcnText{ii}] = MLC_MLC2Fast(ind(ii).formal, MLC_params);
-    end
-       
-    if ~(exist('caseN','var') && ~isempty(caseN))
-        % something may have went wrong, chose a random case
-        caseN = randi(12); 
     end
     
     cd(MLC_params.problem_variables.FastPath)
