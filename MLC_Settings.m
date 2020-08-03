@@ -37,7 +37,6 @@ MLC_Params = fConfigMLCParams(problem_variables);
 
     MLC_Params.elitism = 0;                %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
 
-
 %--- Evaluation
     MLC_Params.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
         'MLC_eval';                         %   `J=evalFun(ind,mlc_parameters,i,fig)`
