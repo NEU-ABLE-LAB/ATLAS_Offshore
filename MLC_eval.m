@@ -5,9 +5,11 @@
 %       MLC_params - mlc.parameters
 %       caseN - load case to run
 %
-function costs = MLC_eval(ind, MLC_params, MLC_Runcase)
+function [costs, caseNout] = MLC_eval(ind, MLC_params,MLC_Runcase)
+    
     fcnText = cell(1, length(ind));
     costs = zeros(1, length(ind));
+    caseNout = cell(1, length(ind));
     
     for ii = 1 : length(ind)
         [~,fcnText{ii}] = MLC_MLC2Fast(ind(ii).formal, MLC_params);
@@ -25,5 +27,8 @@ function costs = MLC_eval(ind, MLC_params, MLC_Runcase)
     
     for ii = 1 : length(ind)
         costs(ii) = CF(ii).CF;
+        caseNout{ii} = simOut{1,ii}.runCase;
     end
+    
+    
 end

@@ -70,6 +70,7 @@ classdef MLCind < handle
         formal
         complexity
         comment
+        load_cases
     end
     
     methods

@@ -34,9 +34,31 @@ if any(contains(exprs,'$'))
 end
 
 %% Create string to write to the script file
+%prealocate, nessesary for simulink to identify signal sizes
+fcnText = sprintf('Thetaout = [0;0;0]; \n');
+
+%x0
+fcnText = sprintf('%sX0 = [', fcnText);
+for exprN = 1:nStates
+    fcnText = sprintf('%s0', fcnText);
+    if exprN ~= nStates
+        fcnText = sprintf('%s; ',fcnText);
+    end
+end
+fcnText = sprintf('%s]; \n', fcnText);
+
+%xdot
+fcnText = sprintf('%sXdot = [', fcnText);
+for exprN = 1:nStates
+    fcnText = sprintf('%s0', fcnText);
+    if exprN ~= nStates
+        fcnText = sprintf('%s; ',fcnText);
+    end
+end
+fcnText = sprintf('%s]; \n', fcnText);
 
 %Combine outdata and X into one vector 
-fcnText = sprintf('u = [OutData; X]; \n');
+fcnText = sprintf('%su = [OutData; X]; \n', fcnText);
 
 %Control laws
 fcnText = sprintf('%sy = [', fcnText);
@@ -57,36 +79,17 @@ for exprN = 1:length(exprs)
 
 end	
 fcnText = sprintf('%s]; \n', fcnText);
-%thetaout
-fcnText = sprintf('%sThetaout = y(1:3); \n', fcnText);
 
-%x0
-fcnText = sprintf('%sX0 = [', fcnText);
-for exprN = 1:nStates
-    fcnText = sprintf('%s0', fcnText);
-    if exprN ~= nStates
-        fcnText = sprintf('%s; ',fcnText);
-    end
-end
-fcnText = sprintf('%s]; \n', fcnText);
+%thetaout
+fcnText = sprintf('%sThetaout(1) = y(1); \n', fcnText);
+fcnText = sprintf('%sThetaout(2) = y(2); \n', fcnText);
+fcnText = sprintf('%sThetaout(3) = y(3); \n', fcnText);
 
 %xdot
-fcnText = sprintf('%sXdot = [', fcnText);
+
 for exprN = 1: nStates
-
-    if exprN ~= 1
-        fcnText = sprintf('%s\t', ...
-            fcnText);
-    end
-
-    fcnText = sprintf('%s\ty(%i)', ...
-        fcnText, exprN + 3);
-
-    if exprN ~= nStates
-        fcnText = sprintf('%s; \n ',...
-            fcnText);
-    end
+    fcnText = sprintf('%sXdot(%i) = y(%i); \n', fcnText, exprN, exprN + 3);
 end
-fcnText = sprintf('%s];', fcnText);
+
 
 end

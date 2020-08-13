@@ -43,7 +43,7 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1088"
+    ComputedModelVersion    "1.1089"
     NumModelReferences	    0
     NumTestPointedSignals   2
     TestPointedSignal {
@@ -104,7 +104,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-8.0, -8.0, 1936.0, 1096.0]
+      Location		      [-7.0, 0.0, 974.0, 1087.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -128,27 +128,15 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1882.0, 915.0]
-	ZoomFactor		[0.8]
-	Offset			[-38.54549270251573, -116.3666704438981]
+	Extents			[920.0, 906.0]
+	ZoomFactor		[3.0]
+	Offset			[541.55453527932912, 280.63555454829384]
       }
       Array {
 	Type			"Simulink.DockComponentInfo"
 	Dimension		2
 	Object {
 	  $ObjectID		  6
-	  Type			  "GLUE2:PropertyInspector"
-	  ID			  "Property Inspector"
-	  Visible		  [0]
-	  CreateCallback	  ""
-	  UserData		  ""
-	  Floating		  [0]
-	  DockPosition		  "Right"
-	  Width			  [640]
-	  Height		  [480]
-	}
-	Object {
-	  $ObjectID		  7
 	  Type			  "GLUE2:SpreadSheet"
 	  ID			  "ModelData"
 	  Visible		  [0]
@@ -159,6 +147,18 @@ Model {
 	  Width			  [640]
 	  Height		  [480]
 	}
+	Object {
+	  $ObjectID		  7
+	  Type			  "GLUE2:PropertyInspector"
+	  ID			  "Property Inspector"
+	  Visible		  [0]
+	  CreateCallback	  ""
+	  UserData		  ""
+	  Floating		  [0]
+	  DockPosition		  "Right"
+	  Width			  [640]
+	  Height		  [480]
+	}
 	PropName		"DockComponentsInfo"
       }
       WindowState	      "AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAAA/sAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAA"
@@ -166,7 +166,7 @@ Model {
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
       "QBjAHQAbwByAAAAAAD/////AAAAOQD///8AAAADAAAIKwAAAcD8AQAAAAH7AAAANgBHAEwAVQBFADIAOgBTAHAAcgBlAGEAZABTAGgAZQBlAHQAL"
-      "wBNAG8AZABlAGwARABhAHQAYQAAAAAAAAAIKwAAARoA////AAAHgAAAA8wAAAABAAAAAgAAAAEAAAAC/AAAAAEAAAACAAAAD/////8AAAAAAP///"
+      "wBNAG8AZABlAGwARABhAHQAYQAAAAAAAAAIKwAAARoA////AAADvgAAA8MAAAABAAAAAgAAAAEAAAAC/AAAAAEAAAACAAAAD/////8AAAAAAP///"
       "/8AAAAAAAAAAP////8BAAAAAP////8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8AAAAAAP///"
       "/8AAAAAAAAAAP////8BAAAAef////8AAAAAAAAAAP////8BAAAA2v////8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8BAAABU////"
       "/8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8AAAAAAP////8AAAAAAAAAAP////8BAAAC/f///"
@@ -180,9 +180,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "James"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Jul 19 15:38:32 2020"
-  RTWModifiedTimeStamp	  517073036
-  ModelVersionFormat	  "1.%<AutoIncrement:1088>"
+  LastModifiedDate	  "Tue Aug 11 22:53:02 2020"
+  RTWModifiedTimeStamp	  519087162
+  ModelVersionFormat	  "1.%<AutoIncrement:1089>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -2285,7 +2285,7 @@ Model {
   }
   System {
     Name		    "MLC_PreEval"
-    Location		    [-8, -8, 1928, 1088]
+    Location		    [-7, 0, 967, 1087]
     Open		    on
     PortBlocksUseCompactNotation off
     SetExecutionDomain	    off
@@ -2300,9 +2300,9 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "80"
+    ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "9294"
+    SIDHighWatermark	    "9295"
     Block {
       BlockType		      Inport
       Name		      "OutData"
@@ -3760,11 +3760,12 @@ Model {
       BlockType		      Integrator
       Name		      "Integrator"
       SID		      "9294"
-      Ports		      [2, 1]
-      Position		      [735, 404, 770, 446]
+      Ports		      [2, 1, 0, 0, 1]
+      Position		      [735, 434, 770, 476]
       ZOrder		      701
       BlockMirror	      on
       InitialConditionSource  "external"
+      ShowStatePort	      on
     }
     Block {
       BlockType		      Product
@@ -4802,6 +4803,14 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
+      BlockType		      Terminator
+      Name		      "Terminator"
+      SID		      "9295"
+      Position		      [690, 445, 710, 465]
+      ZOrder		      702
+      BlockMirror	      on
+    }
+    Block {
       BlockType		      Outport
       Name		      "theta_c "
       SID		      "7331"
@@ -5045,12 +5054,11 @@ Model {
       DstPort		      2
     }
     Line {
-      ZOrder		      1270
+      ZOrder		      1282
       SrcBlock		      "Integrator"
       SrcPort		      1
-      Points		      [-75, 0]
-      DstBlock		      "Control_Law"
-      DstPort		      2
+      DstBlock		      "Terminator"
+      DstPort		      1
     }
     Line {
       Name		      "theta_c"
@@ -5065,7 +5073,7 @@ Model {
       ZOrder		      1272
       SrcBlock		      "Control_Law"
       SrcPort		      2
-      Points		      [37, 0; 0, 95]
+      Points		      [37, 0; 0, 125]
       DstBlock		      "Integrator"
       DstPort		      2
     }
@@ -5073,7 +5081,7 @@ Model {
       ZOrder		      1273
       SrcBlock		      "Control_Law"
       SrcPort		      3
-      Points		      [19, 0; 0, 50]
+      Points		      [19, 0; 0, 80]
       DstBlock		      "Integrator"
       DstPort		      1
     }
@@ -5083,6 +5091,14 @@ Model {
       SrcPort		      1
       DstBlock		      "Control_Law"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      1281
+      SrcBlock		      "Integrator"
+      SrcPort		      state
+      Points		      [0, -17; -95, 0]
+      DstBlock		      "Control_Law"
+      DstPort		      2
     }
   }
 }

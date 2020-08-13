@@ -45,12 +45,12 @@ function [mlcpop,mlctable]=evaluate( mlcpop, mlctable, ...
                 case 'case_difficulty'
                     [~,mlcpop.caseN] = max(mlc_parameters.problem_variables.caseDifficulty);
                 case 'ind_random'
-                    mlcpop.caseN = 'random'
+                    mlcpop.caseN = 'random';
             end
             
             eval(['heval=@' mlc_parameters.evaluation_function ';']);
             f=heval;  
-            JJ =feval(f,mlctable.individuals(idv_to_evaluate),mlc_parameters,mlcpop.caseN);
+            [JJ, mlcpop.caseN] =feval(f,mlctable.individuals(idv_to_evaluate),mlc_parameters,mlcpop.caseN);
                 
             
         case 'mfile_standalone'

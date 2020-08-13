@@ -1,11 +1,9 @@
 function [MLC_Params] = fConfigMLCParams(problem_variables)
 %% GP problem parameters            % (data type)[default] Description
 
-MLC_Params.sensors=...              %*(num)[1]$N_s$ Number of sensors               outlist sensors +3 states
-    problem_variables.nSensors + problem_variables.nStates;
+
 MLC_Params.sensor_spec=0;           % ?(bool)[0] Is a sensor list provided
-MLC_Params.controls= ...            %*(num)[1]$N_b$ Number of controls             
-    3 + problem_variables.nStates;  
+  
 MLC_Params.sensor_prob=0.33;        % (num)[0.33] Probability of adding a sensor (vs constant) when creating leaf
 MLC_Params.leaf_prob=0.3;           % (num)[0.3] Probability of creating a leaf (vs adding operation) 
 MLC_Params.range=10;                %*(num)[10] New constants in GP will be drawn from +/- this range

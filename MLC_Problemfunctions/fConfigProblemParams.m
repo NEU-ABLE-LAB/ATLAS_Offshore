@@ -3,7 +3,7 @@ function Parameters = fConfigProblemParams()
 %% Sensor Information
 % outList is the list of all outputs in the outdata signal
 Parameters.outListIdx = fGetOutList();
-Parameters.nStates = 3; % number of allowable states to the controler
+
 
 
 
@@ -53,12 +53,6 @@ Parameters.nSensors = length(Parameters.sensorNames);
 % Convert index in sensorNames to index in outList, gives signal number of
 % each of the sensors in sensorNames
 Parameters.sensorIdxs = cellfun(@(x)(Parameters.outListIdx.(x)), Parameters.sensorNames);
-for j = 1 : Parameters.nStates
-   %for each state append the input number
-   Parameters.sensorIdxs(Parameters.nSensors + j) = length(fieldnames(Parameters.outListIdx)) + j;
-   %allows MLC2FAST to correctly identify state variables 
-end    
-
 
 %% Baseline Signal Information 
 % Baseline signals and normalizations
