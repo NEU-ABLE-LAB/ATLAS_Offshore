@@ -95,7 +95,9 @@ function mlc=evaluate_population(mlc,n)
     %% Update case difficulty, specific to this analysis
     %Update case dificulty for this case
     if strcmpi(mlc.parameters.problem_variables.eval_type, 'case_difficulty')
-        mlc.parameters.problem_variables.caseDifficulty( mlc.population(n).caseN ) = ...
+        caseid = strcmp(mlc.parameters.problem_variables.runCases,mlc.population(n).caseN{1});
+        caseid = find(caseid,1);
+        mlc.parameters.problem_variables.caseDifficulty(caseid) = ...
             mean( mlc.population(n).costs(1:round(end*mlc.parameters.probrep*2)));
     end
     

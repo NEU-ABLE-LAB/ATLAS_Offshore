@@ -32,16 +32,16 @@ MLC_Params = fConfigMLCParams(problem_variables);
     MLC_Params.problem_variables.MLCPath = pwd;
 
 %--- Controler Setup
-    MLC_Params.problem_variables.nStates = 5;                % number of allowable states to the controler
+    MLC_Params.problem_variables.nStates = 3;                % number of allowable states to the controler
 
 %--- Generations and Population
-    MLC_Params.size = 20;                  %*(num)[1000]$N_i$ Population size
-    Ngens = 20;                            % number of generations to evaluate and evolve
+    MLC_Params.size = 10;                  %*(num)[1000]$N_i$ Population size
+    Ngens = 15;                            % number of generations to evaluate and evolve
 
     MLC_Params.ev_again_best = 0;          %*(bool)[0] Should elite individuals be reevaluated
     MLC_Params.ev_again_nb = 1;            % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
 
-    MLC_Params.elitism = 2;                %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
+    MLC_Params.elitism = 0;                %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
 
 %--- Evaluation
     MLC_Params.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
@@ -49,12 +49,12 @@ MLC_Params = fConfigMLCParams(problem_variables);
     MLC_Params.preev_function=...           % (expr)[''] A Matlab expression to be evaluated with `eval()` to pre-evalute an individual
         'MLC_preeval';                      %   Expression should return `1` if pre-evaluation identified a valid individual
                                     
-    MLC_Params.problem_variables.eval_type = 'ind_random';        % 'ind_random'      = Evaluate Each individual using a unique random load case 
+    MLC_Params.problem_variables.eval_type = 'case_difficulty';        % 'ind_random'      = Evaluate Each individual using a unique random load case 
                                                                   % 'case_difficulty' = Evaluate all individuals using the load case with the highest dificulty 
 
 %% other dependant values
 % For use in case dificulty
-MLC_Params.problem_variables.caseDifficulty = ones(MLC_Params.nCases,1) * MLC_Params.badvalue; 
+MLC_Params.problem_variables.caseDifficulty = ones(1,MLC_Params.nCases) * MLC_Params.badvalue; 
 
 MLC_Params.controls= ...            %*(num)[1]$N_b$ Number of controls             
     3 + MLC_Params.problem_variables.nStates;
