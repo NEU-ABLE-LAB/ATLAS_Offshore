@@ -14,6 +14,13 @@ load('20200818_015729mlc_be.mat')
 
 [~,nGenerations] = size(mlc.population);
 nGenerations = nGenerations - 1;
+
+nGensAnalyse = 20;
+nTopInds = 10;
+
+
+
+
 %% what load cases were run?
 CaseNames = cell(1,nGenerations);
 CaseNumbers = zeros(1,nGenerations);
@@ -33,10 +40,11 @@ for jj = 1 : nGenerations
     TopScores(jj) = mean(mlc.population(jj).costs(1:TopIndividuals));
 end
 
-%% equation of top individual in each gen
-TopEquations = cell(nGenerations,6,10);
-TopUsesState = zeros(nGenerations,6,10);
-for ii = 1 : 10
+%% equation of analysed individuals in each gen.
+TopEquations = cell(nTopInds,6,nGenerations);
+TopUsesState = zeros(nTopInds,6,nGenerations);
+
+for ii = 1 : nTopInds
     for jj = 1 : nGenerations
         top_ind_number = mlc.population(jj).individuals(ii);
         top_ind_formal = mlc.table.individuals(top_ind_number).formal;
@@ -52,14 +60,14 @@ for ii = 1 : 10
                 equation = strrep(equation, to_replace2 ,out_name);
             end
             
-            TopEquations{jj,kk,ii} = equation;
-            TopUsesState(jj,kk,ii) = contains(equation, 'S32') + contains(equation, 'S33') + contains(equation, 'S34');
+            TopEquations{ii,kk,jj} = equation;
+            TopUsesState(ii,kk,jj) = contains(equation, 'S32') + contains(equation, 'S33') + contains(equation, 'S34');
             
         end
     end
 end
 
-see = TopEquations{20,:,:};
+see = TopEquations{:,:,10};
 
 
 
