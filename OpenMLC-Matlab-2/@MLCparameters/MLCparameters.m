@@ -36,8 +36,7 @@ properties % (data type)[default] Description
     precision=4;             % (num)[4] Maximum number of significant digits of new constants
     opsetrange=1:9;          % (array)[1:9] An array specifying the mathematical operations used by the GP, as specified in `opset.m`
     individual_type='tree';  % (str)['tree'] The only acceptable type is 'tree'
-
-
+ 
     %% GP algorithm parameters (CHANGE IF YOU KNOW WHAT YOU DO)
     maxdepth=15;           % (num)[15] Maximum depth of program tree
     maxdepthfirst=5;       % (num)[5] 
@@ -61,7 +60,9 @@ properties % (data type)[default] Description
 
 
     %% Optimization parameters
+    nCases=1;                    %*(num)[1] The number different design cases that a population could be subjected to
     elitism=10;                  %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
+    champions=1;                 % (num)[1] Number of champion individuals for each load case the controlers can be subjected to
     probrep=0.1;                 %*(num)[0.1]$P_r$ Probability of replication
     probmut=0.4;                 %*(num)[0.4]$P_m$ Probability of mutation
     probcro=0.5;                 %*(num)[0.5]$P_c$ Probability of crossover
@@ -77,7 +78,6 @@ properties % (data type)[default] Description
                                             %   parallel (`mfile_multi`)
     evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 
         'toy_problem';                      %   `J=evalFun(ind,mlc_parameters,i,fig)`
-    nCases=1;                    %*(num)[1] The number different design cases that a population could be subjected to
     ev_again_best=0;             %*(bool)[0] Should elite individuals be reevaluated
     ev_again_nb=5;               % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
     ev_again_times=5;            % ?(num)[5] The number of times to reevaluate best individuals

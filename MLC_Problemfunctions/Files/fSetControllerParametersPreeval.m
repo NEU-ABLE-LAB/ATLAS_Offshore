@@ -59,6 +59,9 @@ Parameter.assert.twrClear = -4;     % [m]
 Parameter.assert.twrTopAcc = 3.3;   % [m/s2]
 Parameter.assert.rotSpeed = 15.73;  % [rpm]
 Parameter.assert.minGenPwr = 1;     % [W]
+Parameter.assert.pitchVLim = 10;    % [deg/s]
+Parameter.assert.StateLim = 10^30;
+
 
 %% Derived MLC parameters
 if exist('MLC_parameters','var')

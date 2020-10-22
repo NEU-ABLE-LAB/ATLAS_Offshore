@@ -4,7 +4,8 @@ classdef MLCpop < handle
         individuals % A vector of the index where to find each individual in MLCtable
         costs       % A vector of the cost for each individual in this generation
         gen_method  % A vector of enums that specify the generation method
-        caseN       % A vector of The design cases used to evaluate population
+        caseN       % A vector of The design cases used to evaluate each individual in the population
+        champions   % A array of the current champion individuals for each generation
         parents     % A cell vector list each the individual's parents
         state       % The state of evaluation of the  population
         gen         % The generation of the population
@@ -49,6 +50,8 @@ classdef MLCpop < handle
             else
                 obj.caseN = 1;
             end
+            obj.champions = zeros(mlc_parameters.champions, mlc_parameters.nCases) - 1;
+            
         end
     end
 end

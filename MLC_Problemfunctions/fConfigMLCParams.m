@@ -8,7 +8,7 @@ MLC_Params.sensor_prob=0.33;        % (num)[0.33] Probability of adding a sensor
 MLC_Params.leaf_prob=0.3;           % (num)[0.3] Probability of creating a leaf (vs adding operation) 
 MLC_Params.range=10;                %*(num)[10] New constants in GP will be drawn from +/- this range
 MLC_Params.precision=4;             % (num)[4] Maximum number of significant digits of new constants
-MLC_Params.opsetrange=1:7;          % (array)[1:9] An array specifying the mathematical operations used by the GP, as specified in `opset.m`
+MLC_Params.opsetrange= [1:7, 9];          % (array)[1:9] An array specifying the mathematical operations used by the GP, as specified in `opset.m`
                                  %   - 1  addition       (+)
                                  %   - 2  substraction   (-)
                                  %   - 3  multiplication (*)

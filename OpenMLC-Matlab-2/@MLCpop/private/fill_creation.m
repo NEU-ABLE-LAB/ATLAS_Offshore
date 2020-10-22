@@ -21,6 +21,7 @@ switch mlc_parameters.evaluation_method
             nTries = 0;
             while ~isOk
                 newInds{newIdvN}=MLCind;
+                newInds{newIdvN}.cost_history = ones(1, mlc_parameters.nCases) * -1
                 newInds{newIdvN}.generate(mlc_parameters,type);
                 isOk = newInds{newIdvN}.preev(mlc_parameters);
                 nTries = nTries + 1;

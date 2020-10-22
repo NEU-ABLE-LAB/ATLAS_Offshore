@@ -87,7 +87,7 @@ classdef MLCind < handle
             obj.type='';
             obj.value=[];
             obj.cost=-1;
-            obj.cost_history=[];
+            obj.cost_history=[-1];
             obj.appearences=1;
             obj.hash=[];
             obj.formal='';

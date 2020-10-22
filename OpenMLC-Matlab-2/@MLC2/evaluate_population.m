@@ -101,6 +101,12 @@ function mlc=evaluate_population(mlc,n)
             mean( mlc.population(n).costs(1:round(end*mlc.parameters.probrep*2)));
     end
     
+    %% update champion individuals
+    if mlc.parameters.champions>0
+        for jj = 1 : mlc.parameters.champions
+           mlc.population(n).champions(jj,caseid) = mlc.population(n).individuals(1,jj);
+        end    
+    end
         
 end        
     

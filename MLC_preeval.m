@@ -79,7 +79,9 @@ load_system(tmpSysMdl)
             'SaveFormat','Dataset');
         theta = getfield(get(simOut.yout,'theta'),'Values');
         theta = 180/pi * theta;
-
+        Xdot = getfield(get(simOut.yout,'Xdot'),'Values');
+        
+        
     catch e
         
         %If the open loop controller returns an error
@@ -104,17 +106,27 @@ load_system(tmpSysMdl)
     %% Check validity
     % Saturation blocks in the model will prevent signals that are too large
     % Assert statements in the model will catch pitch speed limits
-
+    % Assert statements in the model will catch controler state instability
+    
     % The signal should have some variation (e.g. an RMS greater than 1 deg)
     theta_min_rsm = 1.0;
     if all(theta.var > theta_min_rsm)
-        isValid = true;
+%         %  The State outputs should not be constant. eg. an rsm greater than 0.25
+%         state_min_rsm = 0.25;
+%         if all(Xdot.var > state_min_rsm)
+%             isValid = true;
+%         else
+%             if MLC_params.verbose > 1
+%                 disp('  MLC_PREEVAL: 1 or more state equations did not change. Individual is invalid');
+%             end
+%         end
+          isValid = true;
     else
         if MLC_params.verbose > 1
             disp('  MLC_PREEVAL: Signal did not change. Individual is invalid');
         end
     end
-
+    
     %% Switch all of the workers back to their original folder.
     close_system(tmpSysMdl, 0);
     cd([MLC_params.problem_variables.MLCPath])
