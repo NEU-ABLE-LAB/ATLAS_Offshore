@@ -40,25 +40,7 @@ switch mlc_parameters.individual_type
         mlcind.value=simplify_and_sensors_tree(mlcind.value,mlc_parameters);       
         mlcind.formal=readmylisp_to_formal_MLC(mlcind.value,mlc_parameters);
         mlcind.complexity=tree_complexity(mlcind.value,mlc_parameters);
-        
-        % hashing system reworked to account for controlers without states
-        inhash = mlcind.formal;
-        nReals = mlc_parameters.controls - mlc_parameters.problem_variables.nStates;
-        inhash(1+nReals:mlc_parameters.controls)= [];
-        for equation = 1: nReals
-            for state = 1 : mlc_parameters.problem_variables.nStates
-                UsesState(state,equation) = contains(inhash{equation}, ['S' num2str(mlc_parameters.problem_variables.nSensors + state - 1)]); 
-            end
-        end
-                
-        if sum(sum(UsesState)) == 0
-            bit32=DataHash(inhash);         % No states called by primary controlers, just hash primary controlers
-        else
-            bit32=DataHash(mlcind.value);   % States used, hash entire equation
-        end
-        mlcind.hash=hex2num(bit32(1:16));
-        
-        
+        mlcind.hash = MyMLCHash(mlcind, mlc_parameters);        
 end
 
 
