@@ -2,9 +2,9 @@ function index=find_individual(mlctable,mlcind);
 % copyright
     index=[];
     idx=find(mlctable.hashlist==mlcind.hash);
-    if ~isempty(idx);
+    if ~isempty(idx);       
         for i=1:length(idx)
-            if mlcind.compare(mlctable.individuals(idx))
+            if mlcind.compare(mlctable.individuals(idx(i)))
                 index=idx;
                 break
             end
