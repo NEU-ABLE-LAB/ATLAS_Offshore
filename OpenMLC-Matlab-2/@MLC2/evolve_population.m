@@ -34,10 +34,13 @@ end
 if mlc.parameters.lookforduplicates
     %mlc.population(n+1).remove_duplicates;
     
+    Hashes = [];
     for check = 1 : mlc.parameters.size
-        Hashes(check) = mlc.table.individuals(mlc.population(n+1).individuals(check)).hash;
-        if ~ismember(Hashes(check),unique(Hashes))
-            mlc.population(n+1).individuals = -1;
+        CurrHash =  mlc.table.individuals(mlc.population(n+1).individuals(check)).hash;
+        if ismember(CurrHash,Hashes)
+            mlc.population(n+1).individuals(check) = -1;
+        else
+            Hashes = [Hashes CurrHash];
         end
     end
     
@@ -51,12 +54,15 @@ if mlc.parameters.lookforduplicates
         [mlc.population(n+1),mlc.table]=mlc.population(n).evolve(mlc.parameters,mlc.table,mlc.population(n+1));
         % mlc.population(n+1).remove_duplicates;
         
-        for check = 1 : mlc.parameters.size
-            Hashes(check) = mlc.table.individuals(mlc.population(n+1).individuals(check)).hash;
-            if ~ismember(Hashes(check),unique(Hashes))
-                mlc.population(n+1).individuals = -1;
-            end
+Hashes = [];
+    for check = 1 : mlc.parameters.size
+        CurrHash =  mlc.table.individuals(mlc.population(n+1).individuals(check)).hash;
+        if ismember(CurrHash,Hashes)
+            mlc.population(n+1).individuals(check) = -1;
+        else
+            Hashes = [Hashes CurrHash];
         end
+    end
         
         idx=find(mlc.population(n+1).individuals==-1);
     end
