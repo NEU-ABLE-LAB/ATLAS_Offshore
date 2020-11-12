@@ -253,6 +253,9 @@ for i=1:length(idxsubgen2)
     % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
     parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
     
+    
+    save('EvolvedPreInput.mat')
+    
     % Add mutated and crossover individuals
     for opN = 1:nOps
         
