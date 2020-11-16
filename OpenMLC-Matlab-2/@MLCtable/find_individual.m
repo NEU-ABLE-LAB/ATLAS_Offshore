@@ -5,10 +5,11 @@ function index=find_individual(mlctable,mlcind);
     if ~isempty(idx);       
         for i=1:length(idx)
             if mlcind.compare(mlctable.individuals(idx(i)))
-                index=idx;
+                index=idx(i);
                 break
             end
         end
+        
     end
             
 
