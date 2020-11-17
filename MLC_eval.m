@@ -25,7 +25,9 @@ function [costs, caseNout] = MLC_eval(ind, MLC_params,MLC_Runcase)
     
     %Run sims
     cd(MLC_params.problem_variables.FastPath)
+    
     Main_Par_MLC
+    
     cd(MLC_params.problem_variables.MLCPath)    
     restoredefaultpath;
     addpath(pwd)

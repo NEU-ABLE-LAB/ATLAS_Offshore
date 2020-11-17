@@ -23,7 +23,7 @@ if nargin<3
         evtime=now;
 end
 
-mlcind.cost_history=[mlcind.cost_history J];
+%mlcind.cost_history=[mlcind.cost_history J];
 mlcind.evaluation_time=[mlcind.evaluation_time evtime];
 mlcind.cost=max(mlcind.cost_history);
     

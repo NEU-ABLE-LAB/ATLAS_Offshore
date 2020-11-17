@@ -35,8 +35,8 @@ MLC_Params = fConfigMLCParams(problem_variables);
     MLC_Params.problem_variables.nStates = 3;                % number of allowable states to the controler
 
 %--- Generations and Population
-    MLC_Params.size = 50;                  %*(num)[1000]$N_i$ Population size
-    Ngens = 15;                            % number of generations to evaluate and evolve
+    MLC_Params.size = 100;                 %*(num)[1000]$N_i$ Population size
+    Ngens = 50;                            % number of generations to evaluate and evolve
 
     MLC_Params.ev_again_best = 0;          %*(bool)[0] Should elite individuals be reevaluated
     MLC_Params.ev_again_nb = 1;            % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
