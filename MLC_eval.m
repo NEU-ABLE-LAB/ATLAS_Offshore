@@ -14,7 +14,7 @@ function [costs, caseNout] = MLC_eval(ind, MLC_params,MLC_Runcase)
     for ii = 1 : length(ind)
         if ind(ii).cost_history(MLC_Runcase) ~= -1
             costs(ii) = ind(ii).cost_history(MLC_Runcase);
-            caseNout{ii} = MLC_Runcase;    
+            caseNout{ii} = MLC_params.problem_variables.runCases(MLC_Runcase);    
         else    
             [~,AllFcnText{ii}] = MLC_MLC2Fast(ind(ii).formal, MLC_params);
             Sims = [Sims ii];

@@ -10,9 +10,10 @@ addpath(genpath([pwd,'/ParforProgMon'])); % Parfor progress monitor
 
 %% LOad MLC object
 
-load('20200916_163655mlc_ae.mat')
+load('20201118_182832mlc_be.mat')
 
 [~,nGenerations] = size(mlc.population);
+nGenerations = nGenerations - 1;
 
 [~,nInds] = size(mlc.population(1).individuals);
 
@@ -24,6 +25,12 @@ CaseNumbers = zeros(1,nGenerations);
 
 for Gen = 1 : nGenerations
     CaseNames{Gen} = mlc.population(Gen).caseN{1, 1};
+    
+    %Because of bug (Should be fixed now ) in the MLC Eval
+    if isnumeric(CaseNames{Gen})
+       CaseNames{Gen} = mlc.parameters.problem_variables.runCases(CaseNames{Gen}); 
+    end    
+    
     CaseNumbers(Gen) = find(strcmp(mlc.parameters.problem_variables.runCases,CaseNames{Gen}),1); 
 end
 
@@ -47,27 +54,27 @@ for Gen = 1 : nGenerations
     for Ind = 1 : nInds
         top_ind_number = mlc.population(Gen).individuals(Ind);
         top_ind_formal = mlc.table.individuals(top_ind_number).formal;
-        for kk = 1:3+mlc.parameters.problem_variables.nStates
-            Equation = top_ind_formal{kk};
-            for ll = 1 : mlc.parameters.problem_variables.nSensors
-                out_numb = mlc.parameters.problem_variables.sensorIdxs(ll);
+        for CtrlOutput = 1:3+mlc.parameters.problem_variables.nStates
+            Equation = top_ind_formal{CtrlOutput};
+            for Sensor = 1 : mlc.parameters.problem_variables.nSensors
+                out_numb = mlc.parameters.problem_variables.sensorIdxs(Sensor);
                 outname = fields(mlc.parameters.problem_variables.outListIdx);
                 out_name = ['! ' outname{out_numb} ' !'];
-                to_replace1 = ['S' num2str(ll) ' '];
-                to_replace2 = ['S' num2str(ll) ')'];
-                to_replace3 = ['S' num2str(ll) ','];
+                to_replace1 = ['S' num2str(Sensor - 1) ' '];
+                to_replace2 = ['S' num2str(Sensor - 1) ')'];
+                to_replace3 = ['S' num2str(Sensor - 1) ','];
                 Equation = strrep(Equation, to_replace1 ,[out_name ' ']);
                 Equation = strrep(Equation, to_replace2 ,[out_name ')']);
                 Equation = strrep(Equation, to_replace3 ,[out_name ',']);
             end
             
-            TopEquations{Ind,kk,Gen} = Equation;
-            TopUsesState(Ind,kk,Gen) = contains(Equation, 'S32') + contains(Equation, 'S33') + contains(Equation, 'S34');
+            TopEquations{Ind,CtrlOutput,Gen} = Equation;
+            TopUsesState(Ind,CtrlOutput,Gen) = contains(Equation, 'S32') + contains(Equation, 'S33') + contains(Equation, 'S34');
         end
         % A species is the number of unique states each of the three outputs has 
         Specie  = '';
-        for kk = 1 : 3
-            Specie = [Specie num2str(TopUsesState(Ind,kk,Gen)) '-'];  
+        for CtrlOutput = 1 : 3
+            Specie = [Specie num2str(TopUsesState(Ind,CtrlOutput,Gen)) '-'];  
         end
         Specie = Specie(1:end-1);
         ControlerSpecies{Ind,Gen} = Specie;
@@ -155,8 +162,8 @@ Equation = cell(1,6);
 
 for ii = 1 : mlc.parameters.nCases  
     for jj = 1 : mlc.parameters.champions  
-        for kk = 1 : 6
-            Equation{kk} = TopEquations{IndList == ChampsFinal(jj,ii), kk, Generation};
+        for CtrlOutput = 1 : 6
+            Equation{CtrlOutput} = TopEquations{IndList == ChampsFinal(jj,ii), CtrlOutput, Generation};
         end
         ChampText{jj,ii} = Equation;
         ChampPlace(jj,ii) = find(IndList == ChampsFinal(jj,ii));
