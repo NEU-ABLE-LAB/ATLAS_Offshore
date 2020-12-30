@@ -28,7 +28,7 @@ MLC_Params = fConfigMLCParams(problem_variables);
 %--- Path Info
 
 %--- Path to FAST_Par
-    MLC_Params.problem_variables.FastPath = 'D:\Documents\GitHub\ATLAS_FAST-par';   % Fast_Par
+    MLC_Params.problem_variables.FastPath = 'C:\Users\fast_1\Desktop\ATLAS_FAST-par';   % Fast_Par
     MLC_Params.problem_variables.MLCPath = pwd;
 
 %--- Controler Setup
@@ -38,11 +38,11 @@ MLC_Params = fConfigMLCParams(problem_variables);
     MLC_Params.size = 1000;                 %*(num)[1000]$N_i$ Population size
     Ngens = 100;                            % number of generations to evaluate and evolve
 
-    MLC_Params.ev_again_best = 0;          %*(bool)[0] Should elite individuals be reevaluated
-    MLC_Params.ev_again_nb = 1;            % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
+    MLC_Params.ev_again_best = 0;           %*(bool)[0] Should elite individuals be reevaluated
+    MLC_Params.ev_again_nb = 1;             % ?(num)[5] Number off best individuals to reevaluate. Should probably be similar to `elitism`.
 
-    MLC_Params.elitism = 8;                %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
-    MLC_Params.champions = 2; % (num)  Number of champion individuals for each load case    
+    MLC_Params.elitism = 8;                 %*(num)[10]$N_e$ Number of best individuals to carry over to next generation
+    MLC_Params.champions = 2;               % (num)  Number of champion individuals for each load case    
     
 %--- Evaluation
     MLC_Params.evaluation_function=...      %*(expr)['toy_problem'] Cost function name. 

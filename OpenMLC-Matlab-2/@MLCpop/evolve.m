@@ -42,24 +42,43 @@ for i=1:length(idxsubgen2)
                 if champ_ind ~= -1 %-1 is default, means champion  has not been selected yet
                     if ~any(mlcpop2.individuals == champ_ind) %check to make shure champion isnt counted from another load case 
                         idv_orig = idx_source_pool(1, mlcpop.individuals == champ_ind);
-                        
                         idv_dest=idxsubgen2{i}(individuals_created+1);
                         
-                        mlcpop2.individuals(idv_dest) = ...
-                            mlcpop.individuals(idv_orig);
-                        
-                        mlcpop2.costs(idv_dest) = ...
-                            mlcpop.costs(idv_orig);
-                        
-                        mlcpop2.parents{idv_dest} = idv_orig;
-                        
-                        mlcpop2.gen_method(idv_dest) = 5; %5 = champion
-                        
-                        mlctable.individuals(...
-                            mlcpop.individuals(idv_orig)).appearences = ...
+                        if isempty(idv_orig)
+                            % Occurs when bad individual culling event
+                            % culls a champ individual forom population for
+                            % now just add values as if it was a new ind.
+                            
+                            
+                            
+                            mlcpop2.individuals(idv_dest) = champ_ind;
+                            
+                            mlcpop2.costs(idv_dest) = -1;
+                            
+                            mlcpop2.parents{idv_dest} = champ_ind;
+                            
+                            mlcpop2.gen_method(idv_dest) = 5; %5 = champion
+                            
+                            mlctable.individuals(champ_ind).appearences = ...
+                                mlctable.individuals(champ_ind).appearences +1;
+                            
+                     else
+                            
+                            mlcpop2.individuals(idv_dest) = ...
+                                mlcpop.individuals(idv_orig);
+                            
+                            mlcpop2.costs(idv_dest) = ...
+                                mlcpop.costs(idv_orig);
+                            
+                            mlcpop2.parents{idv_dest} = idv_orig;
+                            
+                            mlcpop2.gen_method(idv_dest) = 5; %5 = champion
+                            
                             mlctable.individuals(...
-                            mlcpop.individuals(idv_orig)).appearences+1;
-                        
+                                mlcpop.individuals(idv_orig)).appearences = ...
+                                mlctable.individuals(...
+                                mlcpop.individuals(idv_orig)).appearences+1;
+                        end
                         individuals_created=individuals_created+1;
                     end
                 end
@@ -73,11 +92,11 @@ for i=1:length(idxsubgen2)
         champs = unique(mlcpop.champions);
         nonchamps = mlcpop.individuals;
         for ii = 1 : size(unique(mlcpop.champions))
-           champ = champs(ii);
-           nonchamps = nonchamps(nonchamps~=champ); 
-        end   
+            champ = champs(ii);
+            nonchamps = nonchamps(nonchamps~=champ);
+        end
         
-        for i_el=1:ceil(mlc_parameters.elitism/length(idxsubgen2))     
+        for i_el=1:ceil(mlc_parameters.elitism/length(idxsubgen2))
             
             elete_ind = nonchamps(i_el);
             idv_orig = idx_source_pool(1, mlcpop.individuals == elete_ind);

@@ -66,20 +66,23 @@ switch mlc_parameters.evaluation_method
             % Generate new individuals to replace duplicates
             fprintf('Replacing %d duplicate individuals\n\n',...
                 sum(already_exist));
-                
+            
+            DupIndex = find(already_exist); %Because indexing non sequential numbers in a parfor is illegal =(
+            DupNewInds = cell(sum(already_exist),1);
+            
             pp = gcp();
             ppm = ParforProgMon(...
                 sprintf('MLCpop.fill_creation - Replacement round %i (%i dupes) @ %s :', ...
                     nTries, length(find(already_exist)), datestr(now,'HH:MM')), ...
                 length(find(already_exist)), 1,1200,160);
             
-            parfor replaceIndN = find(already_exist)
-                
+            parfor replaceIndN = 1 : sum(already_exist)
+                              
                 isOk = false;
                 while ~isOk
-                    newInds{replaceIndN}=MLCind;
-                    newInds{replaceIndN}.generate(mlc_parameters,type);
-                    isOk = newInds{replaceIndN}.preev(mlc_parameters);
+                    DupNewInds{replaceIndN}=MLCind;
+                    DupNewInds{replaceIndN}.generate(mlc_parameters,type);
+                    isOk = DupNewInds{replaceIndN}.preev(mlc_parameters);
                 end
                 
                 fprintf('Generated replacement individual %i\n\n',...
@@ -96,6 +99,12 @@ switch mlc_parameters.evaluation_method
             Simulink.sdi.cleanupWorkerResources
             % https://www.mathworks.com/matlabcentral/answers/385898-parsim-function-consumes-lot-of-memory-how-to-clear-temporary-matlab-files
             parfevalOnAll(gcp, @sdi.Repository.clearRepositoryFile, 0)
+            
+            for insert = 1:sum(already_exist)
+                replaceIndN = DupIndex(insert);
+                newInds{replaceIndN} = DupNewInds{insert};
+            end
+            
             
         end
         
