@@ -10,14 +10,10 @@ addpath(genpath([pwd,'/ParforProgMon'])); % Parfor progress monitor
 
 %% LOad MLC object
 
-load('20201119_092533mlc_be.mat')
+load('20201203_062004mlc_ae.mat')
 
 [~,nGenerations] = size(mlc.population);
-nGenerations = nGenerations - 1;
-
 [~,nInds] = size(mlc.population(1).individuals);
-
-
 
 %% what load cases were run?
 CaseNames = cell(1,nGenerations);
@@ -26,7 +22,7 @@ CaseNumbers = zeros(1,nGenerations);
 for Gen = 1 : nGenerations
     CaseNames{Gen} = mlc.population(Gen).caseN{1, 1};
     
-    %Because of bug (Should be fixed now ) in the MLC Eval
+    %Because of old bug (Should be fixed now ) in the MLC Eval
     if isnumeric(CaseNames{Gen})
        CaseNames{Gen} = mlc.parameters.problem_variables.runCases(CaseNames{Gen}); 
     end    
@@ -102,7 +98,7 @@ hold on
 for Percentile = 1 : 10   %Dont plot 100 percentile, usualy 1000 and off the chart
     plot([1:nGenerations],Percentiles(Percentile,:),Colors(Percentile));
 end    
-ylim([min(Percentiles(1,:))-.02 1.25])   
+ylim([min(Percentiles(1,:))-.02 max(Percentiles(6,:))+.02])   
 xlim([1 nGenerations])  
 hold off
 
@@ -123,52 +119,67 @@ bar(nSpecies','stacked');
 hold all
 
 legend(Species)
-    
-%% retest champs on all 12 cases
-load('ChampsAllCases.mat')
 
-%Pre
-champs = unique(mlc.population(1, 50).champions);
-%Comp
-fcnText = cell(1, length(champs));
+%% Champions Retest on all SImulations 
+% only use for last generations 
+ReEvalChamps = true;
 
-for ii = 1 : length(champs)
-    ind = mlc.table.individuals(champs(ii));
-    [~,fcnText{ii}] = MLC_MLC2Fast(ind.formal, mlc.parameters);
+FastPath = 'C:\Users\James\Documents\GitHub\ATLAS_FAST-par';
+MLCPath = 'C:\Users\James\Documents\GitHub\ATLAS_Offshore';
+
+ChampNumbs = unique(mlc.population(1, nGenerations).champions);
+fcnText = cell(1, length(ChampNumbs));
+CasesEval = zeros(length(ChampNumbs),12);
+
+for Champ = 1 : length(ChampNumbs)
+    ind = mlc.table.individuals(ChampNumbs(Champ));
+    ChampArray{Champ} = ind;
+    [~,fcnText{Champ}] = MLC_MLC2Fast(ind.formal, mlc.parameters);
+    for LoadCase = 1 : 12
+        if ind.cost_history(LoadCase) == -1
+            CasesEval(Champ,LoadCase) = 1;
+        end    
+    end
 end
- 
-if false
-    cd(mlc.parameters.problem_variables.FastPath)
+
+for LoadCase = 1 : 12
     
+    EvaledIndNumbs = CasesEval(:,LoadCase)==1;
+    INdsToEval_Eqs = fcnText(EvaledIndNumbs);
+    cd(FastPath);
     Main_Par_MLCPost
-    
-    cd(mlc.parameters.problem_variables.MLCPath)
+    cd(MLCPath);
     restoredefaultpath;
     addpath(pwd)
     addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
     addpath(genpath([pwd,'/MLC_Problemfunctions'])); % functions related to the turbine problem
     
-end
-
-%% champ analysis
-
-Generation = nGenerations;
-
-IndList = mlc.population(Generation).individuals;
-ChampsFinal = mlc.population(Generation).champions;
-ChampText = cell(mlc.parameters.champions, mlc.parameters.nCases);
-ChampPlace = zeros(mlc.parameters.champions, mlc.parameters.nCases);
-Equation = cell(1,6);
-
-for ii = 1 : mlc.parameters.nCases  
-    for jj = 1 : mlc.parameters.champions  
-        for CtrlOutput = 1 : 6
-            Equation{CtrlOutput} = TopEquations{IndList == ChampsFinal(jj,ii), CtrlOutput, Generation};
-        end
-        ChampText{jj,ii} = Equation;
-        ChampPlace(jj,ii) = find(IndList == ChampsFinal(jj,ii));
+    
+    
+    
+    
+    
+    
+    for Champ = 1 : length(ChampNumbs)
+    ind = mlc.table.individuals(ChampNumbs(Champ));
+    ChampArray{Champ} = ind;
+    [~,fcnText{Champ}] = MLC_MLC2Fast(ind.formal, mlc.parameters);
+    for LoadCase = 1 : 12
+        if ind.cost_history(LoadCase) == -1
+            CasesEval(Champ,LoadCase) = 1;
+        end    
     end
 end
+    
+    
+    
+    
+    
+    
+    
+    
+end 
+
 
 
 

@@ -28,7 +28,7 @@ MLC_Params = fConfigMLCParams(problem_variables);
 %--- Path Info
 
 %--- Path to FAST_Par
-    MLC_Params.problem_variables.FastPath = 'D:\Documents\GitHub\ATLAS_FAST-par';   % Fast_Par
+    MLC_Params.problem_variables.FastPath = 'C:\Users\James\Documents\GitHub\ATLAS_Offshore';   % Fast_Par
     MLC_Params.problem_variables.MLCPath = pwd;
 
 %--- Controler Setup
