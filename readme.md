@@ -11,3 +11,18 @@ Large input and output files are not included in the repository to better manage
 	* `_BaselineResults/*` (~112MB) - contains output files for the various load cases from simulations using the NREL Baseline Controller Simulink model. The contents of this folder are already populated with the baseline controller results, which have already been simulated for use by the participants in judging their own controller results. *The contents of this folder should not be modified.*
 	
 	* `_Outputs/*` (~112MB)- collects the output files for the simulated load cases. This depends on the particular challenge selected for simulation as will be described below. The output files are named `x.SFunc.outb`, where the load case name is substituted for the symbol `x` in the file name. The outputs files can be visualized using the tool pyDatview or using the matlab function `_Functions\fReadFASTBinary.m`. *The folder `_Outputs` is automatically updated with the participant output files.* Results from key outputs are uploaded to the Google Drive.
+
+# Setup
+Once this repo is cloned, the Fast-Par Repo must be downloaded as well [https://github.com/NEU-ABLE-LAB/ATLAS_FAST-par/tree/MLC_Development]. 
+
+Additionaly the following Directories need to be specified within the scripts: 
+
+* This Repo, MLC_Settings, Line 31:    Should be the full path to the Atlas Fast Par MLC Development folder
+
+* Fast-Par Repo, Main_Par_MLC, Line 10:  Should be the full path to the "OpenMLC-Matlab-2" folder in the MLC Ofshore repo.
+
+* The Default Pre-Eval function /MLC_ProblemFunctions/Files/MLC_PreEval.mdl is a 2020 file and will not run on prior versions of Matlab. THe MLC_PreEval2018.mdl file can be used on MAtlab 2018 B or later. the file used can be changed in MLC_preeval.m Line 32
+
+
+# Running MLC Program
+The program can be run useing theparameters established in the `MLC_Setings.m` script by running the script. If an MLC Object is already created the object can be loaded into the Matlab workspace and the comand `mlc.go()` can be used to initiate the learning process 
