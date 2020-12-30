@@ -1,11 +1,6 @@
 Model {
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
   Name			  "MLC_PreEval"
   Version		  10.1
-=======
-  Name			  "MLC_PreEval2018"
-  Version		  9.2
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
   SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    1
@@ -55,23 +50,19 @@ Model {
       UnitExpr		      "inherit"
     }
     ParameterArgumentNames  ""
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
     ComputedModelVersion    "1.1091"
-=======
-    ComputedModelVersion    "1.1092"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
     NumModelReferences	    0
     NumTestPointedSignals   2
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "MLC_PreEval2018/Mux3"
+      FullBlockPath	      "MLC_PreEval/Mux3"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      "theta_c"
-      FullBlockPath	      "MLC_PreEval2018/NREL 5MW Baseline Pitch Controller"
+      FullBlockPath	      "MLC_PreEval/NREL 5MW Baseline Pitch Controller"
       LogSignal		      1
       UseCustomName	      1
       LogName		      "theta"
@@ -91,26 +82,20 @@ Model {
     NumExternalFileReferences 1
     ExternalFileReference {
       Reference		      "simulink/Discontinuities/Saturation\nDynamic"
-      Path		      "MLC_PreEval2018/NREL 5MW Baseline Pitch Controller/PI Anti-Windup with rate feedforward/Saturation "
-      "Dynamic1"
+      Path		      "MLC_PreEval/NREL 5MW Baseline Pitch Controller/PI Anti-Windup with rate feedforward/Saturation Dyna"
+      "mic1"
       SID		      "7832"
       Type		      "LIBRARY_BLOCK"
     }
     OrderedModelArguments   1
   }
   DiagnosticSuppressor	  "on"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
   AnimationPlugin	  "on"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
   LogicAnalyzerPlugin	  "on"
   SLCCPlugin		  "on"
   WebScopes_FoundationPlugin "on"
   NotesPlugin		  "on"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
   EnableAccessToBaseWorkspace on
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -154,7 +139,6 @@ Model {
 	Object {
 	  $ObjectID		  5
 	  IsActive		  [1]
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  IsTabbed		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
@@ -162,47 +146,28 @@ Model {
 	  ZoomFactor		  [1.0]
 	  Offset		  [-15.243542458090587, -5.7927560389018709]
 	  SceneRectInView	  [-15.243542458090587, -5.7927560389018709, 1516.0, 845.0]
-=======
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
-	  Extents		  [1516.0, 845.0]
-	  ZoomFactor		  [0.8]
-	  Offset		  [-71.243542458090587, -130.29275603890187]
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  IsTabbed		  [0]
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "7727"
 	  Extents		  [1516.0, 845.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [-331.47265625, -282.0]
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  SceneRectInView	  [-331.47265625, -282.0, 1516.0, 845.0]
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	}
 	Object {
 	  $ObjectID		  7
 	  IsActive		  [0]
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  IsTabbed		  [0]
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "9297"
 	  Extents		  [1516.0, 845.0]
 	  ZoomFactor		  [1.25]
 	  Offset		  [-142.32607300949456, -106.55353301036324]
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  SceneRectInView	  [-142.32607300949456, -106.55353301036324, 1212.8, 676.0]
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	}
 	PropName		"EditorsInfo"
       }
@@ -211,36 +176,26 @@ Model {
 	Dimension		2
 	Object {
 	  $ObjectID		  8
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Type			  "GLUE2:SpreadSheet"
 	  ID			  "ModelData"
-=======
-	  Type			  "GLUE2:PropertyInspector"
-	  ID			  "Property Inspector"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Visible		  [0]
-	  CreateCallback	  ""
+	  CreateCallback	  "DataView.createSpreadSheetComponent"
 	  UserData		  ""
 	  Floating		  [0]
-	  DockPosition		  "Right"
+	  DockPosition		  "Bottom"
 	  Width			  [640]
 	  Height		  [480]
 	  Minimized		  "Unset"
 	}
 	Object {
 	  $ObjectID		  9
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Type			  "GLUE2:PropertyInspector"
 	  ID			  "Property Inspector"
-=======
-	  Type			  "GLUE2:SpreadSheet"
-	  ID			  "ModelData"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Visible		  [0]
-	  CreateCallback	  "DataView.createSpreadSheetComponent"
+	  CreateCallback	  ""
 	  UserData		  ""
 	  Floating		  [0]
-	  DockPosition		  "Bottom"
+	  DockPosition		  "Right"
 	  Width			  [640]
 	  Height		  [480]
 	  Minimized		  "Unset"
@@ -253,15 +208,12 @@ Model {
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
       "QBjAHQAbwByAAAAAAD/////AAABrAD///8AAAADAAAIKwAAAcD8AQAAAAH7AAAANgBHAEwAVQBFADIAOgBTAHAAcgBlAGEAZABTAGgAZQBlAHQAL"
       "wBNAG8AZABlAGwARABhAHQAYQAAAAAAAAAIKwAAARoA////AAAGEgAAA4oAAAABAAAAAgAAAAEAAAAC/AAAAAEAAAACAAAAAA=="
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
       Array {
 	Type			"Cell"
 	Dimension		0
 	PropName		"PersistedApps"
       }
       WindowUuid	      "87cfcbda-5d8d-4c17-bdd3-fac6a02ac16e"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
     }
     BDUuid		    "1f063522-405e-4802-81c7-64cc401ba601"
   }
@@ -272,15 +224,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jveli"
   ModifiedDateFormat	  "%<Auto>"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
   LastModifiedDate	  "Sun Sep 13 19:09:00 2020"
   RTWModifiedTimeStamp	  521924911
   ModelVersionFormat	  "1.%<AutoIncrement:1091>"
-=======
-  LastModifiedDate	  "Thu Nov 19 20:11:27 2020"
-  RTWModifiedTimeStamp	  527717486
-  ModelVersionFormat	  "1.%<AutoIncrement:1092>"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "all"
@@ -316,15 +262,12 @@ Model {
   BrowserLookUnderMasks	  off
   MultiThreadCoSim	  "on"
   SimulationMode	  "normal"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
   SILPILModeSetting	  "automated"
   SILPILSystemUnderTest	  "topmodel"
   SILPILSimulationModeTopModel "normal"
   SILPILSimulationModeModelRef "normal"
   SimTabSimulationMode	  "normal"
   CodeVerificationMode	  "software-in-the-loop (sil)"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
   PauseTimes		  "5"
   NumberOfSteps		  1
   SnapshotBufferSize	  10
@@ -343,11 +286,11 @@ Model {
     $PropName		    "DataLoggingOverride"
     $ObjectID		    10
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "MLC_PreEval2018"
+    model_		    "MLC_PreEval"
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "MLC_PreEval2018"
+      Cell		      "MLC_PreEval"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -385,6 +328,7 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
+	VisualType_		""
       }
       MATStruct {
 	UUID			"eab6ee9d-8666-413b-a211-2b400bfd0e63"
@@ -407,6 +351,7 @@ Model {
 	  }
 	  PropName		  "DomainParams_"
 	}
+	VisualType_		""
       }
       PropName		      "Persistence"
     }
@@ -440,11 +385,7 @@ Model {
     Dimension		    2
     Simulink.ConfigSet {
       $ObjectID		      12
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
       Version		      "20.0.1"
-=======
-      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
       DisabledProps	      []
       Description	      ""
       Array {
@@ -452,11 +393,7 @@ Model {
 	Dimension		10
 	Simulink.SolverCC {
 	  $ObjectID		  13
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -499,11 +436,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  14
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -545,11 +478,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  15
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -623,11 +552,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  16
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -710,10 +635,7 @@ Model {
 	  OperatingPointInterfaceChecksumMismatchMsg "warning"
 	  NonCurrentReleaseOperatingPointMsg "error"
 	  ChecksumConsistencyForSSReuse	"none"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  PregeneratedLibrarySubsystemCodeDiagnostic "warning"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
@@ -751,11 +673,7 @@ Model {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  17
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -805,11 +723,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  18
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -829,11 +743,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  19
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -868,11 +778,7 @@ Model {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  20
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -961,11 +867,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      21
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	      Version		      "20.0.1"
-=======
-	      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -1055,11 +957,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      22
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	      Version		      "20.0.1"
-=======
-	      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		18
@@ -1166,11 +1064,7 @@ Model {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  23
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Components		  []
@@ -1211,11 +1105,7 @@ Model {
 	}
 	SSC.SimscapeCC {
 	  $ObjectID		  24
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Array {
@@ -1323,11 +1213,7 @@ Model {
     }
     Simulink.ConfigSet {
       $ObjectID		      29
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
       Version		      "20.0.1"
-=======
-      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
       DisabledProps	      []
       Description	      ""
       Array {
@@ -1335,11 +1221,7 @@ Model {
 	Dimension		10
 	Simulink.SolverCC {
 	  $ObjectID		  30
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -1382,11 +1264,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  31
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -1428,11 +1306,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  32
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -1506,11 +1380,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  33
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -1593,10 +1463,7 @@ Model {
 	  OperatingPointInterfaceChecksumMismatchMsg "warning"
 	  NonCurrentReleaseOperatingPointMsg "error"
 	  ChecksumConsistencyForSSReuse	"none"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  PregeneratedLibrarySubsystemCodeDiagnostic "warning"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  MatchCodeGenerationContextForUpdateDiagram "none"
 	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
@@ -1634,11 +1501,7 @@ Model {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  34
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -1688,11 +1551,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  35
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -1712,11 +1571,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  36
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Components		  []
@@ -1751,11 +1606,7 @@ Model {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  37
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    16
@@ -1844,11 +1695,7 @@ Model {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      38
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	      Version		      "20.0.1"
-=======
-	      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		28
@@ -1938,11 +1785,7 @@ Model {
 	    Simulink.STFCustomTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      39
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	      Version		      "20.0.1"
-=======
-	      Version		      "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -2037,11 +1880,7 @@ Model {
 	}
 	SlCovCC.ConfigComp {
 	  $ObjectID		  40
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  "Simulink Coverage Configuration Component"
 	  Components		  []
@@ -2082,11 +1921,7 @@ Model {
 	}
 	SSC.SimscapeCC {
 	  $ObjectID		  41
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Version		  "20.0.1"
-=======
-	  Version		  "1.18.1"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  DisabledProps		  []
 	  Description		  ""
 	  Array {
@@ -2469,10 +2304,7 @@ Model {
       PermitHierarchicalResolution "All"
       TreatAsAtomicUnit	      off
       MinAlgLoopOccurrences   off
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
       ScheduleAs	      "Sample time"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
       SystemSampleTime	      "-1"
       RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
@@ -2501,12 +2333,10 @@ Model {
       TreatAsGroupedWhenPropagatingVariantConditions on
       ContentPreviewEnabled   off
       IsWebBlock	      off
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
       IsInjectorSS	      off
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
       Latency		      "0"
       AutoFrameSizeCalculation off
+      IsWebBlockPanel	      off
     }
     Block {
       BlockType		      Sum
@@ -2544,15 +2374,9 @@ Model {
     }
   }
   System {
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
     Name		    "MLC_PreEval"
     Location		    [88, 4, 1658, 1091]
     Open		    on
-=======
-    Name		    "MLC_PreEval2018"
-    Location		    [88, 4, 1658, 1091]
-    Open		    off
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
     PortBlocksUseCompactNotation off
     SetExecutionDomain	    off
     ExecutionDomainType	    "Deduce"
@@ -2566,16 +2390,10 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "9326"
     SimulinkSubDomain	    "Simulink"
-=======
-    ZoomFactor		    "80"
-    ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "9326"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
     Block {
       BlockType		      Inport
       Name		      "OutData"
@@ -2617,10 +2435,7 @@ Model {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"125"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	SimulinkSubDomain	"Simulink"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	Block {
 	  BlockType		  Inport
 	  Name			  "X"
@@ -3338,10 +3153,7 @@ Model {
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	SIDHighWatermark	"29"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	SimulinkSubDomain	"Simulink"
-=======
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	Block {
 	  BlockType		  Inport
 	  Name			  "OutData"
@@ -3370,11 +3182,7 @@ Model {
 	  BlockType		  S-Function
 	  Name			  " SFunction "
 	  SID			  "9293::27"
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
 	  Tag			  "Stateflow S-Function 2"
-=======
-	  Tag			  "Stateflow S-Function MLC_PreEval2018 2"
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
 	  Ports			  [2, 4]
 	  Position		  [180, 102, 230, 203]
 	  ZOrder		  17
@@ -4951,24 +4759,19 @@ Model {
 	      Position		      [695, 65, 775, 155]
 	      ZOrder		      68
 	      ShowName		      off
-	      LibraryVersion	      "1.465"
+	      LibraryVersion	      "1.444"
 	      SourceBlock	      "simulink/Discontinuities/Saturation\nDynamic"
 	      SourceType	      "Saturation Dynamic"
 	      SourceProductBaseCode   "SL"
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      ContentPreviewEnabled   off
-	      OutMin		      "[]"
-	      OutMax		      "[]"
+	      OutMin		      []
+	      OutMax		      []
 	      OutDataTypeStr	      "Inherit: Same as second input"
 	      OutputDataTypeScalingMode	"Same as second input"
 	      OutDataType	      "fixdt(1, 16)"
 	      OutScaling	      "2^-10"
 	      LockScale		      off
-	      RndMeth		      "Floor"
+	      RndMeth		      Floor
 	      DoSatur		      off
 	    }
 	    Block {
@@ -5816,15 +5619,8 @@ Model {
 Stateflow {
   machine {
     id			    1
-<<<<<<< HEAD:MLC_Problemfunctions/Files/2020MLC_PreEval.mdl
     name		    "MLC_PreEval"
     sfVersion		    80000032
-=======
-    name		    "MLC_PreEval2018"
-    created		    "18-Jan-2008 10:49:48"
-    isLibrary		    0
-    sfVersion		    80000014
->>>>>>> 501e0ead795b7d8892483290050938ae736b547d:MLC_Problemfunctions/Files/MLC_PreEval2018.mdl
     firstTarget		    13
   }
   chart {

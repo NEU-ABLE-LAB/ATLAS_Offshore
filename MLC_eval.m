@@ -20,7 +20,7 @@ function [costs, caseNout] = MLC_eval(ind, MLC_params,MLC_Runcase)
             Sims = [Sims ii];
         end
     end
-    
+    if ~isempty(Sims)
     fcnText = AllFcnText(~cellfun('isempty',AllFcnText));    
     
     %Run sims
@@ -33,7 +33,7 @@ function [costs, caseNout] = MLC_eval(ind, MLC_params,MLC_Runcase)
     addpath(pwd)
     addpath(genpath([pwd,'/OpenMLC-Matlab-2'])); % OpenMLC classes and functions
     addpath(genpath([pwd,'/MLC_Problemfunctions'])); % functions related to the turbine problem
-    
+    end 
     % Cleanup
     for ii = 1 : length(Sims)
         nInd = Sims(ii);
