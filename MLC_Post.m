@@ -131,72 +131,80 @@ end
 %% Individuals to Retest on all SImulations
 %
 nReEval = 10; %re evaluare the top ## individuals in each generation
-nReEvalSets = 200; % break re evaluatibn into ## subsets, saving in between each subset
+nReEvalSets = 150; % break re evaluatibn into ## subsets, saving in between each subset
 
 FastPath = 'D:\Documents\GitHub\ATLAS_FAST-par';
 MLCPath = 'D:\Documents\GitHub\ATLAS_Offshore';
 
-ReEvalFile = ['3-Jan-2021_MLCReEvaluation.mat'];
+ReEvalFile = ['18-Jan-2021_MLCReEvaluation.mat'];
 
 if   ~exist(ReEvalFile,'file')
-    SimOutArray = cell(nReEval, nGenerations);
-    CFArray = SimOutArray;
-    
+    %Prealocate
+    RE_IndNumberArray = zeros(nReEval, nGenerations);
+        
     %Create array of top inds, NReEval x NGenerations
-    TopInds = zeros(nReEval,nGenerations);
-    ReEvalInds = cell(nReEval,nGenerations);
+    TopInds = zeros(nReEval,1);
     for Gen = 1 : nGenerations
         TopInds = mlc.population(Gen).individuals(1:nReEval);
-        TopIndNumberArray(:,Gen) = TopInds';
+        RE_IndNumberArray(:,Gen) = TopInds';   
     end
     
-    ReEvalIndNumbs = unique(TopIndNumberArray);
-    ReEvalTracker = zeros(length(ReEvalIndNumbs),1);
-    SimOutArray = cell(length(ReEvalIndNumbs),1);
-    CFArray = cell(length(ReEvalIndNumbs),1);
+    RE_IndNumbs = unique(RE_IndNumberArray);
+    RE_Tracker = zeros(length(RE_IndNumbs),1);
+    RE_CtrlEquation = cell(length(RE_IndNumbs),1);
+    RE_SimOut = RE_CtrlEquation; 
+    RE_CF = RE_CtrlEquation;
+    RE_Ind = RE_CtrlEquation;
     
-    for ReEvalInd = 1 : length(ReEvalIndNumbs)
-        IndNumber = ReEvalIndNumbs(ReEvalInd);
+    for ReEvalInd = 1 : length(RE_IndNumbs)
+        IndNumber = RE_IndNumbs(ReEvalInd);
         ind = mlc.table.individuals(IndNumber);
-        ReEvalInds{ReEvalInd} = ind;
-        [~,fcnText{ReEvalInd}] = MLC_MLC2Fast(ind.formal, mlc.parameters);
+        RE_Ind{ReEvalInd} = ind;
+        [~,RE_CtrlEquation{ReEvalInd}] = MLC_MLC2Fast(ind.formal, mlc.parameters);
     end
     
     FileName = strcat(date(),'_MLCReEvaluation');
-    save(FileName,'ReEvalIndNumbs', 'ReEvalInds', 'fcnText', 'ReEvalTracker', 'SimOutArray', 'CFArray', 'TopIndNumberArray')
+    save(FileName,'RE_CF', 'RE_CtrlEquation', 'RE_Ind', 'RE_IndNumberArray', 'RE_IndNumbs', 'RE_SimOut', 'RE_Tracker')
 else
     load(ReEvalFile);
     FileName = ReEvalFile;
 end
 
-SetSize = ceil(length(ReEvalIndNumbs)/nReEvalSets);
-
 for Set =  1: nReEvalSets
     %get individuas in this set:
-    SetSize = ceil(length(ReEvalIndNumbs)/nReEvalSets);
-    SetNumbers = (Set - 1)*SetSize + [1:SetSize];
+    SetSize = ceil(length(RE_IndNumbs)/nReEvalSets);
+    SetSizeMax = min(SetSize,length(RE_IndNumbs));%To prevent it from indexing into empty individuals
+    
+    SetNumbers = (Set - 1)*SetSize + [1:SetSizeMax];
     
     %Check to see if individuals in this set have been re-evaluated
-    IsNotReEvaluated = ReEvalTracker(SetNumbers) == 0;
+    IsNotReEvaluated = RE_Tracker(SetNumbers) == 0;
     SetNumbers = SetNumbers(IsNotReEvaluated);
+    SetSize = length(SetNumbers);
+    
     
     % Get controler text for this set
-    SetfcnText = fcnText(SetNumbers);
+    SetfcnText = RE_CtrlEquation(SetNumbers);
     
-    %re evaluate the controlers on all load cases
-    [CF, SimOut, Costs] = MLC_PostEval(SetfcnText, mlc.parameters, FastPath, MLCPath);
     
-    %Post Processing
-    ReEvalTracker(SetNumbers) = 1;
-    for ind = 1:SetSize
-        CFArray{ind}.cost = CF;
-        SimOutArray{ind} = SimOut(:,ind);
-        for LoadCase = 1:12
-            ReEvalInds{ind}.cost_history(LoadCase) = Costs(LoadCase,ind);
-        end
-    end
+    if ~isempty(SetfcnText)
+        %re evaluate the controlers on all load cases
+        [CF, SimOut, Costs] = MLC_PostEval(SetfcnText, mlc.parameters, FastPath, MLCPath);
         
-    save(FileName,'ReEvalIndNumbs', 'ReEvalInds', 'fcnText', 'ReEvalTracker', 'SimOutArray', 'CFArray', 'TopIndNumberArray')
+        %Post Processing
+        RE_Tracker(SetNumbers) = 1;
+        for ind = 1:SetSize
+            Setind = SetNumbers(ind);
+            RE_CF{Setind} = CF(ind);
+            RE_SimOut{Setind} = SimOut(:,ind);
+            RE_Ind{Setind}.cost = CF(ind).CF;
+            for LoadCase = 1:12
+                RE_Ind{Setind}.cost_history(LoadCase) = Costs{LoadCase,ind};
+            end
+        end
+        
+        save(FileName,'RE_CF', 'RE_CtrlEquation', 'RE_Ind', 'RE_IndNumberArray', 'RE_IndNumbs', 'RE_SimOut', 'RE_Tracker','-v7.3')
+    end
     
 end
 
