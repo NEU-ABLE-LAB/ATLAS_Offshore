@@ -5,7 +5,7 @@
 %       MLC_params - mlc.parameters
 %       caseN - load case to run
 %
-function [CF,SimOut,Costs] = MLC_PostEval(fcnText, MLCParameters, FastPath, MLCPath)
+function [CF,SimOut,Costs,pMetrics] = MLC_PostEval(fcnText, MLCParameters, FastPath, MLCPath)
     [~,Sims] = size(fcnText);
 
     %Run sims
@@ -23,6 +23,6 @@ function [CF,SimOut,Costs] = MLC_PostEval(fcnText, MLCParameters, FastPath, MLCP
     CF = CF;
     SimOut = simOut;
     Costs = J
-    
+    pMetrics = pMetricsBC
     
 end

@@ -233,6 +233,11 @@ Min_CtrlLaw = RE_CtrlEquation{Costs == Min_Cost};
 %Print Best Inividual Properties
 fprintf('BEST INDIVIDUAL:\nIndividual number %i\nGeneration %i, Gen. Rank %i\nCOST = %f\n\n',Min_IndNum,Min_IndGen,Min_IndGenRank,Min_Cost)
 
+
+
+
+
+
 %% Plot histogram with overall cost trend of best individual in each gen.
 
 StartGen = 25; %Generation To start plot at 

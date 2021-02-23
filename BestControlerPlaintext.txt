@@ -1,0 +1,22 @@
+Thetaout = [0;0;0]; 
+X0 = [0; 0; 0]; 
+Xdot = [0; 0; 0]; 
+u = [OutData; X]; 
+
+y = [
+sin(cos(sin(tanh(PITCH)) + 2*NACELL) -0.136 + NACELL) + NACELL + PITCH;
+12.45*(sin(cos((tanh(PITCH) - 0.832))) + NACELL);  		
+PITCH;
+-1.3843;
+5.61;
+-9.104; 
+]
+
+
+Thetaout(1) = y(1); 
+Thetaout(2) = y(2); 
+Thetaout(3) = y(3); 
+
+Xdot(1) = y(4);
+Xdot(2) = y(5);
+Xdot(3) = y(6); 
