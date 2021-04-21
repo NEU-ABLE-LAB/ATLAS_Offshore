@@ -13,11 +13,13 @@ addpath(genpath([pwd,'/ParforProgMon'])); % Parfor progress monitor
 load('20201203_062004mlc_ae.mat')
 
 [~,nGenerations] = size(mlc.population);
-[~,nInds] = size(mlc.population(1).individuals);
+[~,nInds] = size(mlc.population(1).individuals); %only top 100
 
+nInds = 200
+StartGen = 50
 
 %% Draw Plots
-DrawPlots = false;
+DrawPlots = true;
 
 if DrawPlots
     %% what load cases were run?
@@ -47,17 +49,46 @@ if DrawPlots
     
     %% equation of analysed individuals in each gen.
     TopEquations = cell(nInds,6,nGenerations);
-    TopUsesState = zeros(nInds,6,nGenerations);
-    ControlerSpecies = cell(nInds,nGenerations);
+    TopIndNumbers = zeros(nInds,nGenerations);
+    TopSensorUse = cell(nInds,nGenerations);
+    TopUsesState = zeros(nInds,6,nGenerations,3);
+    ControlerSpecies = zeros(nInds,nGenerations);
     ControlerCosts = zeros(nInds,nGenerations);
     
-    for Gen = 1 : nGenerations
+    
+    for Gen = StartGen : nGenerations
         for Ind = 1 : nInds
             top_ind_number = mlc.population(Gen).individuals(Ind);
+            TopIndNumbers(Ind,Gen) = top_ind_number;
             top_ind_formal = mlc.table.individuals(top_ind_number).formal;
+            SensorCount =  zeros(1,mlc.parameters.problem_variables.nSensors);
+            
+            %are the individules states dynamic
+            DynState = zeros(1,mlc.parameters.problem_variables.nStates);
+            for State = 1:mlc.parameters.problem_variables.nStates
+                StateEQ = top_ind_formal{3 + State};
+                for Sensor = 1 : mlc.parameters.problem_variables.nSensors + 3
+                    Findme = ['S' num2str(Sensor - 1)];
+                    if sum(strfind(StateEQ, Findme)) > 0
+                        DynState(State) = 1;
+                    end
+                end 
+            end
+            
             for CtrlOutput = 1:3+mlc.parameters.problem_variables.nStates
                 Equation = top_ind_formal{CtrlOutput};
                 for Sensor = 1 : mlc.parameters.problem_variables.nSensors
+                    Location = strfind(Equation,['S' num2str(Sensor - 1)]);
+                    if ~isempty(Location)
+                        for LocIdx = 1: length(Location)
+                            if length(Equation)== 2
+                                SensorCount(Sensor)= 1;    
+                            elseif Sensor > 10 || ~isstrprop(Equation(Location(LocIdx)+2),'digit')%to make sure S1 doesnt catch S17, for example
+                                SensorCount(Sensor)= 1;
+                            end
+                        end
+                    end
+                    % clean up text a little
                     out_numb = mlc.parameters.problem_variables.sensorIdxs(Sensor);
                     outname = fields(mlc.parameters.problem_variables.outListIdx);
                     out_name = ['! ' outname{out_numb} ' !'];
@@ -70,54 +101,82 @@ if DrawPlots
                 end
                 
                 TopEquations{Ind,CtrlOutput,Gen} = Equation;
-                TopUsesState(Ind,CtrlOutput,Gen) = contains(Equation, 'S32') + contains(Equation, 'S33') + contains(Equation, 'S34');
+                TopSensorUse{Ind,Gen} = SensorCount;
+                
+                for State = 1:mlc.parameters.problem_variables.nStates 
+                    if contains(Equation, ['S' num2str(mlc.parameters.problem_variables.nSensors+State-1)])
+                        if DynState(State) == 1
+                            TopUsesState(Ind,CtrlOutput,Gen,State) = 1;
+                        end
+                    end
+                end
             end
             % A species is the number of unique states each of the three outputs has
-            Specie  = '';
-            for CtrlOutput = 1 : 3
-                Specie = [Specie num2str(TopUsesState(Ind,CtrlOutput,Gen)) '-'];
-            end
-            Specie = Specie(1:end-1);
-            ControlerSpecies{Ind,Gen} = Specie;
+
+            
+            Specie = sum(TopUsesState(Ind,1:3,Gen,:),2);
+            Specie = nnz(Specie);
+
+            ControlerSpecies(Ind,Gen) = Specie;
             ControlerCosts(Ind,Gen) = mlc.population(Gen).costs(Ind);
         end
     end
     
-    %% Percentiles Graph
-    Percentiles = zeros(11,nGenerations);
-    PercentileRange = [0:.1:1];
-    Colors = ['g' 'k' 'k' 'k' 'k' 'r' 'k' 'k' 'k' 'k' 'b'];
-    for Gen = 1 : nGenerations
-        for Percentile = 1 : 11
-            if Percentile == 1
-                Percentiles(Percentile,Gen) = ControlerCosts(1,Gen);
-            else
-                PercentileValue = floor(PercentileRange(Percentile)*nInds);
-                Percentiles(Percentile,Gen) = ControlerCosts(PercentileValue,Gen);
-            end
-        end
-    end
-    
-    figure
-    hold on
-    for Percentile = 1 : 10   %Dont plot 100 percentile, usualy 1000 and off the chart
-        plot([1:nGenerations],Percentiles(Percentile,:),Colors(Percentile));
-    end
-    ylim([min(Percentiles(1,:))-.02 max(Percentiles(6,:))+.02])
-    xlim([1 nGenerations])
-    ylabel('Cost')
-    xlabel('Generation')
-    hold off
+%     %% Percentiles Graph
+%     Percentiles = zeros(11,nGenerations);
+%     PercentileRange = [0:.1:1];
+%     Colors = ['g' 'k' 'k' 'k' 'k' 'r' 'k' 'k' 'k' 'k' 'b'];
+%     for Gen = 1 : nGenerations
+%         for Percentile = 1 : 11
+%             if Percentile == 1
+%                 Percentiles(Percentile,Gen) = ControlerCosts(1,Gen);
+%             else
+%                 PercentileValue = floor(PercentileRange(Percentile)*nInds);
+%                 Percentiles(Percentile,Gen) = ControlerCosts(PercentileValue,Gen);
+%             end
+%         end
+%     end
+%     
+%     figure
+%     hold on
+%     for Percentile = 1 : 10   %Dont plot 100 percentile, usualy 1000 and off the chart
+%         plot([1:nGenerations],Percentiles(Percentile,:),Colors(Percentile));
+%     end
+%     ylim([min(Percentiles(1,:))-.02 max(Percentiles(6,:))+.02])
+%     xlim([1 nGenerations])
+%     ylabel('Cost')
+%     xlabel('Generation')
+%     hold off
     
     %% Cases plot
     figure
-    plot(CaseNumbers,'x')
+    sgtitle('DLC Evaluated for each Generation')
+    subplot(1,2,1)
+    plot(CaseNumbers,'x','MarkerSize',8)
+    xlabel('Generation')
+    ylabel('DLC Number')
+    xlim([-2 102])
+    ylim([.5 12.5])
+    yticks([1:1:12])
+    title('DLC Evaluated for each Generation')
+    subplot(1,2,2)
+    
+    for ii = 1:12
+    CasesCume(ii) = sum(CaseNumbers == ii); 
+    end
+    
+    bar(CasesCume)
+    xlabel('DLC Number')
+    ylabel('Number of times Evaluated')
+    title('Sum of Times Each DLC was Evaluated')
+    
+    
     
     %% Species Plot
     Species = unique(ControlerSpecies);
     for Gen = 1 : nGenerations
         for Index = 1 : size(Species)
-            nSpecies(Index, Gen) = sum(count(ControlerSpecies(:,Gen),Species(Index)));
+            nSpecies(Index, Gen) = sum(ControlerSpecies(:,Gen) == Species(Index));
         end
     end
     figure
@@ -125,7 +184,38 @@ if DrawPlots
     bar(nSpecies','stacked');
     hold all
     
-    legend(Species)
+    legend('0 States','1 State','2 States','3 States')
+    xlabel('Generation')
+    title('State usege throughout Top 20% of Individuals in Each Generation')
+    
+    %% Sensor Use Plot
+    PlotSensorUse = zeros(1,mlc.parameters.problem_variables.nSensors);
+    AllInds = unique(TopIndNumbers);
+    if AllInds(1) == 0
+        AllInds = AllInds(2:end);
+    end
+    
+    for Ind = 1: length(AllInds)
+       IndUse = find(TopIndNumbers==AllInds(Ind));
+       PlotSensorUse = PlotSensorUse + TopSensorUse{IndUse(1)};       
+    end
+    for Sensor = 1:mlc.parameters.problem_variables.nSensors
+         XAxisLabels{Sensor} = mlc.parameters.problem_variables.sensorNames{Sensor};
+    end
+    PlotSensorUse = PlotSensorUse/length(AllInds);
+    figure
+    bar(PlotSensorUse)
+    title('Input Signal Useage Throughout Top 20% if Individules in Generations 50 to 100')
+    ylabel('Percent of Individules That Use Signal')
+    xticks([1:mlc.parameters.problem_variables.nSensors])
+    xticklabels(XAxisLabels)
+    xtickangle(90)
+    
+    
+    
+    
+    
+    
 end
 
 
@@ -240,8 +330,11 @@ fprintf('BEST INDIVIDUAL:\nIndividual number %i\nGeneration %i, Gen. Rank %i\nCO
 
 %% Plot histogram with overall cost trend of best individual in each gen.
 
-StartGen = 25; %Generation To start plot at 
+StartGen = 1; %Generation To start plot at 
 EndGen = 100; %Generation to end plot at
+
+XLabels = cell(1,EndGen - StartGen + 1);
+
 
 figure
 hold on
@@ -253,15 +346,22 @@ for Gen = 1 : EndGen - StartGen + 1
     end
     MinTotal(Gen) = min(TMinTotal);
     Gens(Gen) = GenNum;
+    XLabels{Gen} = strcat(num2str(GenNum)); %,' (', num2str(CaseNumbers(GenNum)),')');
 end    
 boxplot(AllCosts,Gens,'PlotStyle','compact','OutlierSize',1)
-plot(MinTotal,'LineWidth',4)
+plot(MinTotal(1:42),'LineWidth',4,'color','r')
+plot([45:100],MinTotal(45:100),'LineWidth',4,'color','r')
 ylim([.5,1.5])
-xlabel('Generation')
+title('Cost Distribution over Generations 1 - 100')
+%xlabel('Generation (DLC#)','Position',[1000 -100])
 ylabel('Cost')
 hold off
-
-
+xticks([1:1:EndGen-StartGen+1])
+XLabels(rem([1:1:EndGen-StartGen+1],5)~=0)={''};
+xticklabels(XLabels)
+xtickangle(90)
+xlabel('Generation')
+legend('Best Cost on All 12 DLCs')
 
 
 

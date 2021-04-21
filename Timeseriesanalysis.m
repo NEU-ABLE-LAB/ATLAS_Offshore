@@ -49,10 +49,6 @@ fBuildPlotsMLCPost(CF(1), CF(2), pMetrics, plotTag, {'Best MLC Controler'})
 % ]
 
 %%
-load('BestandBLSimout.mat')
-load('20201203_062004mlc_ae')
-ChannelNames = SimOut{1,1}.ChanName;
-
 
 %Hard Code needed chanels now bewcause im lazy
 Pnum = 34;
@@ -80,7 +76,7 @@ legend('MLC Controler','Baseline Controler')
 
 
 
-Case = 1 ;   
+Case = 3;   
 PITCH = SimOut{Case,1}.Channels(:,Pnum);
 NACELLE = SimOut{Case,1}.Channels(:,Nnum);
 TIE2 = SimOut{Case,2}.Channels(:,Tnum);
@@ -104,18 +100,20 @@ Y3 = NORMPITCH;
 
 figure
 title('Relationship Between Controler Input and Blade 1 Output')
-subplot(1,3,1);
-plot(PITCH,Y1,'.')
+subplot(1,2,1);
+scatter(NORMPITCH,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.2)
 xlabel('Platform Pitch (PtfmPitch)')
 ylabel('Controler Output (Blade 1)')
-subplot(1,3,2);
-plot(NACELLE,Y1,'.')
+subplot(1,2,2);
+scatter(NORMNACELLE,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.2)
 xlabel('Nacelle Acceleration (NcIMUTAxs)')
 ylabel('Controler Output (Blade 1)')
-subplot(1,3,3);
-plot(TIE2,Y1,'.')
-xlabel('Tension in Tie 2 (T_2)')
-ylabel('Controler Output (Blade 1)')
+
+
+
+figure
+plot(TIME,NORMPITCH,TIME,NORMNACELLE,TIME,zeros(1,length(TIME)))
+
 
 
 Range = [-3:.05:3];
@@ -134,23 +132,62 @@ for ii = 1:length(Range)
 end
 
 figure
+sgtitle('3D Representation of IPC Outputs For ach blade')
+
 subplot(1,3,1);
+%hold on
+%plot3(NORMNACELLE,NORMPITCH,Y1)
 mesh(Range,Range,Surface1)
+%hold off
 title('Blade 1')
 ylabel('Platform Pitch')
 xlabel('Nacel acceleration')
 
 subplot(1,3,2);
+%hold on
+%plot3(NORMNACELLE,NORMPITCH,Y2)
 mesh(Range,Range,Surface2)
+%hold off
 title('Blade 2')
 ylabel('Platform Pitch')
 xlabel('Nacel acceleration')
-
+ 
 subplot(1,3,3);
+%hold on
+%plot3(NORMNACELLE,NORMPITCH,Y3)
 mesh(Range,Range,Surface3)
+%hold off
 title('Blade 3')
 ylabel('Platform Pitch')
 xlabel('Nacel acceleration')
 
+figure
+sgtitle('Behavior of signals unter general wing loading (DLC 3)')
 
+subplot(1,3,1);
+hold on
+mesh(Range,Range,Surface1)
+plot3(NORMNACELLE,NORMPITCH,Y1,'color','r')
+hold off
+title('Blade 1')
+ylabel('Norm. Platform Pitch')
+xlabel('Norm. Nacel Acceleration')
+
+subplot(1,3,2);
+hold on
+plot3(NORMNACELLE,NORMPITCH,Y2,'color','r')
+mesh(Range,Range,Surface2)
+hold off
+title('Blade 2')
+ylabel('Norm. Platform Pitch')
+xlabel('Norm. Nacel Acceleration')
+ 
+subplot(1,3,3);
+hold on
+plot3(NORMNACELLE,NORMPITCH,Y3,'color','r')
+mesh(Range,Range,Surface3)
+hold off
+title('Blade 3')
+ylabel('Norm. Platform Pitch')
+xlabel('Norm. Nacel Acceleration')
 
