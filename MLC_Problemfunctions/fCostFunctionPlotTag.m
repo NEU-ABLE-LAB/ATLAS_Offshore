@@ -35,6 +35,7 @@ if plotTag.Rel_FreqComp == 'plot'
         hold on
         plot([0 nFreqs+1],[1 1],'k--')
         ylabel(Comp{iComp})
+        xlim([0 nFreqs+1]) 
         if iComp==1
             title('Relative contribution per frequency and component')
         end
