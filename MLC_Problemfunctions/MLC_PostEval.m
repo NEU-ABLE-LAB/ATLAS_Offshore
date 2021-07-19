@@ -6,9 +6,8 @@
 %       caseN - load case to run
 %
 function [CF,SimOut,Costs,pMetrics] = MLC_PostEval(fcnText, MLCParameters, FastPath, MLCPath)
-    [~,Sims] = size(fcnText);
 
-    %Run sims
+%Run sims
     cd(FastPath)
     
     Main_Par_MLC_post
