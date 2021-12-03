@@ -79,7 +79,7 @@ legend('Baseline CPC','MLC Derrived IPC')
 
 
 
-Case = 5;   
+Case = 1;   
 PITCH = SimOut{Case,1}.Channels(:,Pnum);
 NACELLE = SimOut{Case,1}.Channels(:,Nnum);
 TIE2 = SimOut{Case,1}.Channels(:,Tnum);
@@ -104,11 +104,11 @@ Y3 = NORMPITCH;
 figure
 title('Relationship Between Controler Input and Blade 1 Output')
 subplot(1,2,1);
-scatter(NORMPITCH,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.2)
+scatter(NORMPITCH,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.1)
 xlabel('Platform Pitch (PtfmPitch)')
 ylabel('Controler Output (Blade 1)')
 subplot(1,2,2);
-scatter(NORMNACELLE,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.2)
+scatter(NORMNACELLE,Y1,5,'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.1)
 xlabel('Nacelle Acceleration (NcIMUTAxs)')
 ylabel('Controler Output (Blade 1)')
 
@@ -129,8 +129,8 @@ Surface3 = Surface1;
 XLines = 20;
 YLines = 20;
 
-%Colortype = 'Same'  ;            %All 3 plots use same color map and scale 
-Colortype = 'Unique'   ;         %Each plot has a unique colormap
+Colortype = 'Same'  ;            %All 3 plots use same color map and scale 
+%Colortype = 'Unique'   ;         %Each plot has a unique colormap
 
 %DotCollor = 'r'  ;               %Red
 DotCollor = 'colormap' ;        %Same color as corresponding collor map
@@ -157,20 +157,18 @@ Surfaces{3} = Surface3;
 
 %Colors___________________________________________________________________
 ZRange = [-50,50];
-CMap = colormap('parula');
-colormap('parula')
-
-MeshMax = max([max(Surface3(:)),max(Surface2(:)),max(Surface1(:))]);
-MeshMin = min([min(Surface3(:)),min(Surface2(:)),min(Surface1(:))]);
-
-StepSize = (MeshMax - MeshMin)/length(CMap);
-Steps = [MeshMin:StepSize:MeshMax-StepSize]; %Min to Max - 1
+CBits = 100;
+CMap = colormap(parula(CBits));
+colormap(parula(CBits))
 
 if strcmp(Colortype,'Same')
     
     MeshMax = max([max(Surface3(:)),max(Surface2(:)),max(Surface1(:))]);
     MeshMin = min([min(Surface3(:)),min(Surface2(:)),min(Surface1(:))]);
 
+    MeshMax = 50;
+    MeshMin = -50;
+    
     StepSize = (MeshMax - MeshMin)/length(CMap);
     Steps = [MeshMin:StepSize:MeshMax-StepSize]; %Min to Max - 1
     
@@ -248,18 +246,23 @@ sgtitle(['Behavior Of Signals Under General Wind Loading (DLC ' num2str(Case) ')
 for ii = 1:3
     subplot(1,3,ii);
     hold on
-    if strcmp(Colortype,'Same')
-        mesh(Range,Range,Surfaces{ii},CMapsG{ii})
-    else
-        mesh(Range,Range,Surfaces{ii})
-    end
-    scatter3(NORMNACELLE,NORMPITCH,ZPoints{ii},5,DotCollors{ii},'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.1)
-    colorbar
+%     if strcmp(Colortype,'Same')
+%         mesh(Range,Range,Surfaces{ii}-50,CMapsG{ii},'FaceAlpha','0.0')
+%     else
+%         mesh(Range,Range,Surfaces{ii})
+%     end
+    scatter3(NORMNACELLE,NORMPITCH,ZPoints{ii}-50,5,DotCollors{ii},'filled','MarkerFaceAlpha',0.1,'MarkerEdgeAlpha',0.1)
+     if ii == 2
+        colorbar('southoutside')
+        StepVals{ii} = [-50:10:50];
+    end     
+    contour(Range,Range,Surfaces{ii},StepVals{ii},'k','ShowText','on')
     hold off
     title(['Blade ' num2str(ii)])
     ylabel('Platform Pitch')
     xlabel('Nacelle Acceleration')
-    zlim([-50,50])
+    zlim([-100,0])
+
     ylim([-3,3])
     xlim([-3,3])
 
