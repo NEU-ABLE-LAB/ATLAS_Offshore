@@ -1,7 +1,13 @@
 # [THE ARPA-E ATLAS Offshore Wind Challenge COMPETITION](https://arpa-e.energy.gov/?q=site-page/atlas-competition)
-The Advanced Research Projects Agency – Energy (ARPA-E) of the U.S. Department of Energy is challenging the research and industrial communities to discover, develop, and test innovative and disruptive Control Co-Design solutions for critical wind energy challenges. The ATLAS (Aerodynamic Turbines with Load Attenuation Systems) Competition is the first ARPA-E effort associated with this advanced design methodology. **Final Submissions due April 19th**
+The Advanced Research Projects Agency – Energy (ARPA-E) of the U.S. Department of Energy is challenging the research and industrial communities to discover, develop, and test innovative and disruptive Control Co-Design solutions for critical wind energy challenges. The ATLAS (Aerodynamic Turbines with Load Attenuation Systems) Competition is the first ARPA-E effort associated with this advanced design methodology. 
 
-See [ATLAS-modeling-control-simulation-final.pdf] for full details.
+# Purpous
+This repository contains the machine learning control (MLC) framework for an attempt at creating a MLC based controller for the atlas competition in 2019. The MLC Framework is based on:
+
+https://github.com/MachineLearningControl/OpenMLC-Matlab
+
+The MLC object used in an upcoming paper can be obtained by reaching out to the developers, as it is not stored on the repository due to file size. 
+
 
 # Git Repository Structure
 Large input and output files are not included in the repository to better manage space. Specifically the following files and folders are included in `.gitignore` and can be downloaded from the ABLE_ATLAS_OffShore Google Team Drive. **You must download these files after cloning the repository.** Additional smaller input and output files are included in the repository. 
@@ -25,4 +31,4 @@ Additionaly the following Directories need to be specified within the scripts:
 
 
 # Running MLC Program
-The program can be run useing theparameters established in the `MLC_Setings.m` script by running the script. If an MLC Object is already created the object can be loaded into the Matlab workspace and the comand `mlc.go()` can be used to initiate the learning process 
+The program can be run useing the parameters established in the `MLC_Setings.m` script by running the script. If an MLC Object is already created the object can be loaded into the Matlab workspace and the comand `mlc.go()` can be used to initiate the learning process 
