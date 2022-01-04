@@ -1,7 +1,7 @@
 # [THE ARPA-E ATLAS Offshore Wind Challenge COMPETITION](https://arpa-e.energy.gov/?q=site-page/atlas-competition)
 The Advanced Research Projects Agency – Energy (ARPA-E) of the U.S. Department of Energy is challenging the research and industrial communities to discover, develop, and test innovative and disruptive Control Co-Design solutions for critical wind energy challenges. The ATLAS (Aerodynamic Turbines with Load Attenuation Systems) Competition is the first ARPA-E effort associated with this advanced design methodology. 
 
-# Purpous
+# Purpose
 This repository contains the machine learning control (MLC) framework for an attempt at creating a MLC based controller for the atlas competition in 2019. The MLC Framework is based on:
 
 https://github.com/MachineLearningControl/OpenMLC-Matlab
